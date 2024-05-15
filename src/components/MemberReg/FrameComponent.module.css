@@ -1,0 +1,158 @@
+.navigationSvgrepocomIcon {
+    width: 48px;
+    height: 48px;
+    position: relative;
+    border-radius: var(--br-6xs);
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .navigationSvgrepocomWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: var(--padding-2xs) 0 0;
+  }
+  .carecallLogoIcon {
+    height: 50px;
+    width: 50px;
+    position: relative;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+  .call {
+    color: var(--color-navy);
+  }
+  .carecall,
+  .connectedContinuousCare {
+    position: relative;
+    white-space: nowrap;
+  }
+  .carecall {
+    margin: 0;
+    flex: 1;
+    font-size: inherit;
+    font-weight: 700;
+    font-family: inherit;
+  }
+  .connectedContinuousCare {
+    align-self: stretch;
+    z-index: 1;
+  }
+  .headerB {
+    width: 132.5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 0 0 var(--padding-4xs);
+    box-sizing: border-box;
+    margin-left: -145.9px;
+    text-align: right;
+    font-size: var(--font-size-7xs);
+    color: var(--color-gray);
+    font-family: var(--font-inter);
+  }
+  .connectedCare {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 0 var(--padding-smi) 0 0;
+  }
+  .carecallLogoParent,
+  .connectedCareWrapper,
+  .frameContainer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .connectedCareWrapper {
+    width: 156px;
+    flex-shrink: 0;
+    flex-direction: column;
+    padding: var(--padding-9xs-5) 0 0;
+    box-sizing: border-box;
+  }
+  .carecallLogoParent,
+  .frameContainer {
+    flex-direction: row;
+  }
+  .carecallLogoParent {
+    overflow-x: auto;
+    padding: var(--padding-3xs) var(--padding-7xs) var(--padding-8xs-5);
+    gap: var(--gap-mini);
+  }
+  .frameContainer {
+    width: 340px;
+    gap: var(--gap-47xl);
+    max-width: 100%;
+  }
+  .memberRegistrationPortal {
+    margin: 0;
+    position: relative;
+    font-size: inherit;
+    font-weight: 700;
+    font-family: inherit;
+    white-space: nowrap;
+  }
+  .frameGroup,
+  .profileCircleIcon {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    max-width: 100%;
+  }
+  .profileCircleIcon {
+    flex: 1;
+    flex-direction: column;
+    padding: var(--padding-2xs) 0 0;
+    box-sizing: border-box;
+    font-size: var(--font-size-12xl);
+    color: var(--color-black);
+  }
+  .frameGroup {
+    width: 1060px;
+    flex-direction: row;
+    gap: var(--gap-293xl);
+  }
+  .profileCircleSvgrepocomIcon {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .frameParent,
+  .profileCircleSvgrepocomWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: var(--padding-8xs) 0 0;
+  }
+  .frameParent {
+    align-self: stretch;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: var(--br-xl);
+    background-color: var(--color-dodgerblue);
+    overflow: hidden;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: var(--padding-2xs) var(--padding-13xl) var(--padding-2xs)
+      var(--padding-8xl);
+    box-sizing: border-box;
+    top: 0;
+    z-index: 99;
+    position: sticky;
+    max-width: 100%;
+    gap: var(--gap-xl);
+    text-align: left;
+    font-size: var(--font-size-17xl);
+    color: var(--color-steelblue);
+    font-family: var(--font-istok-web);
+  }
+
+ 
+  

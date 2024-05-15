@@ -1,0 +1,44 @@
+.frameChild,
+.frameInner,
+.frameItem {
+  height: auto;
+  position: relative;
+  background-color: var(--color-whitesmoke);
+  overflow: hidden;
+  max-width: 100%;
+  
+}
+.frameChild {
+  width: 33%;
+  flex-shrink: 0;
+}
+.frameInner,
+.frameItem {
+  flex: 1;
+  width: 33%;
+}
+.frameParent,
+.homePage {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.frameParent {
+  align-self: stretch;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 33.5px;
+  max-width: 100%;
+  
+}
+.homePage {
+  width: 100%;
+  position: relative;
+  background-color: #fff;
+  flex-direction: column;
+  padding: 31px 22px 37px;
+  box-sizing: border-box;
+  gap: var(--gap-14xl);
+  line-height: normal;
+  letter-spacing: normal;
+}

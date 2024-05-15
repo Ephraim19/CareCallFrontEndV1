@@ -6,6 +6,10 @@ import {
   useLocation,
 } from "react-router-dom";
 import LeftSideBarClinicalInfor from "./pages/LeftSideBarClinicalInfor";
+import Homepage from "./components/MemberReg/Homepage";
+import EmailLogin from "./components/Logins/EmailLogin";
+import EmailSignup from "./components/Logins/EmailSignup";
+import Login from "./components/Logins/Login";
 
 function App() {
   const action = useNavigationType();
@@ -46,6 +50,11 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<LeftSideBarClinicalInfor />} />
+      <Route path="/new" element={<Homepage />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<EmailSignup />} />
+
+
     </Routes>
   );
 }
