@@ -10,12 +10,15 @@ const FrameComponent2 = ({ pastAdmissions, rEASONDIAGNOSIS }) => {
           <div className="date">DATE</div>
           <div className="reasondiagnosis">{rEASONDIAGNOSIS}</div>
         </div>
+        
       </div>
       <div className="frame-wrapper1">
         <div className="edit-wrapper">
           <div className="edit">EDIT</div>
         </div>
       </div>
+
+        
     </div>
   );
 };

@@ -1,10 +1,30 @@
 import FrameComponent2 from "../FrameComponent2";
 import "../FrameComponent1.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const FrameComponent1 = () => {
+const FrameComponent1 = (patientToDisplayId) => {
+  const [overview, setOverview] = useState("");
+  const [allergy, setAllergy] = useState([]);
+  const [pastAdmissions, setPastAdmissions] = useState([]);
+  const [previousSurgeries, setPreviousSurgeries] = useState([]);
+  const [otherNotes, setOtherNotes] = useState("");
+  const [familyHistory, setFamilyHistory] = useState([]);
+  const [socialHistory, setSocialHistory] = useState([]);
+
+  useEffect(() => {
+    setOverview(patientToDisplayId.patientToDisplayId.overview);
+    setAllergy(patientToDisplayId.patientToDisplayId.allergy);
+    setPreviousSurgeries(
+      patientToDisplayId.patientToDisplayId.surgery
+    );
+    setOtherNotes(patientToDisplayId.patientToDisplayId.othernote);
+    setFamilyHistory(patientToDisplayId.patientToDisplayId.family);
+    setPastAdmissions(patientToDisplayId.patientToDisplayId.admission);
+    setSocialHistory(patientToDisplayId.patientToDisplayId.social);
+  }, [patientToDisplayId]);
+
   return (
-    <div >
+    <div>
       <div className="stack-parent" style={{ marginBottom: "5%" }}>
         <div>
           <div className="stack">
@@ -24,19 +44,27 @@ const FrameComponent1 = () => {
           </div>
           <div className="string-processor">
             <div className="math-operation">
-              <div className="carecall3">Healthy</div>
+              <div className="carecall3">
+                {overview ? overview[0].overviewHealthStatus : "--"}
+              </div>
               <div className="insurer1">HEALTH GOALS</div>
             </div>
             <div className="assignment-operator">
-              <div className="motivational-design1">83%</div>
+              <div className="motivational-design1">
+                {overview ? overview[0].overviewRiskScore : "--"}
+              </div>
               <div className="insurance-id1">BLOOD GROUP</div>
             </div>
           </div>
           <div className="return-operator">
             <div className="if-statement">
-              <div className="britam1">Keep fit</div>
+              <div className="britam1">
+                {overview ? overview[0].overviewHealthGoals : "--"}
+              </div>
             </div>
-            <div className="ins077t7t6r762901">A+</div>
+            <div className="ins077t7t6r762901">
+              {overview ? overview[0].overViewBloodGroup : "--"}
+            </div>
           </div>
         </div>
       </div>
@@ -82,10 +110,14 @@ const FrameComponent1 = () => {
           <div className="at-risk-of">At Risk of</div>
           <div className="condition-parent">
             <div className="condition">CONDITION</div>
-            <div className="diabetes-mellitus-type">Colon cancer</div>
+            {socialHistory
+              ? socialHistory.map((social) => (
+                  <div className="diabetes-mellitus-type">
+                    {social.socialNotes}
+                  </div>
+                ))
+              : "--"}
           </div>
-          <div className="hypertension">{`Lung cancer `}</div>
-          <div className="hypertension">{`Heart failure `}</div>
         </div>
         <div className="frame-parent12">
           <div className="edit-container">
@@ -95,10 +127,12 @@ const FrameComponent1 = () => {
             <div className="while-loop">
               <div className="due-to-parent">
                 <div className="due-to">DUE TO</div>
-                <div className="family-history">Family history</div>
+                {socialHistory
+                  ? socialHistory.map((social) => (
+                      <div className="family-history">{social.atriskDueTo}</div>
+                    ))
+                  : "--"}
               </div>
-              <div className="family-history">Heavy smoking</div>
-              <div className="family-history">Severe HTN</div>
             </div>
           </div>
         </div>
@@ -111,9 +145,12 @@ const FrameComponent1 = () => {
             </div>
             <div className="due-to-parent">
               <div className="allergen">ALLERGEN</div>
-              <div className="pollen">Pollen</div>
+              {allergy
+                ? allergy.map((allergy) => (
+                    <div className="pollen">{allergy.allergyAllargen}</div>
+                  ))
+                : "--"}
             </div>
-            <div className="pollen">Nickel</div>
           </div>
           <div className="frame-wrapper9">
             <div className="frame-parent11">
@@ -125,9 +162,14 @@ const FrameComponent1 = () => {
               <div className="frame-parent16">
                 <div className="due-to-parent">
                   <div className="reaction">REACTION</div>
-                  <div className="family-history">Allergic asthma</div>
+                  {allergy
+                    ? allergy.map((allergy) => (
+                        <div className="family-history ">
+                          {allergy.allergyReaction}
+                        </div>
+                      ))
+                    : "--"}
                 </div>
-                <div className="hypertension">Contact dermatitis</div>
               </div>
             </div>
           </div>
@@ -139,44 +181,48 @@ const FrameComponent1 = () => {
             pastAdmissions="Past admissions"
             rEASONDIAGNOSIS="REASON/DIAGNOSIS"
           />
-          <div className="frame-parent18">
-            <div className="dec-2020-parent">
-              <div className="dec-2020">Dec 2020</div>
-              <div className="jan-2013-parent">
-                <div className="jan-2013">Jan 2013</div>
-              </div>
-            </div>
-            <div className="nested-loop">
-              <div className="input-collector">
-                <div className="anaphylaxis">
-                  Hypergylcemic hyperosmolar state
+          {pastAdmissions
+            ? pastAdmissions.map((admission) => (
+                <div className="frame-parent18">
+                  <div className="dec-2020-parent">
+                    <div className="dec-2020">{admission.admissionDate}</div>
+                    <div className="jan-2013-parent"></div>
+                  </div>
+                  <div className="nested-loop">
+                    <div className="input-collector">
+                      <div className="anaphylaxis">
+                        {admission.admissionReason}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="anaphylaxis">Pneumonia</div>
-            </div>
-          </div>
+              ))
+            : "--"}
         </div>
       </div>
-      <div className="exception-handler-wrapper" style={{ marginBottom: "5%" }}>
-        <div className="exception-handler">
+      <div className="transform-stage" style={{ marginBottom: "5%" }}>
+        <div className="frame-parent17">
           <FrameComponent2
-            pastAdmissions="Previous Surgeries"
-            rEASONDIAGNOSIS="SURGERY"
+            pastAdmissions="Surgical History"
+            rEASONDIAGNOSIS="TYPE"
           />
-          <div className="frame-parent19">
-            <div className="may-2014-parent">
-              <div className="may-2014">May 2014</div>
-              <div className="jan-2013">Jan 2016</div>
-            </div>
-            <div className="frame-parent20">
-              <div className="input-collector">
-                <div className="hypergylcemic-hyperosmolar-sta">
-                  Open heart surgery
+          {previousSurgeries
+            ? previousSurgeries.map((admission) => (
+                <div className="frame-parent18">
+                  <div className="dec-2020-parent">
+                    <div className="dec-2020">{admission.surgeryDate}</div>
+                    <div className="jan-2013-parent"></div>
+                  </div>
+                  <div className="nested-loop">
+                    <div className="input-collector">
+                      <div className="anaphylaxis">
+                        {admission.surgeryType}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="anaphylaxis">Thyroidectomy</div>
-            </div>
-          </div>
+              ))
+            : "--"}
         </div>
       </div>
       <div className="transform-stage" style={{ marginBottom: "5%" }}>
@@ -186,11 +232,13 @@ const FrameComponent1 = () => {
             <div className="collect-stage">
               <div className="health-status-parent">
                 <div className="relationship">RELATIONSHIP</div>
-                <div className="father">Father</div>
+                {familyHistory
+                  ? familyHistory.map((family) => (
+                      <div className="father">{family.familyRelationship}</div>
+                    ))
+                  : "--"}
               </div>
-              <div className="father">Mother</div>
             </div>
-            <div className="father">Sibling</div>
           </div>
           <div className="transformed-stage">
             <div className="collected-stage">
@@ -202,11 +250,15 @@ const FrameComponent1 = () => {
               <div className="value-range">
                 <div className="string-parser">
                   <div className="condition2">CONDITION</div>
-                  <div className="diabetes-mellitus-type">Colon Cancer</div>
+                  {familyHistory
+                    ? familyHistory.map((family) => (
+                        <div className="diabetes-mellitus-type">
+                          {family.familyCondition}
+                        </div>
+                      ))
+                    : "--"}
                 </div>
               </div>
-              <div className="type-2-diabetes">Type 2 diabetes</div>
-              <div className="type-2-diabetes">Sickle cell disease</div>
             </div>
           </div>
         </div>
@@ -216,7 +268,9 @@ const FrameComponent1 = () => {
           <div className="other-notes">Other Notes</div>
           <div className="diabetes-mellitus-type">
             <ul className="write-other-notes-here">
-              <li>Write other notes here</li>
+              <li>
+                {otherNotes.length > 0 ? otherNotes[0].othernoteNote : "--"}{" "}
+              </li>
             </ul>
           </div>
         </div>
@@ -226,8 +280,6 @@ const FrameComponent1 = () => {
           </div>
         </div>
       </div>
-      {/* {personalClinical === "personal" ? <Clinical /> : "mm"}
-      {personalClinical === "clinical" ? "ll" : "aa"} */}
     </div>
   );
 };

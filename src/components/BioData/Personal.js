@@ -1,14 +1,18 @@
-import React from "react";
-// import FrameProgram from "./PersonalFolder/FrameProgram";
+import React, { useState, useEffect } from "react";
 import "./Personal.css";
-const Personal = () => {
+import { getDependants } from "../../Services";
+
+const Personal = (patientToDisplayId) => {
+  const [displayDependant, setDisplayDependant] = useState([]);
+
+  useEffect(() => {
+    setDisplayDependant(patientToDisplayId.patientToDisplayId.dependants);
+  }, [patientToDisplayId]);
+
   return (
     <div>
       <div className="constant-parent">
-        <div
-          className="constant"
-          style={{ marginBottom: "5%"}}
-        >
+        <div className="constant" style={{ marginBottom: "5%" }}>
           <div className="function-parameter">
             <div className="exception-handler">
               <h3 className="program-status1">{`Program, Status & Assignees`}</h3>
@@ -27,11 +31,19 @@ const Personal = () => {
 
               <div className="directed-graph">
                 <div className="graph-traversal">
-                  <div className="vitalcare3601">VitalCare360</div>
+                  <div className="vitalcare3601">
+                    {patientToDisplayId.patientToDisplayId.memberProgram
+                      ? patientToDisplayId.patientToDisplayId.memberProgram
+                      : "--"}
+                  </div>
                 </div>
                 <div className="graph-edge">
                   <div className="active-group">
-                    <div className="active2">Active</div>
+                    <div className="active2">
+                      {patientToDisplayId.patientToDisplayId.memberStatus
+                        ? patientToDisplayId.patientToDisplayId.memberStatus
+                        : "--"}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -41,11 +53,21 @@ const Personal = () => {
               </div>
               <div className="directed-graph">
                 <div className="graph-traversal">
-                  <div className="vitalcare3601">VitalCare360</div>
+                  <div className="vitalcare3601">
+                    {patientToDisplayId.patientToDisplayId.memberOnboardingStage
+                      ? patientToDisplayId.patientToDisplayId
+                          .memberOnboardingStage
+                      : "--"}
+                  </div>
                 </div>
                 <div className="graph-edge">
                   <div className="active-group">
-                    <div className="active2">Active</div>
+                    <div className="active2">
+                      {patientToDisplayId.patientToDisplayId.memberCareManager
+                        ? patientToDisplayId.patientToDisplayId
+                            .memberCareManager
+                        : "--"}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -55,11 +77,21 @@ const Personal = () => {
               </div>
               <div className="directed-graph">
                 <div className="graph-traversal">
-                  <div className="vitalcare3601">VitalCare360</div>
+                  <div className="vitalcare3601">
+                    {patientToDisplayId.patientToDisplayId.memberNutritionist
+                      ? patientToDisplayId.patientToDisplayId.memberNutritionist
+                      : "--"}
+                  </div>
                 </div>
                 <div className="graph-edge">
                   <div className="active-group">
-                    <div className="active2">Active</div>
+                    <div className="active2">
+                      {patientToDisplayId.patientToDisplayId
+                        .memberEngagementLead
+                        ? patientToDisplayId.patientToDisplayId
+                            .memberEngagementLead
+                        : "--"}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -136,19 +168,32 @@ const Personal = () => {
           </div>
           <div className="string-processor">
             <div className="math-operation">
-              <div className="carecall3">CareCall</div>
+              <div className="carecall3">
+                {patientToDisplayId.patientToDisplayId.memberEmployer
+                  ? patientToDisplayId.patientToDisplayId.memberEmployer
+                  : "--"}
+              </div>
               <div className="insurer1">INSURER</div>
             </div>
             <div className="assignment-operator">
-              <div className="motivational-design1">Motivational Design</div>
+              <div className="motivational-design1">--</div>
               <div className="insurance-id1">INSURANCE ID</div>
             </div>
           </div>
           <div className="return-operator">
             <div className="if-statement">
-              <div className="britam1">BRITAM</div>
+              <div className="britam1">
+                {" "}
+                {patientToDisplayId.patientToDisplayId.memberInsurer
+                  ? patientToDisplayId.patientToDisplayId.memberInsurer
+                  : "--"}
+              </div>
             </div>
-            <div className="ins077t7t6r762901">INS077T7T6R76290</div>
+            <div className="ins077t7t6r762901">
+              {patientToDisplayId.patientToDisplayId.memberInsuranceId
+                ? patientToDisplayId.patientToDisplayId.memberInsuranceId
+                : "--"}
+            </div>
           </div>
         </div>
 
@@ -167,13 +212,17 @@ const Personal = () => {
               </div>
             </div>
             <div className="court-316-kiu1">
-              Court 316, Kiu River Estate, Kahawa
+              {patientToDisplayId.patientToDisplayId.memberHome
+                ? patientToDisplayId.patientToDisplayId.memberHome
+                : "--"}
             </div>
           </div>
           <div className="data-container">
             <div className="office1">OFFICE</div>
             <div className="th-ave-suits1">
-              5th Ave Suits, Upperhill, Nairobi
+              {patientToDisplayId.patientToDisplayId.memberOffice
+                ? patientToDisplayId.patientToDisplayId.memberOffice
+                : "--"}
             </div>
           </div>
           <div className="data-container1">
@@ -184,22 +233,34 @@ const Personal = () => {
             <div className="pathway-network">
               <div className="county-parent">
                 <div className="county1">COUNTY</div>
-                <div className="nairobi-county1">Nairobi County</div>
+                <div className="nairobi-county1">
+                  {" "}
+                  {patientToDisplayId.patientToDisplayId.memberCounty
+                    ? patientToDisplayId.patientToDisplayId.memberCounty
+                    : "--"}
+                </div>
               </div>
             </div>
             <div className="aligner">
               <div className="town1">TOWN</div>
-              <div className="nairobi1">Nairobi</div>
+              <div className="nairobi1">
+                {" "}
+                {patientToDisplayId.patientToDisplayId.memberTown
+                  ? patientToDisplayId.patientToDisplayId.memberTown
+                  : "--"}
+              </div>
             </div>
           </div>
           <div className="stroke-maker">
             <div className="delivery-instructions1">DELIVERY INSTRUCTIONS</div>
             <div className="always-deliver-at1">
-              <p>Always deliver at the office on </p>
-              <p>weekdays</p>
+              {patientToDisplayId.patientToDisplayId.memberDelivery
+                ? patientToDisplayId.patientToDisplayId.memberDelivery
+                : "--"}
             </div>
           </div>
         </div>
+
         <div className="subtree">
           <div className="fill-assigner">
             <div className="proximity-sorter">
@@ -211,49 +272,31 @@ const Personal = () => {
                 </div>
               </div>
             </div>
-            <div className="rectangle-parent21">
-              <div className="frame-child31" />
-              <div className="spacing-arranger">
-                <div className="felix-wandera-371">Felix Wandera, 37</div>
-                <div className="primary-member1">Primary member</div>
-              </div>
-              <div className="fill-manager">
-                <div className="vector-parent5">
-                  <img
-                    className="frame-child32"
-                    alt=""
-                    src="/rectangle-4.svg"
-                  />
-                  <b className="active3">ACTIVE</b>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="rectangle-parent22">
-            <div className="frame-child33" />
-            <div className="masking-tool">
-              <div className="mary-akinyi-351">Mary Akinyi, 35</div>
-              <div className="spouse1">Spouse</div>
-            </div>
-            <div className="transform-tree">
-              <div className="vector-parent6">
-                <img className="frame-child34" alt="" src="/rectangle-4.svg" />
-                <b className="inactive1">INACTIVE</b>
-              </div>
-            </div>
-          </div>
-          <div className="rectangle-parent23">
-            <div className="frame-child35" />
-            <div className="henry-wandera-10-group">
-              <div className="henry-wandera-101">Henry Wandera, 10</div>
-              <div className="child1">Child</div>
-            </div>
-            <div className="frame-wrapper20">
-              <div className="vector-parent7">
-                <img className="frame-child36" alt="" src="/rectangle-4.svg" />
-                <b className="not-onboarded1">NOT ONBOARDED</b>
-              </div>
-            </div>
+            {displayDependant
+              ? displayDependant.map((dependant) => (
+                  <div key={displayDependant.id} className="rectangle-parent21">
+                    <div className="frame-child31" />
+                    <div className="spacing-arranger">
+                      <div className="felix-wandera-371">
+                        {dependant.dependantNames}
+                      </div>
+                      <div className="primary-member1">
+                        {dependant.dependantRelationship}
+                      </div>
+                    </div>
+                    <div className="fill-manager">
+                      <div className="vector-parent5">
+                        <img
+                          className="frame-child32"
+                          alt=""
+                          src="/rectangle-4.svg"
+                        />
+                        <b className="active3">{dependant.dependantStatus}</b>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              : " "}
           </div>
         </div>
       </div>

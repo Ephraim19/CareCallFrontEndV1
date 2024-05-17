@@ -12,6 +12,25 @@
   box-sizing: border-box;
 }
 
+.searchable {
+  position: absolute;
+  color: hsl(240, 100%, 100%);
+  border-radius: var(--br-xl);
+  background-color: var(--color-navy);
+  font-size: var(--font-size-4xl);
+  margin-top: 0%;
+  width: 350px;
+  font-weight: 400;
+  border: 3px solid white;
+  cursor: pointer;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.searchable :hover {
+  background-color: var(--color-dodgerblue-300);
+}
+
 .navigation-svgrepocom-wrapper {
   display: flex;
   flex-direction: column;
