@@ -422,15 +422,18 @@ ebenezer-mokamba1 {
 .phone-11 {
   position: relative;
   font-weight: 500;
+
 }
 .phone-11 {
   display: inline-block;
-  min-width: 64px;
+  font-size: 14px;
+  width: 100%;
 }
 .div12 {
-  font-size: var(--font-size-lgi);
+  font-size: 14px;
   color: var(--color-darkslategray-200);
   white-space: nowrap;
+
 }
 
 .event-type {
@@ -592,6 +595,7 @@ ebenezer-mokamba1 {
 .phone-2547060033101 {
   position: relative;
 }
+.frame-parent211,
 .frame-parent21,
 .frame-parent25 {
   display: flex;
@@ -604,6 +608,19 @@ ebenezer-mokamba1 {
 }
 
 .frame-parent21 {
+  align-self: stretch;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+  border-radius: var(--br-3xs);
+  background-color: var(--color-dodgerblue-300);
+  overflow-y: auto;
+  flex-shrink: 0;
+  flex-direction: column;
+  padding: var(--padding-12xs) var(--padding-3xs) var(--padding-3xs);
+  box-sizing: border-box;
+  gap: var(--gap-11xs);
+  color: var(--color-gray-100);
+}
+.frame-parent211 {
   align-self: stretch;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
   border-radius: var(--br-3xs);

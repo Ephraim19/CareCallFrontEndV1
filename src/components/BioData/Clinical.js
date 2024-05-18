@@ -1,7 +1,7 @@
 import FrameComponent2 from "../FrameComponent2";
 import "../FrameComponent1.css";
 import React, { useState, useEffect } from "react";
-
+import Popup from "reactjs-popup";
 const FrameComponent1 = (patientToDisplayId) => {
   const [overview, setOverview] = useState("");
   const [allergy, setAllergy] = useState([]);

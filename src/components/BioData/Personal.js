@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./Personal.css";
 import { getDependants } from "../../Services";
-
+import Program from "../HomepageForms/Program";
+import Popup from "reactjs-popup";
+import InsuranceEmployer from "../HomepageForms/InsuranceEmployer";
+import Addresses from "../HomepageForms/Addresses";
+import Family from "../HomepageForms/Family";
 const Personal = (patientToDisplayId) => {
   const [displayDependant, setDisplayDependant] = useState([]);
 
@@ -20,7 +24,17 @@ const Personal = (patientToDisplayId) => {
               <div className="matrix111">
                 <div className="rectangle-parent18">
                   <div className="frame-child28" />
-                  <div className="edit7">EDIT</div>
+                  <Popup
+                    trigger={
+                      <div style={{ cursor: "pointer" }} className="edit7">
+                        EDIT
+                      </div>
+                    }
+                    modal
+                    nested
+                  >
+                    <Program programStatusDisplay={patientToDisplayId} />
+                  </Popup>
                 </div>
               </div>
 
@@ -99,7 +113,7 @@ const Personal = (patientToDisplayId) => {
           </div>
         </div>
       </div>
-      {/* <div className="frame-parent21">
+      <div className="frame-parent211">
         <div className="frame-parent22">
           <div className="contacts-group">
             <h3 className="contacts1">Contacts</h3>
@@ -108,17 +122,29 @@ const Personal = (patientToDisplayId) => {
                 <div className="event-type-parent">
                   <div className="event-type">
                     <div className="phone-11">PHONE 1</div>
-                    <div className="div12">+254793612375</div>
+                    <div className="div12">
+                      {" "}
+                      {patientToDisplayId.patientToDisplayId.memberPhone
+                        ? patientToDisplayId.patientToDisplayId.memberPhone
+                        : "--"}
+                    </div>
                   </div>
                   <div className="email2">EMAIL</div>
                 </div>
                 <div className="phone-2-group">
                   <div className="phone-21">PHONE 2</div>
-                  <div className="div13">+254701453608</div>
+                  <div className="div13">
+                    {" "}
+                    {patientToDisplayId.patientToDisplayId.memberPhoneTwo
+                      ? patientToDisplayId.patientToDisplayId.memberPhoneTwo
+                      : "--"}
+                  </div>
                 </div>
               </div>
               <div className="felixwandera398gmailcom1">
-                felixwandera398@gmail.com
+                {patientToDisplayId.patientToDisplayId.memerEmail
+                  ? patientToDisplayId.patientToDisplayId.memerEmail
+                  : "--"}
               </div>
             </div>
             <div className="caregiver-next1">CAREGIVER / NEXT OF KIN</div>
@@ -136,7 +162,12 @@ const Personal = (patientToDisplayId) => {
               <span>Name:</span>
               <span className="albert2">
                 <b className="b2">{` `}</b>
-                <span className="albert3">Albert</span>
+                <span className="albert3">
+                  {" "}
+                  {patientToDisplayId.patientToDisplayId.memberNextOfKin
+                    ? patientToDisplayId.patientToDisplayId.memberNextOfKin
+                    : "--"}
+                </span>
               </span>
             </div>
           </div>
@@ -144,11 +175,16 @@ const Personal = (patientToDisplayId) => {
             <span>Phone:</span>
             <span className="span12">
               <b className="b3">{` `}</b>
-              <span className="span13">+254706003310</span>
+              <span className="span13">
+                {" "}
+                {patientToDisplayId.patientToDisplayId.memberNextOfKinPhone
+                  ? patientToDisplayId.patientToDisplayId.memberNextOfKinPhone
+                  : "--"}
+              </span>
             </span>
           </div>
         </div>
-      </div> */}
+      </div>
       <div className="stack-parent">
         <div className="stack1">
           <div className="stack">
@@ -162,7 +198,17 @@ const Personal = (patientToDisplayId) => {
             <div className="matrix">
               <div className="rectangle-parent18">
                 <div className="frame-child28" />
-                <div className="edit7">EDIT</div>
+                <Popup
+                  trigger={
+                    <div style={{ cursor: "pointer" }} className="edit7">
+                      EDIT
+                    </div>
+                  }
+                  modal
+                  nested
+                >
+                  <InsuranceEmployer insDisplay={patientToDisplayId} />
+                </Popup>
               </div>
             </div>
           </div>
@@ -207,7 +253,17 @@ const Personal = (patientToDisplayId) => {
               <div className="icon-library">
                 <div className="rectangle-parent19">
                   <div className="frame-child29" />
-                  <div className="edit8">EDIT</div>
+                  <Popup
+                    trigger={
+                      <div style={{ cursor: "pointer" }} className="edit8">
+                        EDIT
+                      </div>
+                    }
+                    modal
+                    nested
+                  >
+                    <Addresses addressDisplay={patientToDisplayId} />
+                  </Popup>
                 </div>
               </div>
             </div>
@@ -268,7 +324,17 @@ const Personal = (patientToDisplayId) => {
               <div className="pathfinder">
                 <div className="rectangle-parent20">
                   <div className="frame-child30" />
-                  <div className="edit9">EDIT</div>
+                  <Popup
+                    trigger={
+                      <div style={{ cursor: "pointer" }} className="edit9">
+                        EDIT
+                      </div>
+                    }
+                    modal
+                    nested
+                  >
+                    <Family familyDisplay={patientToDisplayId} />
+                  </Popup>
                 </div>
               </div>
             </div>
