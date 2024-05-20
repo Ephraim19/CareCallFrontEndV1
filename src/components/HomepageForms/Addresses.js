@@ -4,6 +4,7 @@ import { database } from "../Firebase";
 import { ref, push, update, get, off } from "firebase/database";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { patchMember } from "../../Services";
 // import Cookies from "js-cookie";
 
 const Addresses = (addressDisplay) => {
@@ -16,70 +17,44 @@ const Addresses = (addressDisplay) => {
   const dbRef = ref(database, "Addresses");
 
   useEffect(() => {
-    console.log(addressDisplay.addressDisplay.addressDisplay);
-    // setHome(addressDisplay.addressDisplay.addressDisplay.home || "");
-    // setOffice(addressDisplay.addressDisplay.addressDisplay.office || "");
-    // setCounty(addressDisplay.addressDisplay.addressDisplay.county || "");
-    // setTown(addressDisplay.addressDisplay.addressDisplay.town || "");
-    // setDeliveryInstructions(
-    //   addressDisplay.addressDisplay.addressDisplay.deliveryInstructions || ""
-    // );
-  }, []);
+    
+    setHome(addressDisplay.addressDisplay.patientToDisplayId.memberHome || "");
+    setOffice(
+      addressDisplay.addressDisplay.patientToDisplayId
+        .memberOffice || ""
+    );
+    setCounty(
+      addressDisplay.addressDisplay.patientToDisplayId
+        .memberCounty || ""
+    );
+    setTown(addressDisplay.addressDisplay.patientToDisplayId.memberTown || "");
+    setDeliveryInstructions(
+      addressDisplay.addressDisplay.patientToDisplayId
+        .memberDelivery || ""
+    );
+  }, [addressDisplay]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (addressDisplay.addressDisplay.addressDisplay) {
-      const updates = {};
-      updates[addressDisplay.addressDisplay.addressDisplay.id + "/home"] = home;
-      updates[addressDisplay.addressDisplay.addressDisplay.id + "/office"] =
-        office;
-      updates[addressDisplay.addressDisplay.addressDisplay.id + "/county"] =
-        county;
-      updates[addressDisplay.addressDisplay.addressDisplay.id + "/town"] = town;
-      updates[
-        addressDisplay.addressDisplay.addressDisplay.id +
-          "/deliveryInstructions"
-      ] = deliveryInstructions;
-      update(dbRef, updates)
-        .then(() => {
-          toast.success("Successfully updated data! ");
-        })
-        .catch((error) => {
-          toast.error("Error updating document: ", error);
-        });
-    } else {
-      const data = {
-        // member: Cookies.get("memberId"),
-        home: home,
-        office: office,
-        geolocation: geolocation,
-        county: county,
-        town: town,
-        deliveryInstructions: deliveryInstructions,
-      };
-      push(dbRef, data)
-        .then(() => {
-          toast.success("Successfully added data! ");
-        })
-        .catch((error) => {
-          toast.error("Error adding data: ", error);
-        });
-    }
-
-    //     e.preventDefault();
-    //     const updates = {};
-    //     updates[patient.patient.id + "/Phone"] = phone1;
-    //     updates[patient.patient.id + "/Phone2"] = phone2;
-    //     updates[patient.patient.id + "/email"] = email;
-    //     updates[patient.patient.id + "/CareGiver"] = careGiver;
-    //     updates[patient.patient.id + "/CareGiverPhone"] = careGiverPhone;
-    //     update(dbRef, updates)
-    //       .then(() => {
-    //         toast.success("Successfully updated data! ");
-    //       })
-    //       .catch((error) => {
-    //         toast.error("Error updating document: ", error);
-    //       });
+    const data = {
+      memberHome: home,
+      memberOffice: office,
+      memberCounty: county,
+      memberTown: town,
+      memberDelivery: deliveryInstructions,
+    };
+    patchMember(
+      parseInt(addressDisplay.addressDisplay.patientToDisplayId.id),
+      data
+    )
+      .then((response) => {
+        console.log(response);
+        toast.success("Data submitted successfully");
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error("An error occurred. Please try again");
+      });
   };
 
   return (

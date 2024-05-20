@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
 import styles from "./Program.module.css";
-import { database } from "../Firebase";
-import { ref, push, update, get } from "firebase/database";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { patchMember } from "../../Services";
 
 const InsuranceEmployer = (insDisplay) => {
-  const dbRef = ref(database, "InsuranceEmployer");
   const [employer, setEmployer] = React.useState("");
   const [department, setDepartment] = React.useState("");
   const [insurer, setInsurer] = React.useState("");
@@ -14,45 +12,32 @@ const InsuranceEmployer = (insDisplay) => {
 
   useEffect(() => {
     if (insDisplay.insDisplay) {
-      setEmployer(insDisplay.insDisplay.employer);
-      setDepartment(insDisplay.insDisplay.department);
-      setInsurer(insDisplay.insDisplay.insurer);
-      setInsuranceId(insDisplay.insDisplay.insuranceId);
+      setEmployer(insDisplay.insDisplay.patientToDisplayId.memberEmployer);
+      setDepartment(insDisplay.insDisplay.patientToDisplayId.memberDepartment);
+      setInsurer(insDisplay.insDisplay.patientToDisplayId.memberInsurer);
+      setInsuranceId(insDisplay.insDisplay.patientToDisplayId.memberInsuranceId);
+      console.log(insDisplay.insDisplay.patientToDisplayId);
     }
   }, [insDisplay]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (insDisplay.insDisplay) {
-      const updates = {};
-      updates[insDisplay.insDisplay.id + "/employer"] = employer;
-      updates[insDisplay.insDisplay.id + "/department"] = department;
-      updates[insDisplay.insDisplay.id + "/insurer"] = insurer;
-      updates[insDisplay.insDisplay.id + "/insuranceId"] = insuranceId;
-      console.log(insDisplay.insDisplay.id + "/employer");
 
-      update(dbRef, updates)
-        .then(() => {
-          toast.success("Successfully updated data! ");
-        })
-        .catch((error) => {
-          toast.error("Error updating document: ", error);
-        });
-    } else {
-      push(ref(database, "InsuranceEmployer"), {
-        // member: Cookies.get("memberId"),
-        employer: employer,
-        department: department,
-        insurer: insurer,
-        insuranceId: insuranceId,
+    patchMember(parseInt(insDisplay.insDisplay.patientToDisplayId.id), {
+      memberEmployer: employer,
+      memberDepartment: department,
+      memberInsurer: insurer,
+      memberInsuranceId: insuranceId,
+    })
+      .then((response) => {
+        console.log(response);
+        toast.success("Data submitted successfully");
       })
-        .then(() => {
-          toast.success("Successfully submitted data! ");
-        })
-        .catch((error) => {
-          toast.error("Error adding document: ", error);
-        });
-    }
+      .catch((error) => {
+        console.error(error);
+        toast.error("An error occurred. Please try again");
+      });
+
   };
 
   return (

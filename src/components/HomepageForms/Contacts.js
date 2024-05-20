@@ -5,6 +5,7 @@ import { ref, push, update, get } from "firebase/database";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
+import { patchMember } from "../../Services";
 
 const Contacts = (patient) => {
   const [phone1, setPhone1] = React.useState("");
@@ -23,22 +24,25 @@ const Contacts = (patient) => {
     setEmail(patient.patient.email || "");
     setCareGiver(patient.patient.CareGiver || "");
     setCareGiverPhone(patient.patient.CareGiverPhone || "");
-  }, []);
+  }, [patient.patient]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const updates = {};
-    updates[patient.patient.id + "/Phone"] = phone1;
-    updates[patient.patient.id + "/Phone2"] = phone2;
-    updates[patient.patient.id + "/email"] = email;
-    updates[patient.patient.id + "/CareGiver"] = careGiver;
-    updates[patient.patient.id + "/CareGiverPhone"] = careGiverPhone;
-    update(dbRef, updates)
-      .then(() => {
-        toast.success("Successfully updated data! ");
+
+    patchMember(parseInt(patient.patient.id), {
+      Phone: phone1,
+      Phone2: phone2,
+      email: email,
+      CareGiver: careGiver,
+      CareGiverPhone: careGiverPhone,
+    })
+      .then((response) => {
+        console.log(response);
+        toast.success("Data submitted successfully");
       })
       .catch((error) => {
-        toast.error("Error updating document: ", error);
+        console.error(error);
+        toast.error("An error occurred. Please try again");
       });
   };
 

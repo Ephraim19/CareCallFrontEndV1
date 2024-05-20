@@ -1,66 +1,38 @@
 import React, { useEffect } from "react";
 import styles from "./Program.module.css";
-import { database } from "../Firebase";
-import { ref, push, update, get } from "firebase/database";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import Cookies from "js-cookie";
+import { postMember, postDependant } from "../../Services";
 
 const Family = (familyDisplay) => {
-  const dbRef = ref(database, "Family");
-  const [primaryMember, setPrimaryMember] = React.useState("");
-  const [spouse, setSpouse] = React.useState("");
-  const [child, setChild] = React.useState("");
-  const [age1, setAge1] = React.useState("");
-  const [age2, setAge2] = React.useState("");
-  const [age3, setAge3] = React.useState("");
+  const [member, setMember] = React.useState("");
+  const [age, setAge] = React.useState("");
+  const [relationship, setRelationship] = React.useState("");
+  const [status, setStatus] = React.useState("");
 
-  // useEffect(() => {
-  //   console.log(familyDisplay.familyDisplay.familyDisplay);
-  //   if (familyDisplay.familyDisplay.familyDisplay.length > 0) {
-  //     setPrimaryMember(familyDisplay.familyDisplay.familyDisplay[0].primaryMember);
-  //     setSpouse(familyDisplay.familyDisplay.familyDisplay[0].spouse);
-  //     setChild(familyDisplay.familyDisplay.familyDisplay[0].child);
-  //     setAge1(familyDisplay.familyDisplay.familyDisplay[0].age1);
-  //     setAge2(familyDisplay.familyDisplay.familyDisplay[0].age2);
-  //     setAge3(familyDisplay.familyDisplay.familyDisplay[0].age3);
-  //   }
-  // }, [familyDisplay.familyDisplay.familyDisplay]);
+  useEffect(() => {
+    console.log(familyDisplay.familyDisplay[0].dependantId);
+  }, [familyDisplay]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (familyDisplay.familyDisplay.familyDisplay.length > 0) {
-      const updates = {};
-      updates[familyDisplay.familyDisplay.familyDisplay.id + "/primaryMember"] =
-        primaryMember;
-      updates[familyDisplay.familyDisplay.familyDisplay[0].id + "/spouse"] = spouse;
-      updates[familyDisplay.familyDisplay.familyDisplay[0].id + "/child"] = child;
-      updates[familyDisplay.familyDisplay.familyDisplay[0].id + "/age1"] = age1;
-      updates[familyDisplay.familyDisplay.familyDisplay[0].id + "/age2"] = age2;
-      updates[familyDisplay.familyDisplay.familyDisplay[0].id + "/age3"] = age3;
-      update(dbRef, updates)
-        .then(() => {
-          toast.success("Successfully updated data! ");
-        })
-        .catch((error) => {
-          toast.error("Error updating document: ", error);
-        });
-    } else {
-      push(dbRef, {
-        // member: Cookies.get("memberId"),
-        primaryMember: primaryMember,
-        spouse: spouse,
-        child: child,
-        age1: age1,
-        age2: age2,
-        age3: age3,
-      })
-        .then(() => {
-          toast.success("Successfully added data! ");
-        })
-        .catch((error) => {
-          toast.error("Error adding document: ", error);
-        });
+
+    const data = {
+      dependantId: familyDisplay.familyDisplay[0].dependantId,
+      dependantNames: member,
+      dependantAge: age,
+      dependantRelationship: relationship,
+      dependantStatus: status,
+
+    };
+
+    try {
+      const response = await postDependant(data);
+      console.log(response);
+      toast.success("Data submitted successfully");
+    } catch (error) {
+      console.error(error);
+      toast.error("Error submitting data");
     }
   };
 
@@ -71,46 +43,39 @@ const Family = (familyDisplay) => {
 
         <input
           className={styles.firstNameField1}
-          placeholder="PRIMARY MEMBER"
+          placeholder="NAME"
           type="text"
-          value={primaryMember}
-          onChange={(e) => setPrimaryMember(e.target.value)}
+          value={member}
+          onChange={(e) => setMember(e.target.value)}
         />
         <input
           className={styles.lastNameField}
           placeholder="AGE"
           type="text"
-          value={age1}
-          onChange={(e) => setAge1(e.target.value)}
+          value={age}
+          onChange={(e) => setAge(e.target.value)}
         />
         <input
           className={styles.phoneNumber}
-          placeholder="SPOUSE"
+          placeholder="RELATIONSHIP"
           type="text"
-          value={spouse}
-          onChange={(e) => setSpouse(e.target.value)}
+          value={relationship}
+          onChange={(e) => setRelationship(e.target.value)}
         />
         <input
           className={styles.emailAddress}
-          placeholder="AGE"
+          placeholder="STATUS"
           type="text"
-          value={age2}
-          onChange={(e) => setAge2(e.target.value)}
+          value={status}
+          onChange={(e) => setStatus(e.target.value)}
         />
-        <input
+        {/* <input
           className={styles.firstNameField11}
           placeholder="CHILD"
           type="text"
           value={child}
           onChange={(e) => setChild(e.target.value)}
-        />
-        <input
-          className={styles.lastNameField1}
-          placeholder="AGE"
-          type="text"
-          value={age3}
-          onChange={(e) => setAge3(e.target.value)}
-        />
+        /> */}
 
         <button className={styles.signUpButton} onClick={onSubmit}>
           <div className={styles.signUpButton1}>

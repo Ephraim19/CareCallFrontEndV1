@@ -6,12 +6,14 @@ import Popup from "reactjs-popup";
 import InsuranceEmployer from "../HomepageForms/InsuranceEmployer";
 import Addresses from "../HomepageForms/Addresses";
 import Family from "../HomepageForms/Family";
+
 const Personal = (patientToDisplayId) => {
   const [displayDependant, setDisplayDependant] = useState([]);
 
   useEffect(() => {
     setDisplayDependant(patientToDisplayId.patientToDisplayId.dependants);
   }, [patientToDisplayId]);
+  
 
   return (
     <div>
@@ -327,13 +329,13 @@ const Personal = (patientToDisplayId) => {
                   <Popup
                     trigger={
                       <div style={{ cursor: "pointer" }} className="edit9">
-                        EDIT
+                        ADD
                       </div>
                     }
                     modal
                     nested
                   >
-                    <Family familyDisplay={patientToDisplayId} />
+                    <Family familyDisplay={displayDependant} />
                   </Popup>
                 </div>
               </div>
@@ -344,7 +346,7 @@ const Personal = (patientToDisplayId) => {
                     <div className="frame-child31" />
                     <div className="spacing-arranger">
                       <div className="felix-wandera-371">
-                        {dependant.dependantNames}
+                        {dependant.dependantNames},{dependant.dependantAge}
                       </div>
                       <div className="primary-member1">
                         {dependant.dependantRelationship}

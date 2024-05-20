@@ -40,7 +40,7 @@ const Program = (programStatusDisplay) => {
           .memberEngagementLead
       );
     }
-  }, [programStatusDisplay]);
+  }, [programStatusDisplay.programStatusDisplay.patientToDisplayId]);
 
   const onSubmit = async (e) => {
     e.preventDefault();

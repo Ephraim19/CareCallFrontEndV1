@@ -57,6 +57,18 @@ export const getDependants = async (id) => {
   }
 };
 
+export const postDependant = async (data) => {
+  try {
+    const response = await axios.post(
+      "http://127.0.0.1:8000/dependants/",
+      data
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const getOverview = async (id) => {
   try {
     const response = await axios.get(`http://127.0.0.1:8000/overview/${id}`);
