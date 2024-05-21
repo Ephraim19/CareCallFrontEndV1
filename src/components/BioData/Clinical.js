@@ -18,8 +18,10 @@ const FrameComponent1 = (patientToDisplayId) => {
   const [familyHistory, setFamilyHistory] = useState([]);
   const [socialHistory, setSocialHistory] = useState([]);
   const [condition, setCondition] = useState([]);
+  const [memberId,setMemberId] = useState([]);
 
   useEffect(() => {
+    setMemberId(patientToDisplayId.patientToDisplayId.id)
     setOverview(patientToDisplayId.patientToDisplayId.overview);
     setAllergy(patientToDisplayId.patientToDisplayId.allergy);
     setPreviousSurgeries(patientToDisplayId.patientToDisplayId.surgery);
@@ -104,7 +106,7 @@ const FrameComponent1 = (patientToDisplayId) => {
                 modal
                 nested
               >
-                <Condition condition={condition} />
+                <Condition condition={[condition,memberId]} />
               </Popup>
               <div className="frame-wrapper7">
                 <div className="health-status-parent">
@@ -283,7 +285,7 @@ const FrameComponent1 = (patientToDisplayId) => {
               modal
               nested
               >
-                <FamilyHistory familyHistory = {familyHistory} />
+                <FamilyHistory familyHistory = {[familyHistory,memberId]} />
               </Popup>
             </div>
             <div className="logic-gate1">
@@ -323,7 +325,7 @@ const FrameComponent1 = (patientToDisplayId) => {
           modal
           nested
           >
-            <OtherNote otherNotes = {otherNotes} />
+            <OtherNote otherNotes = {[otherNotes,memberId]} />
           </Popup>
         </div>
       </div>

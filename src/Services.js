@@ -131,3 +131,33 @@ export const getAllergy = async (id) => {
     console.error(error);
   }
 };
+
+export const putOtherNote = async (id, data) => {
+  try {
+    const response = await axios.put(
+      `http://127.0.0.1:8000/notes/${id}/`,
+      data
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const postOtherNote = async (data) => {
+  try {
+    const response = await axios.post("http://127.0.0.1:8000/notes/", data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const postFamilyHistory = async (data) => {
+  try {
+    const response = await axios.post("http://127.0.0.1:8000/family/", data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};

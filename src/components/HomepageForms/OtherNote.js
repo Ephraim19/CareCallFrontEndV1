@@ -2,34 +2,47 @@ import React, { useEffect, useState } from "react";
 import styles from "./Program.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { postOtherNote, putOtherNote } from "../../Services";
 
 const OtherNote = (otherNotes) => {
-  const [ othernoteNote, setOtherNoteNote] = useState('');
+  const [othernoteNote, setOtherNoteNote] = useState("");
 
   useEffect(() => {
-    console.log(otherNotes);
-    // setConditionName(condition.condition[0].conditionName);
-    // setConditionStatus(condition.condition[0].conditionStatus);
+    console.log(otherNotes.otherNotes[1]);
+    setOtherNoteNote(
+      otherNotes.otherNotes[0].length > 0
+        ? otherNotes.otherNotes[0][0].othernoteNote
+        : ""
+    );
   }, [otherNotes]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    const data = {
+      memberId: otherNotes.otherNotes[1],
+      othernoteNote: othernoteNote,
+    };
 
-    // const data = {
-    //   conditionName: conditionName,
-    //   conditionStatus: conditionStatus,
-    //   memberId: condition.condition[0].memberId,
-    // };
-
-    // try {
-    //   const response = await postCondition(data);
-    //   console.log(response);
-    //   toast.success("Data submitted successfully");
-    // } catch (error) {
-    //   console.error(error);
-    //   toast.error("Error submitting data");
-    // }
+    if (otherNotes.otherNotes[0].length > 0) {
+      putOtherNote(parseInt(otherNotes.otherNotes[1]), data)
+        .then((response) => {
+          console.log(response);
+          toast.success("Data submitted successfully");
+        })
+        .catch((error) => {
+          console.log(error);
+          toast.error("Error in submitting data");
+        });
+    } else {
+        try {
+            const response = await postOtherNote(data);
+            console.log(response);
+            toast.success("Data submitted successfully");
+          } catch (error) {
+            console.error(error);
+            toast.error("Error submitting data");
+          }
+    }
   };
 
   return (
@@ -39,10 +52,10 @@ const OtherNote = (otherNotes) => {
 
         <textarea
           className={styles.firstNameField1}
-          style={{width:"470px",height:"100px"}}
+          style={{ width: "470px", height: "100px" }}
           placeholder="NOTE"
           type="text"
-        //   value={otherNotes}
+          value={othernoteNote}
           onChange={(e) => setOtherNoteNote(e.target.value)}
         />
 

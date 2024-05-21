@@ -36,7 +36,7 @@ const Condition = (condition) => {
   return (
     <div>
       <form className={styles.firstNameField}>
-        <b className={styles.createNewCarecall}>FAMILY</b>
+        <b className={styles.createNewCarecall}>CONDITION</b>
 
         <input
           className={styles.firstNameField1}

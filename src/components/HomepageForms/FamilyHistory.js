@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./Program.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { postFamilyHistory } from "../../Services";
 
 
 const FamilyHistory = (familyHistory) => {
@@ -9,28 +10,24 @@ const FamilyHistory = (familyHistory) => {
   const [familyCondition, setFamilyCondition] = useState('');
 
   useEffect(() => {
-    console.log(familyHistory);
-    // setConditionName(condition.condition[0].conditionName);
-    // setConditionStatus(condition.condition[0].conditionStatus);
+    console.log(familyHistory.familyHistory[1]);
   }, [familyHistory]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
-    // const data = {
-    //   conditionName: conditionName,
-    //   conditionStatus: conditionStatus,
-    //   memberId: condition.condition[0].memberId,
-    // };
-
-    // try {
-    //   const response = await postCondition(data);
-    //   console.log(response);
-    //   toast.success("Data submitted successfully");
-    // } catch (error) {
-    //   console.error(error);
-    //   toast.error("Error submitting data");
-    // }
+    const data = {
+      memberId: familyHistory.familyHistory[1],
+      familyRelationship,
+      familyCondition,
+    };
+    try {
+      const response = await postFamilyHistory(data);
+      console.log(response);
+      toast.success("Data submitted successfully");
+    } catch (error) {
+      console.error(error);
+      toast.error("Error submitting data");
+    }
   };
 
   return (
