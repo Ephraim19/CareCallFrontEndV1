@@ -2,6 +2,13 @@ import FrameComponent2 from "../FrameComponent2";
 import "../FrameComponent1.css";
 import React, { useState, useEffect } from "react";
 import Popup from "reactjs-popup";
+import Overview from "../HomepageForms/Overview";
+import Condition from "../HomepageForms/Condition";
+import Social from "../HomepageForms/Social";
+import Allergies from "../HomepageForms/Allergies";
+import FamilyHistory from "../HomepageForms/FamilyHistory";
+import OtherNote from "../HomepageForms/OtherNote";
+
 const FrameComponent1 = (patientToDisplayId) => {
   const [overview, setOverview] = useState("");
   const [allergy, setAllergy] = useState([]);
@@ -10,17 +17,17 @@ const FrameComponent1 = (patientToDisplayId) => {
   const [otherNotes, setOtherNotes] = useState("");
   const [familyHistory, setFamilyHistory] = useState([]);
   const [socialHistory, setSocialHistory] = useState([]);
+  const [condition, setCondition] = useState([]);
 
   useEffect(() => {
     setOverview(patientToDisplayId.patientToDisplayId.overview);
     setAllergy(patientToDisplayId.patientToDisplayId.allergy);
-    setPreviousSurgeries(
-      patientToDisplayId.patientToDisplayId.surgery
-    );
+    setPreviousSurgeries(patientToDisplayId.patientToDisplayId.surgery);
     setOtherNotes(patientToDisplayId.patientToDisplayId.othernote);
     setFamilyHistory(patientToDisplayId.patientToDisplayId.family);
     setPastAdmissions(patientToDisplayId.patientToDisplayId.admission);
     setSocialHistory(patientToDisplayId.patientToDisplayId.social);
+    setCondition(patientToDisplayId.patientToDisplayId.condition);
   }, [patientToDisplayId]);
 
   return (
@@ -35,12 +42,20 @@ const FrameComponent1 = (patientToDisplayId) => {
                 <div className="department1">RISK SCORE</div>
               </div>
             </div>
-            <div className="matrix">
-              <div className="rectangle-parent18">
-                <div className="frame-child28" />
-                <div className="edit7">EDIT</div>
-              </div>
-            </div>
+            <Popup
+              trigger={
+                <div className="matrix" style={{ cursor: "pointer" }}>
+                  <div className="rectangle-parent18">
+                    <div className="frame-child28" />
+                    <div className="edit7">EDIT</div>
+                  </div>
+                </div>
+              }
+              modal
+              nested
+            >
+              <Overview overview={overview} />
+            </Popup>
           </div>
           <div className="string-processor">
             <div className="math-operation">
@@ -75,30 +90,26 @@ const FrameComponent1 = (patientToDisplayId) => {
             <div className="conditions">Conditions</div>
             <div className="condition-parent">
               <div className="condition">CONDITION</div>
-              <div className="diabetes-mellitus-type">
-                Diabetes mellitus type 2
-              </div>
+              <div className="diabetes-mellitus-type">Diabetes</div>
             </div>
-            <div className="hypertension">{`Hypertension `}</div>
-            <div className="hypertension">Tuberculosis</div>
           </div>
           <div className="frame-parent10">
             <div className="frame-parent11">
-              <div className="edit-container">
-                <div className="edit1">EDIT</div>
-              </div>
+              <Popup
+                trigger={
+                  <div className="edit-container" style={{ cursor: "pointer" }}>
+                    <div className="edit1">ADD</div>
+                  </div>
+                }
+                modal
+                nested
+              >
+                <Condition condition={condition} />
+              </Popup>
               <div className="frame-wrapper7">
                 <div className="health-status-parent">
                   <div className="status">STATUS</div>
                   <div className="active">Active</div>
-                </div>
-              </div>
-            </div>
-            <div className="condition-splitter">
-              <div className="input-filter">
-                <div className="active">Active</div>
-                <div className="error-handler">
-                  <div className="active">Resolved</div>
                 </div>
               </div>
             </div>
@@ -107,7 +118,7 @@ const FrameComponent1 = (patientToDisplayId) => {
       </div>
       <div className="loop-processor" style={{ marginBottom: "5%" }}>
         <div className="at-risk-of-parent">
-          <div className="at-risk-of">At Risk of</div>
+          <div className="at-risk-of">Social History</div>
           <div className="condition-parent">
             <div className="condition">CONDITION</div>
             {socialHistory
@@ -120,9 +131,18 @@ const FrameComponent1 = (patientToDisplayId) => {
           </div>
         </div>
         <div className="frame-parent12">
-          <div className="edit-container">
-            <div className="edit1">EDIT</div>
-          </div>
+          <Popup
+            trigger={
+              <div className="edit-container" style={{ cursor: "pointer" }}>
+                <div className="edit11">EDIT</div>
+              </div>
+            }
+            modal
+            nested
+          >
+            <Social social={socialHistory} />
+          </Popup>
+
           <div className="for-loop">
             <div className="while-loop">
               <div className="due-to-parent">
@@ -154,10 +174,21 @@ const FrameComponent1 = (patientToDisplayId) => {
           </div>
           <div className="frame-wrapper9">
             <div className="frame-parent11">
-              <div className="frame-wrapper10">
-                <div className="edit-container">
-                  <div className="edit1">EDIT</div>
-                </div>
+              <div className="frame-wrapper101">
+                <Popup
+                  trigger={
+                    <div
+                      className="edit-container"
+                      style={{ cursor: "pointer" }}
+                    >
+                      <div className="edit111">EDIT</div>
+                    </div>
+                  }
+                  modal
+                  nested
+                >
+                  <Allergies allergy={allergy} />
+                </Popup>
               </div>
               <div className="frame-parent16">
                 <div className="due-to-parent">
@@ -177,10 +208,14 @@ const FrameComponent1 = (patientToDisplayId) => {
       </div>
       <div className="transform-stage" style={{ marginBottom: "5%" }}>
         <div className="frame-parent17">
-          <FrameComponent2
-            pastAdmissions="Past admissions"
-            rEASONDIAGNOSIS="REASON/DIAGNOSIS"
-          />
+          
+            <FrameComponent2
+              pastAdmissions="Past admissions"
+              rEASONDIAGNOSIS="REASON/DIAGNOSIS"
+              
+            />
+
+          
           {pastAdmissions
             ? pastAdmissions.map((admission) => (
                 <div className="frame-parent18">
@@ -215,9 +250,7 @@ const FrameComponent1 = (patientToDisplayId) => {
                   </div>
                   <div className="nested-loop">
                     <div className="input-collector">
-                      <div className="anaphylaxis">
-                        {admission.surgeryType}
-                      </div>
+                      <div className="anaphylaxis">{admission.surgeryType}</div>
                     </div>
                   </div>
                 </div>
@@ -242,9 +275,16 @@ const FrameComponent1 = (patientToDisplayId) => {
           </div>
           <div className="transformed-stage">
             <div className="collected-stage">
-              <div className="edit-container">
-                <div className="edit1">EDIT</div>
+              <Popup trigger={
+              <div className="edit-container" style={{cursor:"pointer"}} >
+                <div className="edit1">ADD</div>
               </div>
+              }
+              modal
+              nested
+              >
+                <FamilyHistory familyHistory = {familyHistory} />
+              </Popup>
             </div>
             <div className="logic-gate1">
               <div className="value-range">
@@ -275,9 +315,16 @@ const FrameComponent1 = (patientToDisplayId) => {
           </div>
         </div>
         <div className="signal-processor">
+          <Popup trigger={
           <div className="edit-container">
             <div className="edit1">EDIT</div>
           </div>
+          }
+          modal
+          nested
+          >
+            <OtherNote otherNotes = {otherNotes} />
+          </Popup>
         </div>
       </div>
     </div>

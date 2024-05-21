@@ -626,6 +626,14 @@
   z-index: 1;
   margin-left: -85px;
 }
+.edit111 {
+  position: relative;
+  font-weight: 500;
+  display: flex;
+  min-width: 23;
+  z-index: 1;
+  margin-left: -985px;
+}
 .edit1:hover {
   font-weight: 500;
   font-family: var(--font-roboto-slab);
@@ -649,6 +657,7 @@
   width: auto;
   align-self: unset;
   height: auto;
+  cursor:pointer
 }
 .edit-container:hover {
   background-color: var(--color-whitesmoke);
@@ -1476,6 +1485,20 @@
   gap: var(--gap-0);
   transform: rotate(0deg);
 }
+.frame-wrapper101 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0px var(--padding-3xs);
+  box-sizing: border-box;
+  width: auto;
+  align-self: unset;
+  height: auto;
+  gap: var(--gap-0);
+  transform: rotate(0deg);
+  margin-left:-1400px;
+}
 .frame-wrapper10:hover {
   display: flex;
   width: auto;
@@ -2049,7 +2072,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   gap: var(--gap-2xs);
-  min-width: 156;
+  min-width: 156px;
   width: auto;
   align-self: unset;
   height: auto;
