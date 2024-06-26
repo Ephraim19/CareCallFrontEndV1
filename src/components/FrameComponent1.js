@@ -5,17 +5,11 @@ import React, { useState, useEffect } from "react";
 import Clinical from "../components/BioData/Clinical";
 import Personal from "../components/BioData/Personal";
 
-const FrameComponent1 = (patientToDisplayId) => {
+const FrameComponent1 = ({patientToDisplayId}) => {
   const [personalClinical, setPersonalClinical] = useState("personal");
-
-  // useEffect(() => {
-  //   console.log(patientToDisplayId.patientToDisplayId);
-  // }, [patientToDisplayId]);
 
   const pers = (e) => {
     setPersonalClinical("personal");
-    // e.target.style.backgroundColor = "#0090af";
-    // e.target.style.color = "#fff";
     e.target.className = "clinical-wrapper";
   };
 
@@ -45,8 +39,8 @@ const FrameComponent1 = (patientToDisplayId) => {
             <div className="frame-wrapper2">
               <div className="felix-wandera-parent">
                 <h3 className="felix-wandera">
-                  {patientToDisplayId.patientToDisplayId.memberName
-                    ? patientToDisplayId.patientToDisplayId.memberName
+                  {patientToDisplayId
+                    ? patientToDisplayId.memberName
                     : "--"}
                 </h3>
 
@@ -55,8 +49,8 @@ const FrameComponent1 = (patientToDisplayId) => {
                     <span>ID:</span>
                     <span className="span">{` `}</span>
                     <span className="y">
-                      {patientToDisplayId.patientToDisplayId.id
-                        ? patientToDisplayId.patientToDisplayId.id
+                      {patientToDisplayId.id
+                        ? patientToDisplayId.id
                         : "--"}
                     </span>
                   </div>
@@ -64,9 +58,9 @@ const FrameComponent1 = (patientToDisplayId) => {
                     <span>Age:</span>
                     <span className="span">
                       {" "}
-                      {patientToDisplayId.patientToDisplayId.memberDOB
+                      {patientToDisplayId
                         ? getAge(
-                            patientToDisplayId.patientToDisplayId.memberDOB
+                            patientToDisplayId.memberDOB
                           )
                         : "--"}{" "}
                     </span>
@@ -77,8 +71,8 @@ const FrameComponent1 = (patientToDisplayId) => {
                       <span>Gender:</span>
                       <span className="span">{` `}</span>
                       <span className="y">
-                        {patientToDisplayId.patientToDisplayId.memberGender
-                          ? patientToDisplayId.patientToDisplayId.memberGender
+                        {patientToDisplayId
+                          ? patientToDisplayId.memberGender
                           : "--"}
                       </span>
                     </span>
@@ -91,8 +85,8 @@ const FrameComponent1 = (patientToDisplayId) => {
             <span>Facility:</span>
             <span className="span">{` `}</span>
             <span className="y">
-              {patientToDisplayId.patientToDisplayId.memberFacility
-                ? patientToDisplayId.patientToDisplayId.memberFacility
+              {patientToDisplayId
+                ? patientToDisplayId.memberFacility
                 : "--"}
             </span>
           </div>
@@ -117,10 +111,10 @@ const FrameComponent1 = (patientToDisplayId) => {
         </div>
       </div>
       {personalClinical === "clinical" && (
-        <Clinical patientToDisplayId={patientToDisplayId.patientToDisplayId} />
+        <Clinical patientToDisplayId={patientToDisplayId} />
       )}
       {personalClinical === "personal" && (
-        <Personal patientToDisplayId={patientToDisplayId.patientToDisplayId} />
+        <Personal patientToDisplayId={patientToDisplayId} />
       )}
     </div>
   );

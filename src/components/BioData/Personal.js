@@ -7,11 +7,11 @@ import InsuranceEmployer from "../HomepageForms/InsuranceEmployer";
 import Addresses from "../HomepageForms/Addresses";
 import Family from "../HomepageForms/Family";
 
-const Personal = (patientToDisplayId) => {
+const Personal = ({patientToDisplayId}) => {
   const [displayDependant, setDisplayDependant] = useState([]);
 
   useEffect(() => {
-    setDisplayDependant(patientToDisplayId.patientToDisplayId.dependants);
+    setDisplayDependant(patientToDisplayId.dependants);
   }, [patientToDisplayId]);
   
 
@@ -48,16 +48,16 @@ const Personal = (patientToDisplayId) => {
               <div className="directed-graph">
                 <div className="graph-traversal">
                   <div className="vitalcare3601">
-                    {patientToDisplayId.patientToDisplayId.memberProgram
-                      ? patientToDisplayId.patientToDisplayId.memberProgram
+                    {patientToDisplayId
+                      ? patientToDisplayId.memberProgram
                       : "--"}
                   </div>
                 </div>
                 <div className="graph-edge">
                   <div className="active-group">
                     <div className="active2">
-                      {patientToDisplayId.patientToDisplayId.memberStatus
-                        ? patientToDisplayId.patientToDisplayId.memberStatus
+                      {patientToDisplayId
+                        ? patientToDisplayId.memberStatus
                         : "--"}
                     </div>
                   </div>
@@ -70,8 +70,8 @@ const Personal = (patientToDisplayId) => {
               <div className="directed-graph">
                 <div className="graph-traversal">
                   <div className="vitalcare3601">
-                    {patientToDisplayId.patientToDisplayId.memberOnboardingStage
-                      ? patientToDisplayId.patientToDisplayId
+                    {patientToDisplayId
+                      ? patientToDisplayId
                           .memberOnboardingStage
                       : "--"}
                   </div>
@@ -79,8 +79,8 @@ const Personal = (patientToDisplayId) => {
                 <div className="graph-edge">
                   <div className="active-group">
                     <div className="active2">
-                      {patientToDisplayId.patientToDisplayId.memberCareManager
-                        ? patientToDisplayId.patientToDisplayId
+                      {patientToDisplayId
+                        ? patientToDisplayId
                             .memberCareManager
                         : "--"}
                     </div>
@@ -94,17 +94,16 @@ const Personal = (patientToDisplayId) => {
               <div className="directed-graph">
                 <div className="graph-traversal">
                   <div className="vitalcare3601">
-                    {patientToDisplayId.patientToDisplayId.memberNutritionist
-                      ? patientToDisplayId.patientToDisplayId.memberNutritionist
+                    {patientToDisplayId
+                      ? patientToDisplayId.memberNutritionist
                       : "--"}
                   </div>
                 </div>
                 <div className="graph-edge">
                   <div className="active-group">
                     <div className="active2">
-                      {patientToDisplayId.patientToDisplayId
-                        .memberEngagementLead
-                        ? patientToDisplayId.patientToDisplayId
+                      {patientToDisplayId
+                        ? patientToDisplayId
                             .memberEngagementLead
                         : "--"}
                     </div>
@@ -126,8 +125,8 @@ const Personal = (patientToDisplayId) => {
                     <div className="phone-11">PHONE 1</div>
                     <div className="div12">
                       {" "}
-                      {patientToDisplayId.patientToDisplayId.memberPhone
-                        ? patientToDisplayId.patientToDisplayId.memberPhone
+                      {patientToDisplayId
+                        ? patientToDisplayId.memberPhone
                         : "--"}
                     </div>
                   </div>
@@ -137,15 +136,15 @@ const Personal = (patientToDisplayId) => {
                   <div className="phone-21">PHONE 2</div>
                   <div className="div13">
                     {" "}
-                    {patientToDisplayId.patientToDisplayId.memberPhoneTwo
-                      ? patientToDisplayId.patientToDisplayId.memberPhoneTwo
+                    {patientToDisplayId
+                      ? patientToDisplayId.memberPhoneTwo
                       : "--"}
                   </div>
                 </div>
               </div>
               <div className="felixwandera398gmailcom1">
-                {patientToDisplayId.patientToDisplayId.memerEmail
-                  ? patientToDisplayId.patientToDisplayId.memerEmail
+                {patientToDisplayId
+                  ? patientToDisplayId.memerEmail
                   : "--"}
               </div>
             </div>
@@ -166,8 +165,8 @@ const Personal = (patientToDisplayId) => {
                 <b className="b2">{` `}</b>
                 <span className="albert3">
                   {" "}
-                  {patientToDisplayId.patientToDisplayId.memberNextOfKin
-                    ? patientToDisplayId.patientToDisplayId.memberNextOfKin
+                  {patientToDisplayId
+                    ? patientToDisplayId.memberNextOfKin
                     : "--"}
                 </span>
               </span>
@@ -179,8 +178,8 @@ const Personal = (patientToDisplayId) => {
               <b className="b3">{` `}</b>
               <span className="span13">
                 {" "}
-                {patientToDisplayId.patientToDisplayId.memberNextOfKinPhone
-                  ? patientToDisplayId.patientToDisplayId.memberNextOfKinPhone
+                {patientToDisplayId
+                  ? patientToDisplayId.memberNextOfKinPhone
                   : "--"}
               </span>
             </span>
@@ -217,8 +216,8 @@ const Personal = (patientToDisplayId) => {
           <div className="string-processor">
             <div className="math-operation">
               <div className="carecall3">
-                {patientToDisplayId.patientToDisplayId.memberEmployer
-                  ? patientToDisplayId.patientToDisplayId.memberEmployer
+                {patientToDisplayId
+                  ? patientToDisplayId.memberEmployer
                   : "--"}
               </div>
               <div className="insurer1">INSURER</div>
@@ -232,14 +231,14 @@ const Personal = (patientToDisplayId) => {
             <div className="if-statement">
               <div className="britam1">
                 {" "}
-                {patientToDisplayId.patientToDisplayId.memberInsurer
-                  ? patientToDisplayId.patientToDisplayId.memberInsurer
+                {patientToDisplayId
+                  ? patientToDisplayId.memberInsurer
                   : "--"}
               </div>
             </div>
             <div className="ins077t7t6r762901">
-              {patientToDisplayId.patientToDisplayId.memberInsuranceId
-                ? patientToDisplayId.patientToDisplayId.memberInsuranceId
+              {patientToDisplayId
+                ? patientToDisplayId.memberInsuranceId
                 : "--"}
             </div>
           </div>
@@ -270,16 +269,16 @@ const Personal = (patientToDisplayId) => {
               </div>
             </div>
             <div className="court-316-kiu1">
-              {patientToDisplayId.patientToDisplayId.memberHome
-                ? patientToDisplayId.patientToDisplayId.memberHome
+              {patientToDisplayId
+                ? patientToDisplayId.memberHome
                 : "--"}
             </div>
           </div>
           <div className="data-container">
             <div className="office1">OFFICE</div>
             <div className="th-ave-suits1">
-              {patientToDisplayId.patientToDisplayId.memberOffice
-                ? patientToDisplayId.patientToDisplayId.memberOffice
+              {patientToDisplayId
+                ? patientToDisplayId.memberOffice
                 : "--"}
             </div>
           </div>
@@ -293,8 +292,8 @@ const Personal = (patientToDisplayId) => {
                 <div className="county1">COUNTY</div>
                 <div className="nairobi-county1">
                   {" "}
-                  {patientToDisplayId.patientToDisplayId.memberCounty
-                    ? patientToDisplayId.patientToDisplayId.memberCounty
+                  {patientToDisplayId
+                    ? patientToDisplayId.memberCounty
                     : "--"}
                 </div>
               </div>
@@ -303,8 +302,8 @@ const Personal = (patientToDisplayId) => {
               <div className="town1">TOWN</div>
               <div className="nairobi1">
                 {" "}
-                {patientToDisplayId.patientToDisplayId.memberTown
-                  ? patientToDisplayId.patientToDisplayId.memberTown
+                {patientToDisplayId
+                  ? patientToDisplayId.memberTown
                   : "--"}
               </div>
             </div>
@@ -312,8 +311,8 @@ const Personal = (patientToDisplayId) => {
           <div className="stroke-maker">
             <div className="delivery-instructions1">DELIVERY INSTRUCTIONS</div>
             <div className="always-deliver-at1">
-              {patientToDisplayId.patientToDisplayId.memberDelivery
-                ? patientToDisplayId.patientToDisplayId.memberDelivery
+              {patientToDisplayId
+                ? patientToDisplayId.memberDelivery
                 : "--"}
             </div>
           </div>

@@ -10,7 +10,6 @@ import LabFindings from "../components/LAB FINDINGS/LabFindings";
 
 import "../components/FrameComponent3.css";
 import { FaBars, FaSearch } from "react-icons/fa";
-// import React, { useEffect, useState } from "react";
 import { getAllMembers, getMember } from "../Services";
 
 const LeftSideBarClinicalInfor = () => {
@@ -20,8 +19,9 @@ const LeftSideBarClinicalInfor = () => {
   const [found, setFound] = useState("");
 
   useEffect(() => {
+    console.log("useEffect");
     getAllMembers().then((data) => {
-      setAllMembers(data);
+    setAllMembers(data);
       console.log(data);
     });
   }, []);
