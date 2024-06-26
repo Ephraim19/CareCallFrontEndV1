@@ -93,6 +93,27 @@ export const putOverview = async (id, data) => {
   }
 };
 
+export const getSocialHistory = async (id) => {
+  try {
+    const response = await axios.get(`http://127.0.0.1:8000/social/${id}/`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const putSocialHistory = async (id, data) => {
+  try {
+    const response = await axios.put(
+      `http://127.0.0.1:8000/social/${id}/`,
+      data
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const getCondition = async (id) => {
   try {
     const response = await axios.get(`http://127.0.0.1:8000/condition/${id}/`);

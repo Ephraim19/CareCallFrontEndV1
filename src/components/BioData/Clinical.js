@@ -56,7 +56,7 @@ const FrameComponent1 = ({patientToDisplayId}) => {
               modal
               nested
             >
-              <Overview overview={overview} />
+              <Overview overview={[overview,memberId]} />
             </Popup>
           </div>
           <div className="string-processor">

@@ -4,31 +4,36 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { postMember, postDependant, putOverview } from "../../Services";
 
-const Overview = (overview) => {
+const Overview = ({overview}) => {
   const [healthStatus, setHealthStatus] = useState("");
   const [risk, setRisk] = useState("");
   const [goals, setGoals] = useState("");
   const [blood, setBlood] = useState("");
 
   useEffect(() => {
-    setHealthStatus(overview.overview[0].overviewHealthStatus);
-    setRisk(overview.overview[0].overviewRiskScore);
-    setGoals(overview.overview[0].overviewHealthGoals);
-    setBlood(overview.overview[0].overViewBloodGroup);
+    console.log(overview[0][0]);
+    console.log(overview[1]);
+
+    if(overview[0].length > 0){
+    setHealthStatus(overview[0][0].overviewHealthStatus);
+    setRisk(overview[0][0].overviewRiskScore);
+    setGoals(overview[0][0].overviewHealthGoals);
+    setBlood(overview[0][0].overViewBloodGroup);
+    }
   }, [overview]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
     const data = {
-      memberId: overview.overview[0].memberId,
+      memberId: overview[1],
       overviewHealthStatus: healthStatus,
       overviewRiskScore: risk,
       overviewHealthGoals: goals,
       overViewBloodGroup: blood,
     };
 
-    putOverview(parseInt(overview.overview[0].id), data)
+    putOverview(parseInt(overview[0][0].id), data)
       .then((response) => {
         console.log(response);
         toast.success("Data submitted successfully");
@@ -41,7 +46,7 @@ const Overview = (overview) => {
 
   return (
     <div>
-      <form className={styles.firstNameField} id={overview.overview[0].id}>
+      <form className={styles.firstNameField} >
         <b className={styles.createNewCarecall}>OVERVIEW</b>
 
         <input

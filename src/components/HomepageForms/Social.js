@@ -2,35 +2,36 @@ import React, { useEffect, useState } from "react";
 import styles from "./Program.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { putSocialHistory } from "../../Services";
 
-
-const Social = (social) => {
+const Social = ({social}) => {
   const [socialNotes, setSocialNotes] = useState('');
   const [risk, setRisk] = useState('');
 
   useEffect(() => {
     console.log(social);
-    // setConditionName(condition.condition[0].conditionName);
-    // setConditionStatus(condition.condition[0].conditionStatus);
   }, [social]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    console.log(social[0].memberId);
 
-    // const data = {
-    //   conditionName: conditionName,
-    //   conditionStatus: conditionStatus,
-    //   memberId: condition.condition[0].memberId,
-    // };
+    const data = {
+      socialNotes:socialNotes,
+      atriskDueTo: risk,
+      memberId: social[0].memberId,
+    };
 
-    // try {
-    //   const response = await postCondition(data);
-    //   console.log(response);
-    //   toast.success("Data submitted successfully");
-    // } catch (error) {
-    //   console.error(error);
-    //   toast.error("Error submitting data");
-    // }
+    putSocialHistory(parseInt(social[0].id), data)
+    .then((response) => {
+      console.log(response);
+      toast.success("Data submitted successfully");
+    })
+    .catch((error) => {
+      console.log(error);
+      toast.error("Error in submitting data");
+    });
+
   };
 
   return (
