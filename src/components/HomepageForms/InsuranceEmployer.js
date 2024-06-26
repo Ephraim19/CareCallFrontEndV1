@@ -4,26 +4,26 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { patchMember } from "../../Services";
 
-const InsuranceEmployer = (insDisplay) => {
+const InsuranceEmployer = ({insDisplay}) => {
   const [employer, setEmployer] = React.useState("");
   const [department, setDepartment] = React.useState("");
   const [insurer, setInsurer] = React.useState("");
   const [insuranceId, setInsuranceId] = React.useState("");
 
   useEffect(() => {
-    if (insDisplay.insDisplay) {
-      setEmployer(insDisplay.insDisplay.patientToDisplayId.memberEmployer);
-      setDepartment(insDisplay.insDisplay.patientToDisplayId.memberDepartment);
-      setInsurer(insDisplay.insDisplay.patientToDisplayId.memberInsurer);
-      setInsuranceId(insDisplay.insDisplay.patientToDisplayId.memberInsuranceId);
-      console.log(insDisplay.insDisplay.patientToDisplayId);
+    if (insDisplay) {
+      setEmployer(insDisplay.memberEmployer);
+      setDepartment(insDisplay.memberDepartment);
+      setInsurer(insDisplay.memberInsurer);
+      setInsuranceId(insDisplay.memberInsuranceId);
+      console.log(insDisplay);
     }
   }, [insDisplay]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    patchMember(parseInt(insDisplay.insDisplay.patientToDisplayId.id), {
+    patchMember(parseInt(insDisplay.id), {
       memberEmployer: employer,
       memberDepartment: department,
       memberInsurer: insurer,

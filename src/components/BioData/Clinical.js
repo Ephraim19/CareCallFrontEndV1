@@ -9,7 +9,7 @@ import Allergies from "../HomepageForms/Allergies";
 import FamilyHistory from "../HomepageForms/FamilyHistory";
 import OtherNote from "../HomepageForms/OtherNote";
 
-const FrameComponent1 = (patientToDisplayId) => {
+const FrameComponent1 = ({patientToDisplayId}) => {
   const [overview, setOverview] = useState("");
   const [allergy, setAllergy] = useState([]);
   const [pastAdmissions, setPastAdmissions] = useState([]);
@@ -21,15 +21,15 @@ const FrameComponent1 = (patientToDisplayId) => {
   const [memberId,setMemberId] = useState([]);
 
   useEffect(() => {
-    setMemberId(patientToDisplayId.patientToDisplayId.id)
-    setOverview(patientToDisplayId.patientToDisplayId.overview);
-    setAllergy(patientToDisplayId.patientToDisplayId.allergy);
-    setPreviousSurgeries(patientToDisplayId.patientToDisplayId.surgery);
-    setOtherNotes(patientToDisplayId.patientToDisplayId.othernote);
-    setFamilyHistory(patientToDisplayId.patientToDisplayId.family);
-    setPastAdmissions(patientToDisplayId.patientToDisplayId.admission);
-    setSocialHistory(patientToDisplayId.patientToDisplayId.social);
-    setCondition(patientToDisplayId.patientToDisplayId.condition);
+    setMemberId(patientToDisplayId.id)
+    setOverview(patientToDisplayId.overview);
+    setAllergy(patientToDisplayId.allergy);
+    setPreviousSurgeries(patientToDisplayId.surgery);
+    setOtherNotes(patientToDisplayId.othernote);
+    setFamilyHistory(patientToDisplayId.family);
+    setPastAdmissions(patientToDisplayId.admission);
+    setSocialHistory(patientToDisplayId.social);
+    setCondition(patientToDisplayId.condition);
   }, [patientToDisplayId]);
 
   return (
@@ -62,13 +62,13 @@ const FrameComponent1 = (patientToDisplayId) => {
           <div className="string-processor">
             <div className="math-operation">
               <div className="carecall3">
-                {overview ? overview[0].overviewHealthStatus : "--"}
+                {overview.length > 0 ? overview[0].overviewHealthStatus : "--"}
               </div>
               <div className="insurer1">HEALTH GOALS</div>
             </div>
             <div className="assignment-operator">
               <div className="motivational-design1">
-                {overview ? overview[0].overviewRiskScore : "--"}
+                {overview.length > 0 ? overview[0].overviewRiskScore : "--"}
               </div>
               <div className="insurance-id1">BLOOD GROUP</div>
             </div>
@@ -76,11 +76,11 @@ const FrameComponent1 = (patientToDisplayId) => {
           <div className="return-operator">
             <div className="if-statement">
               <div className="britam1">
-                {overview ? overview[0].overviewHealthGoals : "--"}
+                {overview.length > 0 ? overview[0].overviewHealthGoals : "--"}
               </div>
             </div>
             <div className="ins077t7t6r762901">
-              {overview ? overview[0].overViewBloodGroup : "--"}
+              {overview.length > 0 ? overview[0].overViewBloodGroup : "--"}
             </div>
           </div>
         </div>

@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getMember, patchMember, putMember } from "../../Services";
 
-const Program = (programStatusDisplay) => {
+const Program = ({programStatusDisplay}) => {
   const [program, setProgram] = React.useState("");
   const [status, setStatus] = React.useState("");
   const [stage, setStage] = React.useState("");
@@ -14,39 +14,39 @@ const Program = (programStatusDisplay) => {
   // const [programStatusData, setProgramStatusData] = React.useState([]);
 
   useEffect(() => {
-    if (programStatusDisplay.programStatusDisplay.patientToDisplayId) {
+    if (programStatusDisplay) {
       setProgram(
-        programStatusDisplay.programStatusDisplay.patientToDisplayId
+        programStatusDisplay
           .memberProgram
       );
       setStatus(
-        programStatusDisplay.programStatusDisplay.patientToDisplayId
+        programStatusDisplay
           .memberStatus
       );
       setStage(
-        programStatusDisplay.programStatusDisplay.patientToDisplayId
+        programStatusDisplay
           .memberOnboardingStage
       );
       setCareManager(
-        programStatusDisplay.programStatusDisplay.patientToDisplayId
+        programStatusDisplay
           .memberCareManager
       );
       setNutritionist(
-        programStatusDisplay.programStatusDisplay.patientToDisplayId
+        programStatusDisplay
           .memberNutritionist
       );
       setEngagementLead(
-        programStatusDisplay.programStatusDisplay.patientToDisplayId
+        programStatusDisplay
           .memberEngagementLead
       );
     }
-  }, [programStatusDisplay.programStatusDisplay.patientToDisplayId]);
+  }, [programStatusDisplay]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
     patchMember(
-      parseInt(programStatusDisplay.programStatusDisplay.patientToDisplayId.id),
+      parseInt(programStatusDisplay.id),
       {
         memberProgram: program,
         memberStatus: status,

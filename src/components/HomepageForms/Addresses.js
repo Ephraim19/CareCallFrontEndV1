@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { patchMember } from "../../Services";
 // import Cookies from "js-cookie";
 
-const Addresses = (addressDisplay) => {
+const Addresses = ({addressDisplay}) => {
   const [home, setHome] = React.useState("");
   const [office, setOffice] = React.useState("");
   const [geolocation, setGeolocation] = React.useState("");
@@ -18,18 +18,18 @@ const Addresses = (addressDisplay) => {
 
   useEffect(() => {
     
-    setHome(addressDisplay.addressDisplay.patientToDisplayId.memberHome || "");
+    setHome(addressDisplay.memberHome || "");
     setOffice(
-      addressDisplay.addressDisplay.patientToDisplayId
+      addressDisplay
         .memberOffice || ""
     );
     setCounty(
-      addressDisplay.addressDisplay.patientToDisplayId
+      addressDisplay
         .memberCounty || ""
     );
-    setTown(addressDisplay.addressDisplay.patientToDisplayId.memberTown || "");
+    setTown(addressDisplay.memberTown || "");
     setDeliveryInstructions(
-      addressDisplay.addressDisplay.patientToDisplayId
+      addressDisplay
         .memberDelivery || ""
     );
   }, [addressDisplay]);
@@ -44,7 +44,7 @@ const Addresses = (addressDisplay) => {
       memberDelivery: deliveryInstructions,
     };
     patchMember(
-      parseInt(addressDisplay.addressDisplay.patientToDisplayId.id),
+      parseInt(addressDisplay.id),
       data
     )
       .then((response) => {
