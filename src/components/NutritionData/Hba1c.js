@@ -2,7 +2,7 @@ import React from "react";
 import { CChart } from "@coreui/react-chartjs";
 import "../VitalsData/Vitals.css"
 
-const BloodSugarGraph = () => {
+const BloodSugarGraph = ({hba1c}) => {
   return (
     <div>
       <div className="frame-parent4">
@@ -13,15 +13,7 @@ const BloodSugarGraph = () => {
       <CChart
         type="line"
         data={{
-          labels: [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-          ],
+          labels: hba1c && hba1c.map((item) => item.readingDate),
           datasets: [
             {
               label: "Hba1c (%)",
@@ -29,7 +21,7 @@ const BloodSugarGraph = () => {
               borderColor: "purple",
               pointBackgroundColor: "purple",
               pointBorderColor: "purple",
-              data: [40, 20, 12, 39, 10, 40, 39, 80, 40],
+              data: hba1c && hba1c.map((item) => item.hba1c),
             },
  
           ],
