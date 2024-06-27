@@ -2,36 +2,41 @@ import React, { useEffect, useState } from "react";
 import styles from "./Program.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { postMember, postDependant, putOverview, postCondition } from "../../Services";
+import { postCondition } from "../../Services";
 
-const Condition = (condition) => {
+const Condition = ({condition}) => {
+
   const [conditionName, setConditionName] = useState("");
   const [conditionStatus, setConditionStatus] = useState("");
 
   useEffect(() => {
     console.log(condition);
-    // setConditionName(condition.condition[0].conditionName);
-    // setConditionStatus(condition.condition[0].conditionStatus);
   }, [condition]);
+
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    console.log(conditionName,conditionStatus,condition);
 
     const data = {
-        conditionName: conditionName,
-        conditionStatus: conditionStatus,
-        memberId: condition.condition[0].memberId,
-    };
+      condition: conditionName,
+      status: conditionStatus,
+      memberId: parseInt(condition),
+  };
 
-    try {
-      const response = await postCondition(data);
+
+    postCondition(data)
+    .then((response) => {
       console.log(response);
       toast.success("Data submitted successfully");
-    } catch (error) {
-      console.error(error);
-      toast.error("Error submitting data");
-    }
+    })
+    .catch((error) => {
+      console.log(error);
+      toast.error("Error in submitting data");
+    });
+
   };
+
 
   return (
     <div>

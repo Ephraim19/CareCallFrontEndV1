@@ -30,6 +30,7 @@ const FrameComponent1 = ({patientToDisplayId}) => {
     setPastAdmissions(patientToDisplayId.admission);
     setSocialHistory(patientToDisplayId.social);
     setCondition(patientToDisplayId.condition);
+    
   }, [patientToDisplayId]);
 
   return (
@@ -62,13 +63,13 @@ const FrameComponent1 = ({patientToDisplayId}) => {
           <div className="string-processor">
             <div className="math-operation">
               <div className="carecall3">
-                {overview.length > 0 ? overview[0].overviewHealthStatus : "--"}
+                {overview ? overview[0].overviewHealthStatus : "--"}
               </div>
               <div className="insurer1">HEALTH GOALS</div>
             </div>
             <div className="assignment-operator">
               <div className="motivational-design1">
-                {overview.length > 0 ? overview[0].overviewRiskScore : "--"}
+                {overview ? overview[0].overviewRiskScore : "--"}
               </div>
               <div className="insurance-id1">BLOOD GROUP</div>
             </div>
@@ -76,11 +77,11 @@ const FrameComponent1 = ({patientToDisplayId}) => {
           <div className="return-operator">
             <div className="if-statement">
               <div className="britam1">
-                {overview.length > 0 ? overview[0].overviewHealthGoals : "--"}
+                {overview ? overview[0].overviewHealthGoals : "--"}
               </div>
             </div>
             <div className="ins077t7t6r762901">
-              {overview.length > 0 ? overview[0].overViewBloodGroup : "--"}
+              {overview ? overview[0].overViewBloodGroup : "--"}
             </div>
           </div>
         </div>
@@ -92,7 +93,9 @@ const FrameComponent1 = ({patientToDisplayId}) => {
             <div className="conditions">Conditions</div>
             <div className="condition-parent">
               <div className="condition">CONDITION</div>
-              <div className="diabetes-mellitus-type">Diabetes</div>
+                {condition ? condition.map((condition) => (
+              <div className="diabetes-mellitus-type">{condition.condition}</div>
+            )) : "--"}
             </div>
           </div>
           <div className="frame-parent10">
@@ -106,12 +109,14 @@ const FrameComponent1 = ({patientToDisplayId}) => {
                 modal
                 nested
               >
-                <Condition condition={[condition,memberId]} />
+                <Condition condition={[memberId]} />
               </Popup>
               <div className="frame-wrapper7">
                 <div className="health-status-parent">
                   <div className="status">STATUS</div>
-                  <div className="active">Active</div>
+                  {condition ? condition.map((condition) => (
+              <div className="active">{condition.status}</div>
+            )) : "--"}
                 </div>
               </div>
             </div>
@@ -311,7 +316,7 @@ const FrameComponent1 = ({patientToDisplayId}) => {
           <div className="diabetes-mellitus-type">
             <ul className="write-other-notes-here">
               <li>
-                {otherNotes.length > 0 ? otherNotes[0].othernoteNote : "--"}{" "}
+                {otherNotes ? otherNotes[0].othernoteNote : "--"}{" "}
               </li>
             </ul>
           </div>
