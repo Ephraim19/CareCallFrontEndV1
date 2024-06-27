@@ -102,10 +102,10 @@ export const getSocialHistory = async (id) => {
   }
 };
 
-export const putSocialHistory = async (id, data) => {
+export const postSocialHistory = async (data) => {
   try {
-    const response = await axios.put(
-      `http://127.0.0.1:8000/social/${id}/`,
+    const response = await axios.post(
+      `http://127.0.0.1:8000/social/`, // Assuming a different endpoint for details
       data
     );
     return response.data;

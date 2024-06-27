@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./Program.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { putSocialHistory } from "../../Services";
+import { postSocialHistory } from "../../Services";
 
 const Social = ({social}) => {
   const [socialNotes, setSocialNotes] = useState('');
@@ -14,15 +14,15 @@ const Social = ({social}) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(social[0].memberId);
+    console.log(socialNotes, risk, social);
 
     const data = {
       socialNotes:socialNotes,
       atriskDueTo: risk,
-      memberId: social[0].memberId,
+      memberId: parseInt(social),
     };
 
-    putSocialHistory(parseInt(social[0].id), data)
+    postSocialHistory(data)
     .then((response) => {
       console.log(response);
       toast.success("Data submitted successfully");

@@ -36,6 +36,7 @@ const Overview = ({overview}) => {
     putOverview(parseInt(overview[0][0].id), data)
       .then((response) => {
         console.log(response);
+        setGoals(response.overviewRiskScore);
         toast.success("Data submitted successfully");
       })
       .catch((error) => {

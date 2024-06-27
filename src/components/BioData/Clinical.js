@@ -142,7 +142,7 @@ const FrameComponent1 = ({patientToDisplayId}) => {
             modal
             nested
           >
-            <Social social={socialHistory} />
+            <Social social={memberId} />
           </Popup>
 
           <div className="for-loop">
