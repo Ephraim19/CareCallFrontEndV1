@@ -632,7 +632,6 @@
   display: flex;
   min-width: 23;
   z-index: 1;
-  margin-left: -985px;
 }
 .edit1:hover {
   font-weight: 500;
@@ -1497,7 +1496,6 @@
   height: auto;
   gap: var(--gap-0);
   transform: rotate(0deg);
-  margin-left:-1400px;
 }
 .frame-wrapper10:hover {
   display: flex;

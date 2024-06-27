@@ -2,7 +2,7 @@ import React from "react";
 import { CChart } from "@coreui/react-chartjs";
 import "./Vitals.css";
 
-const RespiratoryRate = () => {
+const RespiratoryRate = ({respiratory}) => {
   return (
     <div>
       <div className="frame-parent4">
@@ -13,15 +13,7 @@ const RespiratoryRate = () => {
       <CChart
         type="line"
         data={{
-          labels: [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-          ],
+          labels: respiratory.map((item) => item.readingDate),
           datasets: [
             {
               label: "Respiratory Rate (Breaths per Minute)",
@@ -29,7 +21,7 @@ const RespiratoryRate = () => {
               borderColor: "#0090af",
               pointBackgroundColor: "#0090af",
               pointBorderColor: "#0090af",
-              data: [50, 12, 28, 29, 7, 25, 12, 70, 60],
+              data: respiratory.map((item) => item.respiratory),
             },
           ],
         }}

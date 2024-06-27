@@ -7,8 +7,15 @@ import OxygenGraph from "./OxygenGraph";
 import PulseRateGraph from "./PulseRateGraph";
 import RespiratoryRate from "./RespiratoryRate";
 
-const Vitals = () => {
+const Vitals = ({patientToDisplayId}) => {
+
   const [table, setTable] = React.useState("table");
+
+  React.useEffect(() => {
+    console.log(patientToDisplayId.bloodpressure)
+  }
+  , [patientToDisplayId]);
+
   return (
     
     <div>
@@ -52,24 +59,28 @@ const Vitals = () => {
           <div className="property-editor-inner1">
             <div className="line-div" />
           </div>
+          
+          {patientToDisplayId.bloodpressure && patientToDisplayId.bloodpressure.map((bp) => (
 
           <div className="property-editor-inner2">
             <div className="parent">
-              <div className="div2">05/04/2022</div>
+              <div className="div2">{bp.readingDate}</div>
               <div className="wrapper">
-                <div className="div3">133</div>
+                <div className="div3">{bp.systolic}</div>
               </div>
               <div className="container">
-                <div className="div4">81</div>
+                <div className="div4">{bp.diastolic}</div>
               </div>
-              <div className="prehypertension">Prehypertension</div>
+              <div className="prehypertension">code</div>
             </div>
 
             <div className="property-editor-inner1">
               <div className="line-div" />
             </div>
           </div>
+          ))}  
 
+            
           <div className="timer-manager" />
 
           <div className="frame-parent4">
@@ -86,22 +97,23 @@ const Vitals = () => {
             </div>
           </div>
 
+
           <div className="property-editor-inner1">
             <div className="line-div" />
           </div>
 
+          {patientToDisplayId.temperature && patientToDisplayId.temperature.map((temp) => (
           <div className="property-editor-inner2">
             <div className="parent">
-              <div className="div2">05/04/2022</div>
+              <div className="div2">{temp.readingDate}</div>
               <div className="wrapper">
-                <div className="div3">133</div>
+                <div className="div3">{temp.temperature}</div>
               </div>
-              {/* <div className="container">
-                <div className="div4">prehypertension</div>
-              </div> */}
-              <div className="prehypertension">Prehypertension</div>
+              <div className="prehypertension">code</div>
             </div>
           </div>
+          ))}  
+
           <div className="property-editor-inner1">
             <div className="line-div" />
           </div>
@@ -124,18 +136,17 @@ const Vitals = () => {
             <div className="line-div" />
           </div>
 
+          {patientToDisplayId.oxygen && patientToDisplayId.oxygen.map((oxygen) => (
           <div className="property-editor-inner2">
             <div className="parent">
-              <div className="div2">05/04/2022</div>
+              <div className="div2">{oxygen.readingDate}</div>
               <div className="wrapper">
-                <div className="div3">133</div>
+                <div className="div3">{oxygen.oxygen}</div>
               </div>
-              {/* <div className="container">
-                <div className="div4">prehypertension</div>
-              </div> */}
-              <div className="prehypertension">Prehypertension</div>
+              <div className="prehypertension">code</div>
             </div>
           </div>
+          ))}
 
           <div className="property-editor-inner1">
             <div className="line-div" />
@@ -158,19 +169,21 @@ const Vitals = () => {
           <div className="property-editor-inner1">
             <div className="line-div" />
           </div>
+          
+          {patientToDisplayId.pulse && patientToDisplayId.pulse.map((
+            pulse) => (
 
+            
           <div className="property-editor-inner2">
             <div className="parent">
-              <div className="div2">05/04/2022</div>
+              <div className="div2">{pulse.readingDate}</div>
               <div className="wrapper">
-                <div className="div3">133</div>
+                <div className="div3">{pulse.pulse}</div>
               </div>
-              {/* <div className="container">
-                <div className="div4">prehypertension</div>
-              </div> */}
-              <div className="prehypertension">Prehypertension</div>
+              <div className="prehypertension">code</div>
             </div>
           </div>
+          ))}
 
           <div className="property-editor-inner1">
             <div className="line-div" />
@@ -194,41 +207,45 @@ const Vitals = () => {
             <div className="line-div" />
           </div>
 
-          <div className="property-editor-inner2">
+          {patientToDisplayId.respiratory && patientToDisplayId.respiratory 
+          .map((respiratory) => (
+            <div className="property-editor-inner2">
             <div className="parent">
-              <div className="div2">05/04/2022</div>
+              <div className="div2">{respiratory.readingDate}</div>
               <div className="wrapper">
-                <div className="div3">133</div>
+                <div className="div3">{respiratory.respiratory}</div>
               </div>
               {/* <div className="container">
                 <div className="div4">prehypertension</div>
               </div> */}
               <div className="prehypertension">Prehypertension</div>
-            </div>
-
+        </div>
+        </div>
+          ))}
+        
+            
             <div className="property-editor-inner1">
               <div className="line-div" />
             </div>
           </div>
-        </div>
       )}
       <div className="timer-manager" />
       {table === "graphical" && (
         <div>
           <div style={{ marginBottom: "7%" }}>
-            <VITALSGRAPHICALREPRESENTAT />
+            <VITALSGRAPHICALREPRESENTAT Bp= {patientToDisplayId.bloodpressure} />
           </div>
           <div style={{ marginBottom: "7%" }}>
-            <TemperatureGraph />
+            <TemperatureGraph temp = {patientToDisplayId.temperature} />
           </div>
           <div style={{ marginBottom: "7%" }}>
-            <OxygenGraph />
+            <OxygenGraph oxygen = {patientToDisplayId.oxygen} />
           </div>
           <div style={{ marginBottom: "7%" }}>
-            <PulseRateGraph />
+            <PulseRateGraph pulse = {patientToDisplayId.pulse} />
           </div>
           <div style={{ marginBottom: "7%" }}>
-            <RespiratoryRate />
+            <RespiratoryRate respiratory = {patientToDisplayId.respiratory} />
           </div>
         </div>
       )}

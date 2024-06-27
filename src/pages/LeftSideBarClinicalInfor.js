@@ -146,7 +146,7 @@ const LeftSideBarClinicalInfor = () => {
                   </div>
                 }
               >
-                <Vitals />
+                <Vitals patientToDisplayId={patientToDisplayId} />
               </Collapsible>
 
               <Collapsible

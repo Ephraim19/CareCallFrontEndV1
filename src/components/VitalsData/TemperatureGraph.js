@@ -1,7 +1,7 @@
 import React from "react";
 import { CChart } from "@coreui/react-chartjs";
 import "./Vitals.css";
-const TemperatureGraph = () => {
+const TemperatureGraph = ({temp}) => {
   return (
     <div>
       <div className="frame-parent4">
@@ -12,15 +12,7 @@ const TemperatureGraph = () => {
       <CChart
         type="line"
         data={{
-          labels: [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-          ],
+          labels: temp.map((item) => item.readingDate),
           datasets: [
             {
               label: "Temperature (Degrees Celsius)",
@@ -28,7 +20,7 @@ const TemperatureGraph = () => {
               borderColor: "#0090af",
               pointBackgroundColor: "#0090af",
               pointBorderColor: "#0090af",
-              data: [50, 12, 28, 29, 7, 25, 12, 70, 60],
+              data: temp.map((item) => item.temperature),
             },
           ],
         }}

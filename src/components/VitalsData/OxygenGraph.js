@@ -2,7 +2,7 @@ import React from "react";
 import "./Vitals.css";
 import { CChart } from "@coreui/react-chartjs";
 
-const OxygenGraph = () => {
+const OxygenGraph = ({oxygen}) => {
   return (
     <div>
       <div>
@@ -14,15 +14,7 @@ const OxygenGraph = () => {
         <CChart
           type="line"
           data={{
-            labels: [
-              "January",
-              "February",
-              "March",
-              "April",
-              "May",
-              "June",
-              "July",
-            ],
+            labels: oxygen.map((item) => item.readingDate),
             datasets: [
               {
                 label: "Oxygen Saturation (% SpO2)",
@@ -30,7 +22,7 @@ const OxygenGraph = () => {
                 borderColor: "#0090af",
                 pointBackgroundColor: "#0090af",
                 pointBorderColor: "#0090af",
-                data: [50, 12, 28, 29, 7, 25, 12, 70, 60],
+                data: oxygen.map((item) => item.oxygen),
               },
             ],
           }}

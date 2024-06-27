@@ -2,7 +2,7 @@ import React from "react";
 import { CChart } from "@coreui/react-chartjs";
 import "./Vitals.css";
 
-const PulseRateGraph = () => {
+const PulseRateGraph = ({pulse}) => {
   return (
     <div>
       <div className="frame-parent4">
@@ -13,15 +13,7 @@ const PulseRateGraph = () => {
       <CChart
         type="line"
         data={{
-          labels: [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-          ],
+          labels: pulse.map((item) => item.readingDate),
           datasets: [
 
             {
@@ -30,7 +22,7 @@ const PulseRateGraph = () => {
               borderColor: "#0090af",
               pointBackgroundColor: "#0090af",
               pointBorderColor: "#0090af",
-              data: [50, 12, 28, 29, 7, 25, 12, 70, 60],
+              data: pulse.map((item) => item.pulse),
             },
           ],
         }}
