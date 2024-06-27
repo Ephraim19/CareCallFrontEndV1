@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./Program.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { postMember, postDependant, putOverview } from "../../Services";
+import { postOverview, putOverview } from "../../Services";
 
 const Overview = ({overview}) => {
   const [healthStatus, setHealthStatus] = useState("");
@@ -33,16 +33,28 @@ const Overview = ({overview}) => {
       overViewBloodGroup: blood,
     };
 
-    putOverview(parseInt(overview[0][0].id), data)
+    if(overview[0].length > 0){
+    putOverview(parseInt(overview[1]), data)
       .then((response) => {
         console.log(response);
-        setGoals(response.overviewRiskScore);
         toast.success("Data submitted successfully");
       })
       .catch((error) => {
         console.log(error);
         toast.error("Error in submitting data");
       });
+    }else{
+      postOverview(data)
+      .then((response) => {
+        console.log(response);
+        toast.success("Data submitted successfully");
+      }
+      )
+      .catch((error) => {
+        console.log(error);
+        toast.error("Error in submitting data");
+      });
+    }
   };
 
   return (

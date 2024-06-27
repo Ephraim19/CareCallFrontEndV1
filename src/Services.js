@@ -93,6 +93,18 @@ export const putOverview = async (id, data) => {
   }
 };
 
+export const postOverview = async (data) => {
+  try {
+    const response = await axios.post(
+      `http://127.0.0.1:8000/overview/`, 
+      data
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const getSocialHistory = async (id) => {
   try {
     const response = await axios.get(`http://127.0.0.1:8000/social/${id}/`);
@@ -105,7 +117,7 @@ export const getSocialHistory = async (id) => {
 export const postSocialHistory = async (data) => {
   try {
     const response = await axios.post(
-      `http://127.0.0.1:8000/social/`, // Assuming a different endpoint for details
+      `http://127.0.0.1:8000/social/`, 
       data
     );
     return response.data;

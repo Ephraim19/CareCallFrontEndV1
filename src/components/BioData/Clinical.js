@@ -136,7 +136,7 @@ const FrameComponent1 = ({patientToDisplayId}) => {
           <Popup
             trigger={
               <div className="edit-container" style={{ cursor: "pointer" }}>
-                <div className="edit11">EDIT</div>
+                <div className="edit11">ADD</div>
               </div>
             }
             modal

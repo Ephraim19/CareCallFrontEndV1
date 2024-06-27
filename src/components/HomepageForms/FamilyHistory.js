@@ -20,6 +20,7 @@ const FamilyHistory = (familyHistory) => {
       familyRelationship,
       familyCondition,
     };
+    
     try {
       const response = await postFamilyHistory(data);
       console.log(response);
