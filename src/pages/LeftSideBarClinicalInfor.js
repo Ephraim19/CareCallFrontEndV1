@@ -7,16 +7,17 @@ import React, { useState, useEffect } from "react";
 import Vitals from "../components/VitalsData/Vitals";
 import Nutrition from "../components/NutritionData/Nutrition";
 import LabFindings from "../components/LAB FINDINGS/LabFindings";
-
 import "../components/FrameComponent3.css";
 import { FaBars, FaSearch } from "react-icons/fa";
 import { getAllMembers, getMember } from "../Services";
+import Interaction from "../components/Interaction/Interaction";
 
 const LeftSideBarClinicalInfor = () => {
   const [allMembers, setAllMembers] = useState([]);
   const [patientToDisplayId, setPatientToDisplayId] = useState(0);
   const [searched, setSearched] = useState([]);
   const [found, setFound] = useState("");
+  const [topNav, setTopNav] = useState("records");
 
   useEffect(() => {
     console.log("useEffect");
@@ -126,17 +127,21 @@ const LeftSideBarClinicalInfor = () => {
           <div className="frame-group">
             <div className="matrix-multiplier-wrapper">
               <div className="matrix-multiplier">
-                <div className="medical-records">Medical Records</div>
 
-                <div className="graph-processor">
-                  <div className="interactions">Interactions</div>
+                <div className="medical-records" onClick={() => setTopNav('records')} >Medical Records</div>
+
+                <div className="graph-processor" onClick={() => setTopNav('interactions') }>
+                  <div className="interactions" >Interactions</div>
                 </div>
-                <div className="graph-processor1">
+
+                <div className="graph-processor1" onClick={() => setTopNav('tasks') }>
                   <div className="tasks">Tasks</div>
                 </div>
-                <div className="member-journey">Member Journey</div>
+
+                <div className="member-journey" onClick={() => setTopNav('journey') }>Member Journey</div>
               </div>
             </div>
+            {topNav ==='records' &&
             <div className="data-visualizer">
               <Collapsible
                 trigger={
@@ -186,11 +191,13 @@ const LeftSideBarClinicalInfor = () => {
                 <h3 className="nutrition-blood">CLINICAL NOTES</h3>
                 <h3 className="data-normalizer">+</h3>
               </div>
-              <div className="algorithm-component6">
+              <div className="alg=orithm-component6">
                 <h3 className="nutrition-blood">INTERVENTIONS</h3>
                 <h3 className="data-normalizer">+</h3>
               </div>
             </div>
+             }
+             {topNav === 'interactions' && <Interaction memberId = {patientToDisplayId.id} />}
           </div>
           <FrameComponent />
         </section>

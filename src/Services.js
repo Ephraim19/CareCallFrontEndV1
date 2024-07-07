@@ -194,3 +194,27 @@ export const postFamilyHistory = async (data) => {
     console.error(error);
   }
 };
+
+//Interactions
+export const getInteraction = async (memberId) => {
+  try {
+    const response = await axios.get(`http://127.0.0.1:8000/interaction/${memberId}/`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getAllInteraction = async (memberId) => {
+
+  try {
+    const response = await axios.get(`http://127.0.0.1:8000/interaction/`, {
+      params: {
+        memberId: memberId
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
