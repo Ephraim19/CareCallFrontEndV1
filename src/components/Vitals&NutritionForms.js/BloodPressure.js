@@ -1,0 +1,78 @@
+import React, { useEffect, useState } from "react";
+import styles from '../HomepageForms/Program.module.css'
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { postBloodPressure } from "../../Services";
+
+const BloodPressure = ({memberId}) => {
+
+  const [diastolic, setDiastolic] = useState("");
+  const [systolic, setSystolic] = useState("");
+  const [date, setDate] = useState(new Date());
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    const data = {
+      diastolic: diastolic,
+      systolic: systolic,
+      readingDate: new Date(),
+      updatedBy: "admin@g.com",
+      memberId: parseInt(memberId),
+  };
+
+
+    postBloodPressure(data)
+    .then((response) => {
+      console.log(response);
+      toast.success("Data submitted successfully");
+    })
+    .catch((error) => {
+      console.log(error);
+      toast.error("Error in submitting data");
+    });
+
+  };
+
+
+  return (
+    <div>
+      <form className={styles.firstNameField} >
+        <b className={styles.createNewCarecall}>BLOOD PRESSURE</b>
+
+        <input
+          className={styles.firstNameField1}
+          placeholder="SYSTOLIC"
+          type="text"
+          value={systolic}
+          onChange={(e) => setSystolic(e.target.value)}
+        />
+        <input
+          className={styles.lastNameField}
+          placeholder="DIASTOLIC"
+          type="text"
+          value={diastolic}
+          onChange={(e) => setDiastolic(e.target.value)}
+        />
+
+<input
+          className={styles.phoneNumber}
+          placeholder="Date"
+          type="text"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+        />
+
+        <button className={styles.signUpButton} onClick={onSubmit}>
+          <div className={styles.signUpButton1}>
+            <div className={styles.signUpButtonChild} />
+            <b className={styles.createAccount}>SUBMIT DATA</b>
+          </div>
+        </button>
+      </form>
+      <ToastContainer />
+    </div>
+  );
+};
+
+export default BloodPressure;

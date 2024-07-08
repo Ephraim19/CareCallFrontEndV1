@@ -1,6 +1,8 @@
 import React from 'react';
 import './Interaction.css';
+import Popup from 'reactjs-popup';
 import { getInteraction,getAllInteraction } from '../../Services';
+import InteractionForm from './InteractionForm';
 
 const Interaction = ({memberId}) => {
     const [memberInteractions, setMemberInteractions ] = React.useState();
@@ -19,9 +21,17 @@ const Interaction = ({memberId}) => {
 
     return (
         <>
+        <Popup trigger={
+        <button style={{marginBottom:"-10%",padding:"1%"}} >ADD INTERACTION</button>
+        }
+        nested
+        modal
+        >
+          <InteractionForm condition={memberId} />
+        </Popup>
         {memberInteractions && memberInteractions.map((int) => (
 
-        <div >
+        <div style={{marginBottom:"-10%"}} >
             <div className="frame-parent4">
             <div className="blood-pressure-parent">
               <div className="blood-pressure">{int.interactionDetails}</div>

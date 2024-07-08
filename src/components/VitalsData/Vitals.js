@@ -1,23 +1,36 @@
 import React from "react";
 import "./Vitals.css";
-import FrameComponent1 from "./FrameComponent1";
 import VITALSGRAPHICALREPRESENTAT from "./VITALSGRAPHICALREPRESENTAT";
 import TemperatureGraph from "./TemperatureGraph";
 import OxygenGraph from "./OxygenGraph";
 import PulseRateGraph from "./PulseRateGraph";
 import RespiratoryRate from "./RespiratoryRate";
+import { getBloodpressure,getAllBloodPressure,postBloodPressure } from "../../Services";
+import Popup from "reactjs-popup";
+import BloodPressure from "../Vitals&NutritionForms.js/BloodPressure";
 
 const Vitals = ({patientToDisplayId}) => {
 
   const [table, setTable] = React.useState("table");
+  const [bloodPressure, setBloodPressure] = React.useState([]);
 
   React.useEffect(() => {
-    console.log(patientToDisplayId.bloodpressure)
+
+    getAllBloodPressure(patientToDisplayId.id)
+    .then((response) => {
+      console.log(response);
+      setBloodPressure(response);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
+
   }
   , [patientToDisplayId]);
 
   return (
-    
+
     <div>
       <div className="iterative-processor">
         <div className="vitals-wrapper">
@@ -42,9 +55,18 @@ const Vitals = ({patientToDisplayId}) => {
       {table === "table" && (
         <div>
           <div className="frame-parent4">
-            <div className="blood-pressure-parent">
+            <div className="">
               <div className="blood-pressure">Blood Pressure</div>
             </div>
+            <Popup trigger={
+              <button className="blood-pressure" style={{cursor:"pointer",padding:"1%"}} >ADD BP</button>
+            } 
+                              modal
+                              nested
+                            >
+              < BloodPressure memberId = {patientToDisplayId.id} />
+         </Popup>
+    
           </div>
 
           <div className="property-editor-inner2">

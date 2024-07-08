@@ -4,14 +4,8 @@ import BloodSugarGraph from "./BloodSugarGraph";
 import Hba1c from "./Hba1c";
 import BMIGraph from "./BMIGraph";
 import Weight from "./Weight";
-import BodyFatGraph from "./BodyFatGraph";
-// import MuscleMassGraph from "./NutritionData/MusceMassGraph";
-import MuscleMassGraph from "./MuscleMassGraph";
-import BoneMassGraph from "./BoneMassGraph";
-import DCIGraph from "./DCIGraph";
-import VisceralFatGraph from "./VisceralFatGraph";
-import BodyWaterGraph from "./BodyWaterGraph";
-import MetabolicAgeGraph from "./MetabolicAgeGraph";
+import Popup from "reactjs-popup";
+import BMI from "../Vitals&NutritionForms.js/BMI";
 
 const Nutrition = ({patientToDisplayId}) => {
 
@@ -154,6 +148,13 @@ const Nutrition = ({patientToDisplayId}) => {
             <div className="blood-pressure-parent">
               <div className="blood-pressure">Body Mass Index </div>
             </div>
+            <Popup trigger={<button className="blood-pressure" style={{padding:"1%"}} >Body Mass Index </button>} 
+            modal
+            nested
+          >
+            <BMI bmi = {patientToDisplayId.bmi} />
+          </Popup>
+
           </div>
 
           <div className="property-editor-inner2">

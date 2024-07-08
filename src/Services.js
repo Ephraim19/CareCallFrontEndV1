@@ -165,6 +165,7 @@ export const getAllergy = async (id) => {
   }
 };
 
+
 export const putOtherNote = async (id, data) => {
   try {
     const response = await axios.put(
@@ -213,6 +214,39 @@ export const getAllInteraction = async (memberId) => {
         memberId: memberId
       }
     });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//blood pressure
+export const getBloodpressure = async (memberId) => {
+  try {
+    const response = await axios.get(`http://127.0.0.1:8000/bloodpressure/${memberId}/`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getAllBloodPressure = async (memberId) => {
+
+  try {
+    const response = await axios.get(`http://127.0.0.1:8000/bloodpressure/`, {
+      params: {
+        memberId: memberId
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const postBloodPressure= async (data) => {
+  try {
+    const response = await axios.post("http://127.0.0.1:8000/bloodpressure/", data);
     return response.data;
   } catch (error) {
     console.error(error);
