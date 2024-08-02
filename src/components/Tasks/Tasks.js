@@ -1,16 +1,18 @@
 import React from 'react';
-import './Interaction.css';
+import './Tasks.css';
 import Popup from 'reactjs-popup';
-import { getInteraction,getAllInteraction } from '../../Services';
-import InteractionForm from './InteractionForm';
+import { getTasks } from '../../Services';
+import InteractionForm from './TasksForm';
 
 const Interaction = ({memberId}) => {
     const [memberInteractions, setMemberInteractions ] = React.useState();
 
     React.useEffect(() => {
-        getAllInteraction(parseInt(memberId))
+        getTasks(parseInt(memberId))
             .then((response) => {
-              
+               
+
+               //setMemberInteractions(response.filter((element) => element.memberId === parseInt(memberId)));
                 setMemberInteractions(response);
             })
             .catch((error) => {
@@ -22,7 +24,7 @@ const Interaction = ({memberId}) => {
     return (
         <>
         <Popup trigger={
-        <button style={{marginBottom:"-10%",padding:"1%"}} >ADD INTERACTION</button>
+        <button style={{marginBottom:"-10%",padding:"1%"}} >ADD TASK</button>
         }
         nested
         modal
@@ -34,16 +36,16 @@ const Interaction = ({memberId}) => {
         <div style={{marginBottom:"-10%"}} >
             <div className="frame-parent4">
             <div className="blood-pressure-parent">
-              <div className="blood-pressure">{int.interactionDetails}</div>
+              <div className="blood-pressure">{int.task}</div>
             </div>
           </div>
 
           <div className="property-editor-inner2">
             <div className="date-parent">
-              <div className="date">{int.created.slice(0,10) }</div>
-              <div className="diastolic-mmhg">{int.channel}</div>
-              <div className="diastolic-mmhg">{int.channelDirection}</div>
-              <div className="diastolic-mmhg">{int.updatedBy}</div>
+              <div className="date">{int.taskDueDate ? int.taskDueDate.slice(0,10) : ""}</div>
+              <div className="diastolic-mmhg">{int.taskStatus}</div>
+              <div className="diastolic-mmhg">{int.taskDepartment }</div>
+              <div className="diastolic-mmhg">{int.taskAssignedTo}</div>
             </div>
           </div>
 

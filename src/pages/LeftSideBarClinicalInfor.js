@@ -11,6 +11,7 @@ import "../components/FrameComponent3.css";
 import { FaBars, FaSearch } from "react-icons/fa";
 import { getAllMembers, getMember } from "../Services";
 import Interaction from "../components/Interaction/Interaction";
+import Tasks from "../components/Tasks/Tasks";
 
 const LeftSideBarClinicalInfor = () => {
   const [allMembers, setAllMembers] = useState([]);
@@ -198,6 +199,7 @@ const LeftSideBarClinicalInfor = () => {
             </div>
              }
              {topNav === 'interactions' && <Interaction memberId = {patientToDisplayId.id} />}
+              {topNav === 'tasks' && <Tasks memberId = {patientToDisplayId.id} />}
           </div>
           <FrameComponent />
         </section>

@@ -39,6 +39,10 @@ const Nutrition = ({patientToDisplayId}) => {
             <div className="blood-pressure-parent">
               <div className="blood-pressure">Random Blood Sugar</div>
             </div>
+
+            <div className="">
+              <button className="blood-pressure"  style={{padding:"1%"}} >Add RBS</button>
+            </div>
           </div>
 
           <div className="property-editor-inner2">

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "../HomepageForms/Program.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { postInteraction } from "../../Services";
+import { postTask} from "../../Services";
 
 const InteractionForm = ({condition}) => {
 
@@ -10,18 +10,36 @@ const InteractionForm = ({condition}) => {
   const [conditionStatus, setConditionStatus] = useState("");
   const [details, setDetail] = useState("");
 
+  useEffect(() => {
+    console.log(condition);
+  }, [condition]);
+
+
   const onSubmit = async (e) => {
     e.preventDefault();
+    // console.log(conditionName,conditionStatus,condition);
+
     const data = {
+      // taskDueDate: new Date(2022,11,19),
+      taskStatus: "Pending",
+      taskDepartment: "Carecall",
+      taskAssignedTo: conditionStatus,
+      task: details,
+      taskName: conditionName,
       memberId: parseInt(condition),
-      channel: conditionName,
-      updatedBy:'admin@g.com',
-      interactionDetails: details,
-      channelDirection: conditionStatus,
+      
+      // ,
+      // TaskName: conditionName,
+      // TaskAssignedTo: conditionStatus,
+      // task:details,
+      // memberId: parseInt(condition),
+      // TaskDepartment: "Carecall",
+      // TaskDueDate: new Date(),
+      // TaskStatus: "Pending",
   };
 
 
-    postInteraction(data)
+    postTask(data)
     .then((response) => {
       console.log(response);
       toast.success("Data submitted successfully");
@@ -37,18 +55,18 @@ const InteractionForm = ({condition}) => {
   return (
     <div>
       <form className={styles.firstNameField}>
-        <b className={styles.createNewCarecall}>NEW INTERACTION FORM</b>
+        <b className={styles.createNewCarecall}>NEW TASK FORM</b>
 
         <input
           className={styles.firstNameField1}
-          placeholder="CHANNEL"
+          placeholder="TASK NAME"
           type="text"
           value={conditionName}
           onChange={(e) => setConditionName(e.target.value)}
         />
         <input
           className={styles.lastNameField}
-          placeholder="INBOUND/OUTBOUND"
+          placeholder="ASSIGNEE"
           type="text"
           value={conditionStatus}
           onChange={(e) => setConditionStatus(e.target.value)}
@@ -56,7 +74,7 @@ const InteractionForm = ({condition}) => {
         <textarea
           className={styles.phoneNumber}
           style={{ height: "100px",width:"93%" }}
-          placeholder="INTERACTION DETAILS"
+          placeholder="TASK DETAILS"
           type="text"
           value={details}
           onChange={(e) => setDetail(e.target.value)}
