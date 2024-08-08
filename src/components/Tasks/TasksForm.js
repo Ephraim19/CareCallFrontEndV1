@@ -3,11 +3,14 @@ import styles from "../HomepageForms/Program.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { postTask} from "../../Services";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const InteractionForm = ({condition}) => {
 
   const [conditionName, setConditionName] = useState("");
   const [conditionStatus, setConditionStatus] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
   const [details, setDetail] = useState("");
 
   useEffect(() => {
@@ -17,10 +20,9 @@ const InteractionForm = ({condition}) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    // console.log(conditionName,conditionStatus,condition);
 
     const data = {
-      // taskDueDate: new Date(2022,11,19),
+      taskDueDate: startDate.toDateString( ),
       taskStatus: "Pending",
       taskDepartment: "Carecall",
       taskAssignedTo: conditionStatus,
@@ -28,14 +30,7 @@ const InteractionForm = ({condition}) => {
       taskName: conditionName,
       memberId: parseInt(condition),
       
-      // ,
-      // TaskName: conditionName,
-      // TaskAssignedTo: conditionStatus,
-      // task:details,
-      // memberId: parseInt(condition),
-      // TaskDepartment: "Carecall",
-      // TaskDueDate: new Date(),
-      // TaskStatus: "Pending",
+
   };
 
 
@@ -79,6 +74,11 @@ const InteractionForm = ({condition}) => {
           value={details}
           onChange={(e) => setDetail(e.target.value)}
         />
+        
+        
+          <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} className={styles.firstNameField111} />
+        
+        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
         <button className={styles.signUpButton} onClick={onSubmit}>
           <div className={styles.signUpButton1}>
             <div className={styles.signUpButtonChild} />

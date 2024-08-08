@@ -6,20 +6,23 @@ import InteractionForm from './TasksForm';
 
 const Interaction = ({memberId}) => {
     const [memberInteractions, setMemberInteractions ] = React.useState();
+    const progress = ["Not started", "Inprogress", "cancelled", "complete"];
 
     React.useEffect(() => {
         getTasks(parseInt(memberId))
             .then((response) => {
-               
 
-               //setMemberInteractions(response.filter((element) => element.memberId === parseInt(memberId)));
-                setMemberInteractions(response);
+                setMemberInteractions(response );
             })
             .catch((error) => {
                 console.error(error);
             });
 
     },[memberId])
+
+    const handleStatus = () => {
+
+    }
 
     return (
         <>
@@ -31,7 +34,63 @@ const Interaction = ({memberId}) => {
         >
           <InteractionForm condition={memberId} />
         </Popup>
-        {memberInteractions && memberInteractions.map((int) => (
+
+        <table className="customers">
+              <tr>
+                <th>Task</th>
+
+                <th>Due</th>
+
+                <th>Status</th>
+              </tr>
+                      {memberInteractions && memberInteractions.map((patient) => (
+                <>
+                  {patient ? (
+                    <tr>
+
+                      <td>{patient. taskName } <br /> {patient.task}</td>
+
+                      {/* {new Date(patient.dueDate) <= new Date() &&
+                      patient.completed !== "complete" ? (
+                        <td style={{ color: "red" }}>
+                          {patient.dueDate? patient.dueDate.slice(0, 17): " "}
+                        </td>
+                      ) : ( */}
+                        <td>{patient.taskDueDate}</td>
+                       {/* )} */}
+
+                      <td>
+                        <form>
+                          <label htmlFor="status">
+                            <select onChange={handleStatus} id={patient.id}>
+                              {/* <option className="App-info" value={progress[0]}>
+                                {patient.completed
+                                  ? patient.completed
+                                  : "Not started"}
+                              </option> */}
+                              <option className="App-info" value={progress[1]}>
+                                Inprogress
+                              </option>
+                              <option className="App-info" value={progress[2]}>
+                                Cancelled
+                              </option>
+                              <option className="App-info" value={progress[3]}>
+                                Complete
+                              </option>
+                            </select>
+                          </label>
+                        </form>
+                      </td>
+                    </tr>
+                  ) : (
+                    " "
+                  )}
+                </>
+              ))}
+         
+            </table>
+
+        {/* {memberInteractions && memberInteractions.map((int) => (
 
         <div style={{marginBottom:"-10%"}} >
             <div className="frame-parent4">
@@ -54,7 +113,7 @@ const Interaction = ({memberId}) => {
           </div>
 
         </div>
-          ))}
+          ))} */}
           </>
     );
 };

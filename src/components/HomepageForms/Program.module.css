@@ -82,10 +82,21 @@
   padding: var(--padding-xs) var(--padding-2xs);
 }
 
+.firstNameField111 {
+  width: 220px;
+  background-color: var(--color-gainsboro);
+  height: 41px;
+  top: calc(50% - 1175.5px);
+  left: calc(50% - 234.5px);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  padding: var(--padding-xs) var(--padding-2xs);
+}
+
 .Nutrition .newPassword,
 .emailAddress,
 .firstNameField1,
 .firstNameField11,
+.firstNameField111,
 .lastNameField,
 .lastNameField1,
 .phoneNumber {

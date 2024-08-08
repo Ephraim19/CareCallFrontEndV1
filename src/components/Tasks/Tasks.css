@@ -1,22 +1,7 @@
-/* Interaction.css */
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-table th,
-table td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #e61313;
-}
-
-table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-}
-
-table tr:hover {
-    background-color: #f9f9f9;
-}
+select {
+    background-color: white;
+    text-decoration: none;
+    padding: 7px 25px;
+    border: 1px solid rgb(47, 65, 183);
+    cursor: pointer;
+  }

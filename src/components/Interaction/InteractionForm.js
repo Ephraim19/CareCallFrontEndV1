@@ -3,19 +3,31 @@ import styles from "../HomepageForms/Program.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { postInteraction } from "../../Services";
+import {auth} from '../Firebase'
+import { onAuthStateChanged } from "firebase/auth";
 
 const InteractionForm = ({condition}) => {
 
   const [conditionName, setConditionName] = useState("");
   const [conditionStatus, setConditionStatus] = useState("");
   const [details, setDetail] = useState("");
+  const [userEmail, setUserEmail] = useState("")
+
+  // onAuthStateChanged(auth, (user) =>{
+  //   setUserEmail(user.email);
+  // })
+
+  useEffect(()=>{
+    setUserEmail( auth.currentUser.email)
+    
+  },[userEmail])
 
   const onSubmit = async (e) => {
     e.preventDefault();
     const data = {
       memberId: parseInt(condition),
       channel: conditionName,
-      updatedBy:'admin@g.com',
+      updatedBy: userEmail,
       interactionDetails: details,
       channelDirection: conditionStatus,
   };
@@ -61,6 +73,7 @@ const InteractionForm = ({condition}) => {
           value={details}
           onChange={(e) => setDetail(e.target.value)}
         />
+
         <button className={styles.signUpButton} onClick={onSubmit}>
           <div className={styles.signUpButton1}>
             <div className={styles.signUpButtonChild} />
@@ -68,6 +81,7 @@ const InteractionForm = ({condition}) => {
           </div>
         </button>
       </form>
+
       <ToastContainer />
     </div>
   );

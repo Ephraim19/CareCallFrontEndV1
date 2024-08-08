@@ -4,6 +4,7 @@ import Popup from 'reactjs-popup';
 import { getInteraction,getAllInteraction } from '../../Services';
 import InteractionForm from './InteractionForm';
 
+
 const Interaction = ({memberId}) => {
     const [memberInteractions, setMemberInteractions ] = React.useState();
 
@@ -11,13 +12,14 @@ const Interaction = ({memberId}) => {
         getAllInteraction(parseInt(memberId))
             .then((response) => {
               
-                setMemberInteractions(response);
+                setMemberInteractions(response.reverse() ) ;
             })
             .catch((error) => {
                 console.error(error);
             });
 
     },[memberId])
+
 
     return (
         <>
@@ -29,7 +31,25 @@ const Interaction = ({memberId}) => {
         >
           <InteractionForm condition={memberId} />
         </Popup>
-        {memberInteractions && memberInteractions.map((int) => (
+
+        <table className="customers">
+              <tr>
+                <th>Date </th>
+                <th>Conversation </th>
+              </tr>
+              {memberInteractions && memberInteractions.map((int) => (
+                <tr>
+                  <td>{int.created.slice(0,10) }</td>
+                  <td>
+                  {int.interactionDetails},  <br />
+                  {int.updatedBy}
+                  </td>
+                </tr>
+              ))}
+
+            </table>
+
+        {/* {memberInteractions && memberInteractions.map((int) => (
 
         <div style={{marginBottom:"-10%"}} >
             <div className="frame-parent4">
@@ -52,7 +72,7 @@ const Interaction = ({memberId}) => {
           </div>
 
         </div>
-          ))}
+          ))} */}
           </>
     );
 };
