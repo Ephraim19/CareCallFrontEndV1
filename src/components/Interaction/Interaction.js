@@ -24,7 +24,7 @@ const Interaction = ({memberId}) => {
     return (
         <>
         <Popup trigger={
-        <button style={{marginBottom:"-10%",padding:"1%"}} >ADD INTERACTION</button>
+        <button style={{marginBottom:"-10%",marginTop:"-7%",padding:"1%"}} >ADD INTERACTION</button>
         }
         nested
         modal

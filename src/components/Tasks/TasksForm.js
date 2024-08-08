@@ -12,7 +12,7 @@ const InteractionForm = ({condition}) => {
   const [conditionStatus, setConditionStatus] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [details, setDetail] = useState("");
-
+  const [taskDepartment, setTaskDepartment] = useState("");
   useEffect(() => {
     console.log(condition);
   }, [condition]);
@@ -24,7 +24,7 @@ const InteractionForm = ({condition}) => {
     const data = {
       taskDueDate: startDate.toDateString( ),
       taskStatus: "Not started",
-      taskDepartment: "Carecall",
+      taskDepartment,
       taskAssignedTo: conditionStatus,
       task: details,
       taskName: conditionName,
@@ -78,6 +78,35 @@ const InteractionForm = ({condition}) => {
         <div className={styles.firstNameField11}>
         <DatePicker selected={startDate} onChange={(date) => setStartDate(date)}  />
         </div>
+
+        <label htmlFor="Program">
+          <select
+            className={styles.lastNameField1}
+            onChange={(e) => setTaskDepartment(e.target.value)}
+          >
+
+            <option className="App-info" value="AcuteCare" key={"Channel"}>
+              DEPARTMENT
+            </option>
+
+            <option
+              className="App-info"
+              value="Clinical"
+              key={"Clinical"}
+            >
+              Clinical
+            </option>
+
+            <option
+              className="App-info"
+              value="Other"
+              key={"Other"}
+            >
+              Other
+            </option>
+
+          </select>
+        </label>
         
         <button className={styles.signUpButton} onClick={onSubmit}>
           <div className={styles.signUpButton1}>

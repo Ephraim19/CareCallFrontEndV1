@@ -18,6 +18,7 @@ const InteractionForm = ({condition}) => {
     
   },[userEmail])
 
+
   const onSubmit = async (e) => {
     e.preventDefault();
     const data = {
@@ -47,20 +48,77 @@ const InteractionForm = ({condition}) => {
       <form className={styles.firstNameField}>
         <b className={styles.createNewCarecall}>NEW INTERACTION FORM</b>
 
-        <input
-          className={styles.firstNameField1}
-          placeholder="CHANNEL"
-          type="text"
-          value={conditionName}
-          onChange={(e) => setConditionName(e.target.value)}
-        />
-        <input
-          className={styles.lastNameField}
-          placeholder="INBOUND/OUTBOUND"
-          type="text"
-          value={conditionStatus}
-          onChange={(e) => setConditionStatus(e.target.value)}
-        />
+        <label htmlFor="Program">
+          <select
+            className={styles.firstNameField1}
+             onChange={(e) => setConditionName(e.target.value)}
+          >
+
+            <option className="App-info" value="AcuteCare" key={"Channel"}>
+              CHANNEL
+            </option>
+
+            <option
+              className="App-info"
+              value="Phone call"
+              key={"Phone call"}
+            >
+              Phone call
+            </option>
+
+            <option
+              className="App-info"
+              value="SMS"
+              key={"SMS"}
+            >
+              SMS
+            </option>
+
+            <option className="App-info" value="Email" key={"Email"}>
+              Email
+            </option>
+
+            <option
+              className="App-info"
+              value="WhatsApp"
+              key={"WhatsApp"}
+            >
+              WhatsApp
+            </option>
+          </select>
+        </label>
+
+        <label htmlFor="Program">
+          <select
+            className={styles.lastNameField}
+            onChange={(e) => setConditionStatus(e.target.value)}
+          >
+
+            <option className="App-info" value="AcuteCare" key={"Channel"}>
+              CHANNEL DIRECTION
+            </option>
+
+            <option
+              className="App-info"
+              value="Inbound"
+              key={"Inbound"}
+            >
+              Inbound
+            </option>
+
+            <option
+              className="App-info"
+              value="Outbound"
+              key={"Outbound"}
+            >
+              Outbound
+            </option>
+
+          </select>
+        </label>
+        
+
+
         <textarea
           className={styles.phoneNumber}
           style={{ height: "100px",width:"93%" }}
