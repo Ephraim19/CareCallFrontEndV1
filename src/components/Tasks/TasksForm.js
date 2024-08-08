@@ -23,7 +23,7 @@ const InteractionForm = ({condition}) => {
 
     const data = {
       taskDueDate: startDate.toDateString( ),
-      taskStatus: "Pending",
+      taskStatus: "Not started",
       taskDepartment: "Carecall",
       taskAssignedTo: conditionStatus,
       task: details,

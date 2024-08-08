@@ -295,3 +295,16 @@ export const postInteraction = async (data) => {
     console.error(error);
   }
 };
+
+//Patch task
+export const patchInteraction = async (id, data) => {
+  try {
+    const response = await axios.patch(
+      `http://127.0.0.1:8000/task/${id}/`,
+      data
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};

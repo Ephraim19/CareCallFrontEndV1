@@ -1,7 +1,7 @@
 import React from 'react';
 import './Tasks.css';
 import Popup from 'reactjs-popup';
-import { getTasks } from '../../Services';
+import { getTasks, patchInteraction } from '../../Services';
 import InteractionForm from './TasksForm';
 
 const Interaction = ({memberId}) => {
@@ -20,8 +20,19 @@ const Interaction = ({memberId}) => {
 
     },[memberId])
 
-    const handleStatus = () => {
+    const handleStatus = (e) => {
 
+      const data = {
+        taskStatus: e.target.value
+      }
+
+      patchInteraction(parseInt(memberId) , data)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.error(error);
+          });
     }
 
     return (
@@ -50,24 +61,18 @@ const Interaction = ({memberId}) => {
 
                       <td>{patient. taskName } <br /> {patient.task}</td>
 
-                      {/* {new Date(patient.dueDate) <= new Date() &&
-                      patient.completed !== "complete" ? (
-                        <td style={{ color: "red" }}>
-                          {patient.dueDate? patient.dueDate.slice(0, 17): " "}
-                        </td>
-                      ) : ( */}
                         <td>{patient.taskDueDate}</td>
-                       {/* )} */}
+                       
 
                       <td>
                         <form>
                           <label htmlFor="status">
                             <select onChange={handleStatus} id={patient.id}>
-                              {/* <option className="App-info" value={progress[0]}>
-                                {patient.completed
-                                  ? patient.completed
+                              <option className="App-info" value={progress[0]}>
+                                {patient.taskStatus !== "Not started"
+                                  ? patient.taskStatus
                                   : "Not started"}
-                              </option> */}
+                              </option>
                               <option className="App-info" value={progress[1]}>
                                 Inprogress
                               </option>
@@ -89,31 +94,6 @@ const Interaction = ({memberId}) => {
               ))}
          
             </table>
-
-        {/* {memberInteractions && memberInteractions.map((int) => (
-
-        <div style={{marginBottom:"-10%"}} >
-            <div className="frame-parent4">
-            <div className="blood-pressure-parent">
-              <div className="blood-pressure">{int.task}</div>
-            </div>
-          </div>
-
-          <div className="property-editor-inner2">
-            <div className="date-parent">
-              <div className="date">{int.taskDueDate ? int.taskDueDate.slice(0,10) : ""}</div>
-              <div className="diastolic-mmhg">{int.taskStatus}</div>
-              <div className="diastolic-mmhg">{int.taskDepartment }</div>
-              <div className="diastolic-mmhg">{int.taskAssignedTo}</div>
-            </div>
-          </div>
-
-          <div className="property-editor-inner1">
-            <div className="line-div" />
-          </div>
-
-        </div>
-          ))} */}
           </>
     );
 };
