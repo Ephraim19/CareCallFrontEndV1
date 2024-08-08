@@ -10,7 +10,7 @@ const FrameComponent1 = ({patientToDisplayId}) => {
 
   const pers = (e) => {
     setPersonalClinical("personal");
-    e.target.className = "clinical-wrapper";
+    
   };
 
   const cln = (e) => {
@@ -96,14 +96,16 @@ const FrameComponent1 = ({patientToDisplayId}) => {
         <div className="frame-parent5">
           <div
             className="personal-wrapper"
-            style={{ cursor: "pointer" }}
+            // style={{ cursor: "pointer" }}
+            style={ personalClinical === "personal" ? {cursor: "pointer", backgroundColor: "#0090af"} : {cursor: "pointer"}}
             onClick={pers}
           >
             <div className="personal">Personal</div>
           </div>
+
           <div
             className="clinical-wrapper"
-            style={{ cursor: "pointer" }}
+            style={ personalClinical === "clinical" ? {cursor: "pointer", backgroundColor: "#0090af"} : {cursor: "pointer"}}
             onClick={cln}
           >
             <div className="clinical">Clinical</div>

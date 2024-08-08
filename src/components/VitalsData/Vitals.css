@@ -9,7 +9,7 @@
   justify-content: space-between;
   padding: 10px 19px 10px var(--padding-base);
   gap: var(--gap-xl);
-  width: 515px;
+  width: inherit;
 }
 
 .prehypertension {

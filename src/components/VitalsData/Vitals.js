@@ -32,6 +32,7 @@ const Vitals = ({patientToDisplayId}) => {
   return (
 
     <div>
+      
       <div className="iterative-processor">
         <div className="vitals-wrapper">
           <h3 className="vitals1">VITALS</h3>

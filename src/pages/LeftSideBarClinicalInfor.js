@@ -144,17 +144,17 @@ const LeftSideBarClinicalInfor = () => {
             <div className="matrix-multiplier-wrapper">
               <div className="matrix-multiplier">
 
-                <div className="medical-records" onClick={() => setTopNav('records')} >Medical Records</div>
+                <div style={ topNav === "records" ? { textDecoration: "underline", color: "#060074", fontWeight:'500' } : { } }  className="medical-records"  onClick={() => setTopNav('records')} >Medical Records</div>
 
                 <div className="graph-processor" onClick={() => setTopNav('interactions') }>
-                  <div className="interactions" >Interactions</div>
+                  <div style={ topNav === "interactions" ? { textDecoration: "underline", color: "#060074", fontWeight:'500' } : { } } className="interactions" >Interactions</div>
                 </div>
 
                 <div className="graph-processor1" onClick={() => setTopNav('tasks') }>
-                  <div className="tasks">Tasks</div>
+                  <div style={ topNav === "tasks" ? { textDecoration: "underline", color: "#060074", fontWeight:'500' } : { } } className="tasks">Tasks</div>
                 </div>
 
-                <div className="member-journey" onClick={() => setTopNav('journey') }>Member Journey</div>
+                <div style={ topNav === "journey" ? { textDecoration: "underline", color: "#060074", fontWeight:'500' } : { } } className="member-journey" onClick={() => setTopNav('journey') }>Member Journey</div>
               </div>
             </div>
             {topNav ==='records' &&

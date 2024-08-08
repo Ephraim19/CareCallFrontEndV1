@@ -246,22 +246,13 @@ export const getAllBloodPressure = async (memberId) => {
 
 export const postBloodPressure= async (data) => {
   try {
-    const response = await axios.post("http://127.0.0.1:8000/bloodpressure/", data);
+    const response = await axios.post("http://127.0.0.1:8000/bloodpressure/post/", data);
     return response.data;
   } catch (error) {
     console.error(error);
   }
 };
 
-//tasks
-// export const getTasks = async (memberId) => {
-//   try {
-//     const response = await axios.get(`http://127.0.0.1:8000/task/`);
-//     return response.data;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
 
 export const getTasks= async (memberId) => {
 
@@ -303,6 +294,16 @@ export const patchInteraction = async (id, data) => {
       `http://127.0.0.1:8000/task/${id}/`,
       data
     );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//BMI
+export const postBmi = async (data) => {
+  try {
+    const response = await axios.post("http://127.0.0.1:8000/bodymassindex/post/", data);
     return response.data;
   } catch (error) {
     console.error(error);

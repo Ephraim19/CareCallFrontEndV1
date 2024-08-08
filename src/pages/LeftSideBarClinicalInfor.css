@@ -1,33 +1,23 @@
 .medical-records {
   position: relative;
+  
+  font-weight: 300;
+  
+  display: flex;
+}
+.onit {
   text-decoration: underline;
-  font-weight: 500;
   color: var(--color-navy);
-  display: flex;
-}
-.medical-records:hover {
   font-weight: 500;
-  font-family: var(--font-roboto-slab);
-  font-size: var(--font-size-3xl);
-  text-align: left;
-  color: var(--color-navy);
-  display: flex;
 }
+
 .interactions {
   position: relative;
   font-weight: 300;
   display: flex;
   min-width: 125;
 }
-.interactions:hover {
-  font-weight: 300;
-  font-family: var(--font-roboto-slab);
-  font-size: var(--font-size-3xl);
-  text-align: left;
-  color: var(--color-darkslategray-100);
-  display: flex;
-  min-width: 125;
-}
+
 .graph-processor {
   display: flex;
   flex-direction: column;
@@ -41,34 +31,14 @@
   gap: var(--gap-0);
   transform: rotate(0deg);
 }
-.graph-processor:hover {
-  display: flex;
-  width: auto;
-  align-self: unset;
-  height: auto;
-  flex-direction: column;
-  gap: var(--gap-0);
-  align-items: flex-start;
-  justify-content: flex-start;
-  transform: rotate(0deg);
-  padding: 0px var(--padding-5xs) 0px 0px;
-  box-sizing: border-box;
-}
+
 .tasks {
   position: relative;
   font-weight: 300;
   display: flex;
   min-width: 61;
 }
-.tasks:hover {
-  font-weight: 300;
-  font-family: var(--font-roboto-slab);
-  font-size: var(--font-size-3xl);
-  text-align: left;
-  color: var(--color-darkslategray-100);
-  display: flex;
-  min-width: 61;
-}
+
 .graph-processor1 {
   display: flex;
   flex-direction: column;
@@ -82,32 +52,13 @@
   gap: var(--gap-0);
   transform: rotate(0deg);
 }
-.graph-processor1:hover {
-  display: flex;
-  width: auto;
-  align-self: unset;
-  height: auto;
-  flex-direction: column;
-  gap: var(--gap-0);
-  align-items: flex-start;
-  justify-content: flex-start;
-  transform: rotate(0deg);
-  padding: 0px var(--padding-base) 0px 0px;
-  box-sizing: border-box;
-}
+
 .member-journey {
   position: relative;
   font-weight: 300;
   display: flex;
 }
-.member-journey:hover {
-  font-weight: 300;
-  font-family: var(--font-roboto-slab);
-  font-size: var(--font-size-3xl);
-  text-align: left;
-  color: var(--color-darkslategray-100);
-  display: flex;
-}
+
 .matrix-multiplier {
   flex: 1;
   display: flex;
@@ -121,18 +72,7 @@
   font-size: var(--font-size-lgi);
   cursor: pointer;
 }
-.matrix-multiplier:hover {
-  display: flex;
-  flex: 1;
-  height: auto;
-  flex-direction: row;
-  gap: 0;
-  align-items: flex-start;
-  justify-content: space-between;
-  transform: rotate(0deg);
-  max-width: 100%;
-  font-size: var(--font-size-lgi);
-}
+
 .matrix-multiplier-wrapper {
   width: 100%;
   display: flex;
@@ -166,7 +106,6 @@
   font-weight: 500;
   font-family: inherit;
   display: flex;
-  min-width: 105;
 }
 /* .vitals:hover {
   font-weight: 500;
@@ -198,7 +137,7 @@
 } */
 .algorithm-component {
   cursor: pointer;
-  width: 100%;
+  width: 113%;
   background-color: var(--color-white);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   overflow: hidden;
@@ -242,7 +181,7 @@
 } */
 .algorithm-component1 {
   cursor: pointer;
-  width: 170%;
+  width: auto;
   background-color: var(--color-white);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   overflow: hidden;
@@ -259,7 +198,7 @@
 .algorithm-component2 {
   cursor: pointer;
 
-  width: 100%;
+  width: auto;
   background-color: var(--color-white);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   overflow: hidden;
@@ -414,7 +353,7 @@
   transform: rotate(0deg);
   font-size: var(--font-size-xl);
   color: var(--color-darkslategray-200);
-  margin-top: -45px;
+  margin-top: -4%;
 }
 /* .data-visualizer:hover {
   display: flex;
@@ -438,7 +377,7 @@
   padding: var(--padding-mini) var(--padding-mid) var(--padding-119xl);
   box-sizing: border-box;
   gap: var(--gap-51xl);
-  max-width: calc(100% - 1250px);
+  max-width: 32.5%;
   flex-shrink: 0;
   height: auto;
 }
@@ -458,7 +397,7 @@
   flex-shrink: 0;
 } */
 .frame-parent {
-  height: 934px;
+  height: auto;
   flex: 1;
   display: flex;
   flex-direction: row;
@@ -474,7 +413,7 @@
   color: var(--color-darkslategray-100);
   font-family: var(--font-roboto-slab);
 }
-.frame-parent:hover {
+/* .frame-parent:hover {
   display: flex;
   flex: 1;
   height: 934px;
@@ -486,7 +425,7 @@
   padding: 0px 0px var(--padding-11xs);
   box-sizing: border-box;
   max-width: 100%;
-}
+} */
 .left-side-bar-clinical-infor-inner {
   align-self: stretch;
   display: flex;
@@ -501,20 +440,7 @@
   gap: var(--gap-0);
   transform: rotate(0deg);
 }
-.left-side-bar-clinical-infor-inner:hover {
-  display: flex;
-  align-self: stretch;
-  width: auto;
-  height: auto;
-  flex-direction: row;
-  gap: var(--gap-0);
-  align-items: flex-start;
-  justify-content: flex-start;
-  transform: rotate(0deg);
-  padding: 0px var(--padding-11xs);
-  box-sizing: border-box;
-  max-width: 100%;
-}
+
 .left-side-bar-clinical-infor {
   width: 148%;
   position: relative;

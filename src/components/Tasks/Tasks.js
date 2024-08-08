@@ -26,7 +26,7 @@ const Interaction = ({memberId}) => {
         taskStatus: e.target.value
       }
 
-      patchInteraction(parseInt(memberId) , data)
+      patchInteraction(parseInt(e.target.id) , data)
             .then((response) => {
                 console.log(response);
             })

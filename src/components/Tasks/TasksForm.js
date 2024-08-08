@@ -68,17 +68,17 @@ const InteractionForm = ({condition}) => {
         />
         <textarea
           className={styles.phoneNumber}
-          style={{ height: "100px",width:"93%" }}
+          style={{ height: "80px",width:"93%" }}
           placeholder="TASK DETAILS"
           type="text"
           value={details}
           onChange={(e) => setDetail(e.target.value)}
         />
         
+        <div className={styles.firstNameField11}>
+        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)}  />
+        </div>
         
-          <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} className={styles.firstNameField111} />
-        
-        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
         <button className={styles.signUpButton} onClick={onSubmit}>
           <div className={styles.signUpButton1}>
             <div className={styles.signUpButtonChild} />

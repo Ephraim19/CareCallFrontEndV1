@@ -3,12 +3,21 @@ import styles from '../HomepageForms/Program.module.css'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { postBloodPressure } from "../../Services";
+import {auth} from '../Firebase';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const BloodPressure = ({memberId}) => {
 
   const [diastolic, setDiastolic] = useState("");
   const [systolic, setSystolic] = useState("");
-  const [date, setDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(new Date());
+  const [userEmail, setUserEmail] = useState("")
+
+  useEffect(()=>{
+    setUserEmail( auth.currentUser.email)
+    
+  },[userEmail])
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -16,9 +25,10 @@ const BloodPressure = ({memberId}) => {
     const data = {
       diastolic: diastolic,
       systolic: systolic,
-      readingDate: new Date(),
-      updatedBy: "admin@g.com",
+      readingDate: startDate.toDateString(),
+      updatedBy: userEmail,
       memberId: parseInt(memberId),
+      
   };
 
 
@@ -38,7 +48,7 @@ const BloodPressure = ({memberId}) => {
   return (
     <div>
       <form className={styles.firstNameField} >
-        <b className={styles.createNewCarecall}>BLOOD PRESSURE</b>
+        <b className={styles.createNewCarecall}>NEW BLOOD PRESSURE FORM</b>
 
         <input
           className={styles.firstNameField1}
@@ -54,14 +64,9 @@ const BloodPressure = ({memberId}) => {
           value={diastolic}
           onChange={(e) => setDiastolic(e.target.value)}
         />
-
-<input
-          className={styles.phoneNumber}
-          placeholder="Date"
-          type="text"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-        />
+            <div  className={styles.phoneNumber}>
+          <DatePicker   selected={startDate} onChange={(date) => setStartDate(date)} />
+            </div>
 
         <button className={styles.signUpButton} onClick={onSubmit}>
           <div className={styles.signUpButton1}>

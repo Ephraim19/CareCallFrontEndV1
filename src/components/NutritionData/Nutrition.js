@@ -156,7 +156,7 @@ const Nutrition = ({patientToDisplayId}) => {
             modal
             nested
           >
-            <BMI bmi = {patientToDisplayId.bmi} />
+            <BMI memberId = {patientToDisplayId} />
           </Popup>
 
           </div>
@@ -179,7 +179,7 @@ const Nutrition = ({patientToDisplayId}) => {
             <div className="parent">
               <div className="div2">{item.readingDate}</div>
               <div className="wrapper">
-                <div className="div3">{(item.weight/(item.height ^ 2)).toFixed(2)} </div>
+                <div className="div3">{(item.weight/((item.height/100) ^ 2)).toFixed(2)} </div>
               </div>
               <div className="prehypertension">code</div>
             </div>
@@ -248,28 +248,7 @@ const Nutrition = ({patientToDisplayId}) => {
           <div style={{ marginBottom: "7%" }}>
             <Weight weight = {patientToDisplayId.bmi}  />
           </div>
-          {/* <div style={{ marginBottom: "7%" }}>
-            <BodyFatGraph />
-          </div>
-          <div style={{ marginBottom: "7%" }}>
-            <MuscleMassGraph />
-          </div>
-          <div style={{ marginBottom: "7%" }}>
-            <BoneMassGraph />
-          </div>
-          <div style={{ marginBottom: "7%" }}>
-            <DCIGraph />
-          </div>
-          <div style={{ marginBottom: "7%" }}>
-            <VisceralFatGraph />
-          </div>
-          <div style={{ marginBottom: "7%" }}>
-            <BodyWaterGraph />
-          </div>
-          <div style={{ marginBottom: "7%" }}>
-            <MetabolicAgeGraph />
-          </div>
-         */}
+  
          </div>
       )}
     </div>
