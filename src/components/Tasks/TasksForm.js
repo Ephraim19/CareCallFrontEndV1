@@ -13,6 +13,7 @@ const InteractionForm = ({condition}) => {
   const [startDate, setStartDate] = useState(new Date());
   const [details, setDetail] = useState("");
   const [taskDepartment, setTaskDepartment] = useState("");
+  
   useEffect(() => {
     console.log(condition);
   }, [condition]);
@@ -28,15 +29,13 @@ const InteractionForm = ({condition}) => {
       taskAssignedTo: conditionStatus,
       task: details,
       taskName: conditionName,
-      memberId: parseInt(condition),
-      
-
+      memberId: parseInt(condition[0]),
   };
 
 
     postTask(data)
     .then((response) => {
-      console.log(response);
+      condition[1]();
       toast.success("Data submitted successfully");
     })
     .catch((error) => {

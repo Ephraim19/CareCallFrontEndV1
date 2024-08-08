@@ -7,6 +7,7 @@ import InteractionForm from './TasksForm';
 const Interaction = ({memberId}) => {
     const [memberInteractions, setMemberInteractions ] = React.useState();
     const progress = ["Not started", "Inprogress", "cancelled", "complete"];
+    const [reload, setReload] = React.useState(false);
 
     React.useEffect(() => {
         getTasks(parseInt(memberId))
@@ -18,7 +19,11 @@ const Interaction = ({memberId}) => {
                 console.error(error);
             });
 
-    },[memberId])
+    },[memberId, reload])
+
+    const triggerParentEffect = () => {
+      setReload(!reload);
+    };
 
     const handleStatus = (e) => {
 
@@ -45,7 +50,7 @@ const Interaction = ({memberId}) => {
         nested
         modal
         >
-          <InteractionForm condition={memberId} />
+          <InteractionForm condition={[memberId, triggerParentEffect]} />
         </Popup>
 
         {/* <button style={{marginBottom:"-10%",padding:"1%"}} >ALL TASK</button> */}

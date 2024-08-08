@@ -7,6 +7,7 @@ import InteractionForm from './InteractionForm';
 
 const Interaction = ({memberId}) => {
     const [memberInteractions, setMemberInteractions ] = React.useState();
+    const [reload, setReload] = React.useState(false);
 
     React.useEffect(() => {
         getAllInteraction(parseInt(memberId))
@@ -18,8 +19,12 @@ const Interaction = ({memberId}) => {
                 console.error(error);
             });
 
-    },[memberId])
+    },[memberId,reload])
 
+    const triggerParentEffect = () => {
+      setReload(!reload);
+      console.log("triggered");
+    };
 
     return (
         <>
@@ -29,7 +34,7 @@ const Interaction = ({memberId}) => {
         nested
         modal
         >
-          <InteractionForm condition={memberId} />
+          <InteractionForm condition={[memberId,triggerParentEffect]} />
         </Popup>
 
         <table className="customers">
@@ -49,30 +54,6 @@ const Interaction = ({memberId}) => {
 
             </table>
 
-        {/* {memberInteractions && memberInteractions.map((int) => (
-
-        <div style={{marginBottom:"-10%"}} >
-            <div className="frame-parent4">
-            <div className="blood-pressure-parent">
-              <div className="blood-pressure">{int.interactionDetails}</div>
-            </div>
-          </div>
-
-          <div className="property-editor-inner2">
-            <div className="date-parent">
-              <div className="date">{int.created.slice(0,10) }</div>
-              <div className="diastolic-mmhg">{int.channel}</div>
-              <div className="diastolic-mmhg">{int.channelDirection}</div>
-              <div className="diastolic-mmhg">{int.updatedBy}</div>
-            </div>
-          </div>
-
-          <div className="property-editor-inner1">
-            <div className="line-div" />
-          </div>
-
-        </div>
-          ))} */}
           </>
     );
 };

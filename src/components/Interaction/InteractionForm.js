@@ -4,7 +4,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { postInteraction } from "../../Services";
 import {auth} from '../Firebase'
-import { onAuthStateChanged } from "firebase/auth";
 
 const InteractionForm = ({condition}) => {
 
@@ -22,7 +21,7 @@ const InteractionForm = ({condition}) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const data = {
-      memberId: parseInt(condition),
+      memberId: parseInt(condition[0]),
       channel: conditionName,
       updatedBy: userEmail,
       interactionDetails: details,
@@ -32,7 +31,7 @@ const InteractionForm = ({condition}) => {
 
     postInteraction(data)
     .then((response) => {
-      console.log(response);
+      condition[1]();
       toast.success("Data submitted successfully");
     })
     .catch((error) => {
