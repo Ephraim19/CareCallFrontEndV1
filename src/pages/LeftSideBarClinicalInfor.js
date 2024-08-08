@@ -12,6 +12,10 @@ import { FaBars, FaSearch } from "react-icons/fa";
 import { getAllMembers, getMember } from "../Services";
 import Interaction from "../components/Interaction/Interaction";
 import Tasks from "../components/Tasks/Tasks";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../components/Firebase";
+import { useNavigate } from "react-router-dom";
+
 
 const LeftSideBarClinicalInfor = () => {
   const [allMembers, setAllMembers] = useState([]);
@@ -19,14 +23,25 @@ const LeftSideBarClinicalInfor = () => {
   const [searched, setSearched] = useState([]);
   const [found, setFound] = useState("");
   const [topNav, setTopNav] = useState("records");
+  const [userEmail, setUserEmail] = useState("")
+  const navigate = useNavigate();
+
 
   useEffect(() => {
-    console.log("useEffect");
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUserEmail(user.email);
+      } else {
+        navigate("/email/login");
+      }
+    });
+
     getAllMembers().then((data) => {
     setAllMembers(data);
-      console.log(data);
+    
     });
-  }, []);
+  }, [userEmail]);
 
   const searchByMember = (e) => {
     e.preventDefault();

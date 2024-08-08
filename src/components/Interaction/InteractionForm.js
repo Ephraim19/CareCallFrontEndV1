@@ -13,10 +13,6 @@ const InteractionForm = ({condition}) => {
   const [details, setDetail] = useState("");
   const [userEmail, setUserEmail] = useState("")
 
-  // onAuthStateChanged(auth, (user) =>{
-  //   setUserEmail(user.email);
-  // })
-
   useEffect(()=>{
     setUserEmail( auth.currentUser.email)
     

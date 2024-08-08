@@ -7,6 +7,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../Firebase"; 
 import { useNavigate } from "react-router-dom";
 
+
 const FrameComponent = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -21,9 +22,7 @@ const FrameComponent = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        Cookies.set("name", userCredential.user.email, { expires: 7 });
-        navigate("/dashboard");
-        console.log(user);
+        navigate("/");
       })
       .catch((error) => {
         setErrorCode(error.message);
@@ -31,7 +30,7 @@ const FrameComponent = () => {
   };
 
   const onCreateAnAccountClick = useCallback((e) => {
-    navigate("/partner");
+    navigate("/signup");
   }, []);
 
   const onResetPasswordPromptClick = useCallback(() => {

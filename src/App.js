@@ -53,6 +53,7 @@ function App() {
       <Route path="/new" element={<Homepage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<EmailSignup />} />
+      <Route path="/email/login" element={<EmailLogin />} />
 
 
     </Routes>

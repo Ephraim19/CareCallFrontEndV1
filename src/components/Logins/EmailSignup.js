@@ -10,5 +10,4 @@ const EmailSignup = () => {
   );
 };
 
-
 export default EmailSignup;

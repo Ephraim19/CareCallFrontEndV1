@@ -6,11 +6,11 @@ import {
   getAuth,
   sendEmailVerification,
 } from "firebase/auth";
-import { auth, database } from "../Firebase";
-import { ref, push } from "firebase/database";
+
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 
 const FirstNameField = () => {
   const [email, setEmail] = React.useState("");
@@ -19,7 +19,6 @@ const FirstNameField = () => {
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [phoneNumber, setPhoneNumber] = React.useState("");
-  const [hospital, setHospital] = React.useState("");
   const [errorCode, setErrorCode] = React.useState("");
   const [passwordErrorCode, setPasswordErrorCode] = React.useState("");
   const navigate = useNavigate();
@@ -44,21 +43,10 @@ const FirstNameField = () => {
           }).catch((error) => {
             toast.error(error.message);
           });
-
-          // push(ref(database, Cookies.get("hospital") + "/" + "Admins"), {
-          //   admin: userCredential.user.email,
-          //   hospital: Cookies.get("hospital"),
-          //   lastName,
-          //   firstName,
-          //   phoneNumber,
-          // }).catch((error) => {
-          //   console.error("Error adding document: ", error);
-          // });
-          // Signed in
           const user = userCredential.user;
-          console.log(user);
-          navigate("/");
-          // ...
+          
+          navigate("/email/login");
+          
         })
         .catch((error) => {
           const errorMessage = error.message;
@@ -80,7 +68,7 @@ const FirstNameField = () => {
   };
 
   const onLogInTextClick = useCallback(() => {
-    navigate("/");
+    navigate("/email/login");
   }, [navigate]);
 
   return (
