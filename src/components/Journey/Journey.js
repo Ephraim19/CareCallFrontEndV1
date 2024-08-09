@@ -1,37 +1,38 @@
 import React from 'react';
-import './Tasks.css';
+import  '../../components/Tasks/Tasks.css';
 import Popup from 'reactjs-popup';
-import { getTasks, patchInteraction } from '../../Services';
-import InteractionForm from './TasksForm';
+import { getJourney , patchJourney } from '../../Services';
+import { FaPen } from 'react-icons/fa';
+import JourneyNotesForm from './JourneyNotesForm';
 
-const Interaction = ({memberId}) => {
+const Journey = ({memberId}) => {
     const [memberInteractions, setMemberInteractions ] = React.useState();
     const progress = ["Not started", "Inprogress", "cancelled", "complete"];
     const [reload, setReload] = React.useState(false);
 
     React.useEffect(() => {
-        getTasks(parseInt(memberId))
+        getJourney(parseInt(memberId))
             .then((response) => {
-
+                console.log(response);
                 setMemberInteractions(response );
             })
             .catch((error) => {
                 console.error(error);
             });
 
-    },[memberId, reload])
+    },[memberId,reload]);
 
     const triggerParentEffect = () => {
-      setReload(!reload);
-    };
+        setReload(!reload);
+      };
 
     const handleStatus = (e) => {
 
       const data = {
-        taskStatus: e.target.value
+        status: e.target.value
       }
 
-      patchInteraction(parseInt(e.target.id) , data)
+      patchJourney(parseInt(e.target.id) , data)
             .then((response) => {
                 console.log(response);
             })
@@ -43,33 +44,25 @@ const Interaction = ({memberId}) => {
     return (
         <>
 
-        <Popup trigger={
-        <button style={{marginBottom:"-10%", marginTop:"-7%" ,padding:"1%"}} >NEW TASK</button>
-        
-        }
-        nested
-        modal
-        >
-          <InteractionForm condition={[memberId, triggerParentEffect]} />
-        </Popup>
-
-
-        <table className="customers">
+        <table className="customers" style={{marginTop:"-7%"}} >
               <tr>
-                <th>Task</th>
+                <th>Journey</th>
 
                 <th>Due</th>
 
                 <th>Status</th>
+
+                <th>Notes</th>
+
               </tr>
                       {memberInteractions && memberInteractions.map((patient) => (
                 <>
                   {patient ? (
                     <tr>
 
-                      <td>{patient. taskName } <br /> {patient.task}</td>
+                      <td>{patient.task}</td>
 
-                        <td>{patient.taskDueDate}</td>
+                        <td>{patient.taskDate}</td>
                        
 
                       <td>
@@ -77,8 +70,8 @@ const Interaction = ({memberId}) => {
                           <label htmlFor="status">
                             <select onChange={handleStatus} id={patient.id}>
                               <option className="App-info" value={progress[0]}>
-                                {patient.taskStatus !== "Not started"
-                                  ? patient.taskStatus
+                                {patient.status !== "Not started"
+                                  ? patient.status
                                   : "Not started"}
                               </option>
                               <option className="App-info" value={progress[1]}>
@@ -94,7 +87,19 @@ const Interaction = ({memberId}) => {
                           </label>
                         </form>
                       </td>
-                    </tr>
+
+
+        <Popup trigger={
+        <td >  {patient.notes ? (patient.notes + ' ' + patient.notesBy + ' ' + patient.notesDate  )  : <span style={{ cursor:"pointer" }} >< FaPen /> </span>}</td>
+        
+        }
+        nested
+        modal
+        >
+          <JourneyNotesForm condition={[memberId, triggerParentEffect, patient.id ]} />
+        </Popup>
+
+        </tr>
                   ) : (
                     " "
                   )}
@@ -106,4 +111,4 @@ const Interaction = ({memberId}) => {
     );
 };
 
-export default Interaction;
+export default Journey;

@@ -15,8 +15,11 @@ import Tasks from "../components/Tasks/Tasks";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../components/Firebase";
 import { useNavigate } from "react-router-dom";
+import Journey from "../components/Journey/Journey";
+import Popup from "reactjs-popup";
+import NewMember from "../components/Members/NewMember";
 
-
+ 
 const LeftSideBarClinicalInfor = () => {
   const [allMembers, setAllMembers] = useState([]);
   const [patientToDisplayId, setPatientToDisplayId] = useState(0);
@@ -25,7 +28,7 @@ const LeftSideBarClinicalInfor = () => {
   const [topNav, setTopNav] = useState("records");
   const [userEmail, setUserEmail] = useState("")
   const navigate = useNavigate();
-
+  const [reload, setReload] = React.useState(false);
 
   useEffect(() => {
 
@@ -41,7 +44,11 @@ const LeftSideBarClinicalInfor = () => {
     setAllMembers(data);
     
     });
-  }, [userEmail]);
+  }, [userEmail, reload]);
+
+  const triggerParentEffect = () => {
+    setReload(!reload);
+  };
 
   const searchByMember = (e) => {
     e.preventDefault();
@@ -120,11 +127,18 @@ const LeftSideBarClinicalInfor = () => {
             <div className="view-all-members">Members</div>
           </button>
         </div>
+        <Popup trigger={
         <div className="conditional-branch-child">
           <button className="view-all-members-wrapper">
             <div className="view-all-members">New Member</div>
           </button>
         </div>
+        }
+        modal
+        nested
+      >
+        <NewMember reloading = {triggerParentEffect} />
+        </Popup>
         <div className="conditional-branch-inner1">
           <div className="frame-parent1">
             <img
@@ -215,6 +229,7 @@ const LeftSideBarClinicalInfor = () => {
              }
              {topNav === 'interactions' && <Interaction memberId = {patientToDisplayId.id} />}
               {topNav === 'tasks' && <Tasks memberId = {patientToDisplayId.id} />}
+              {topNav === 'journey' && <Journey memberId = {patientToDisplayId.id} />}
           </div>
           <FrameComponent />
         </section>
