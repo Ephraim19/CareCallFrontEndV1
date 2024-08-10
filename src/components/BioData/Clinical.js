@@ -63,13 +63,13 @@ const FrameComponent1 = ({patientToDisplayId}) => {
           <div className="string-processor">
             <div className="math-operation">
               <div className="carecall3">
-                {overview ? overview[0].overviewHealthStatus : "--"}
+                {overview.length > 0 ? overview[0].overviewHealthStatus : "--"}
               </div>
               <div className="insurer1">HEALTH GOALS</div>
             </div>
             <div className="assignment-operator">
               <div className="motivational-design1">
-                {overview ? overview[0].overviewRiskScore : "--"}
+                {overview.length > 0 ? overview[0].overviewRiskScore : "--"}
               </div>
               <div className="insurance-id1">BLOOD GROUP</div>
             </div>
@@ -77,11 +77,11 @@ const FrameComponent1 = ({patientToDisplayId}) => {
           <div className="return-operator">
             <div className="if-statement">
               <div className="britam1">
-                {overview ? overview[0].overviewHealthGoals : "--"}
+                {overview.length > 0 ? overview[0].overviewHealthGoals : "--"}
               </div>
             </div>
             <div className="ins077t7t6r762901">
-              {overview ? overview[0].overViewBloodGroup : "--"}
+              {overview .length > 0 ? overview[0].overViewBloodGroup : "--"}
             </div>
           </div>
         </div>
@@ -316,7 +316,7 @@ const FrameComponent1 = ({patientToDisplayId}) => {
           <div className="diabetes-mellitus-type">
             <ul className="write-other-notes-here">
               <li>
-                {otherNotes ? otherNotes[0].othernoteNote : "--"}{" "}
+                {otherNotes.length > 0 ? otherNotes[0].othernoteNote : "--"}{" "}
               </li>
             </ul>
           </div>

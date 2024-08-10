@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import styles from '../HomepageForms/Program.module.css'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { postBloodPressure } from "../../Services";
+import { postOxygen } from "../../Services";
 import {auth} from '../Firebase';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const BloodPressure = ({memberId}) => {
+const Oxygen = ({memberId}) => {
 
-  const [diastolic, setDiastolic] = useState("");
   const [systolic, setSystolic] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [userEmail, setUserEmail] = useState("")
@@ -23,8 +22,7 @@ const BloodPressure = ({memberId}) => {
     e.preventDefault();
 
     const data = {
-      diastolic: diastolic,
-      systolic: systolic,
+      oxygen: systolic,
       readingDate: startDate.toDateString(),
       updatedBy: userEmail,
       memberId: parseInt(memberId[0]),
@@ -32,7 +30,7 @@ const BloodPressure = ({memberId}) => {
   };
 
 
-    postBloodPressure(data)
+    postOxygen(data)
     .then((response) => {
       memberId[1]();
       toast.success("Data submitted successfully");
@@ -48,23 +46,17 @@ const BloodPressure = ({memberId}) => {
   return (
     <div>
       <form className={styles.firstNameField} >
-        <b className={styles.createNewCarecall}>NEW BLOOD PRESSURE FORM</b>
+        <b className={styles.createNewCarecall}>NEW OXYGEN</b>
 
         <input
           className={styles.firstNameField1}
-          placeholder="SYSTOLIC"
-          type="text"
+          placeholder="Oxygen"
+          type="number"
           value={systolic}
           onChange={(e) => setSystolic(e.target.value)}
         />
-        <input
-          className={styles.lastNameField}
-          placeholder="DIASTOLIC"
-          type="text"
-          value={diastolic}
-          onChange={(e) => setDiastolic(e.target.value)}
-        />
-            <div  className={styles.phoneNumber}>
+        
+            <div  className={styles.lastNameField}>
           <DatePicker   selected={startDate} onChange={(date) => setStartDate(date)} />
             </div>
 
@@ -80,4 +72,4 @@ const BloodPressure = ({memberId}) => {
   );
 };
 
-export default BloodPressure;
+export default Oxygen;

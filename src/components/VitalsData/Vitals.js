@@ -5,29 +5,53 @@ import TemperatureGraph from "./TemperatureGraph";
 import OxygenGraph from "./OxygenGraph";
 import PulseRateGraph from "./PulseRateGraph";
 import RespiratoryRate from "./RespiratoryRate";
-import { getBloodpressure,getAllBloodPressure,postBloodPressure } from "../../Services";
+import { getAllBloodPressure,getTemperature,getOxygen } from "../../Services";
 import Popup from "reactjs-popup";
 import BloodPressure from "../Vitals&NutritionForms.js/BloodPressure";
+import Temperature from "../Vitals&NutritionForms.js/Temperature";
+import Oxygen from "../Vitals&NutritionForms.js/Oxygen";
 
 const Vitals = ({patientToDisplayId}) => {
 
   const [table, setTable] = React.useState("table");
   const [bloodPressure, setBloodPressure] = React.useState([]);
+  const [temperature, setTemperature] = React.useState([]);
+  const [oxygen, setOxygen] = React.useState([]);
+  const [reload, setReload] = React.useState(false);
 
   React.useEffect(() => {
+    getOxygen(patientToDisplayId.id)
+    .then((response) => {
+      setOxygen(response);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 
     getAllBloodPressure(patientToDisplayId.id)
     .then((response) => {
-      console.log(response);
       setBloodPressure(response);
     })
     .catch((error) => {
       console.error(error);
     });
 
+    getTemperature(patientToDisplayId.id)
+    .then((response) => {
+      setTemperature(response);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
+
 
   }
-  , [patientToDisplayId]);
+  , [patientToDisplayId, reload]);
+
+  const triggerParentEffect = () => {
+    setReload(!reload);
+  };
 
   return (
 
@@ -65,7 +89,7 @@ const Vitals = ({patientToDisplayId}) => {
                               modal
                               nested
                             >
-              < BloodPressure memberId = {patientToDisplayId.id} />
+              < BloodPressure memberId = {[patientToDisplayId.id,triggerParentEffect]} />
          </Popup>
     
           </div>
@@ -82,8 +106,9 @@ const Vitals = ({patientToDisplayId}) => {
           <div className="property-editor-inner1">
             <div className="line-div" />
           </div>
+
           
-          {patientToDisplayId.bloodpressure && patientToDisplayId.bloodpressure.map((bp) => (
+          {bloodPressure && bloodPressure.map((bp) => (
 
           <div className="property-editor-inner2">
             <div className="parent">
@@ -94,7 +119,7 @@ const Vitals = ({patientToDisplayId}) => {
               <div className="container">
                 <div className="div4">{bp.diastolic}</div>
               </div>
-              <div className="prehypertension">code</div>
+              <div style={{ fontSize:"13px",fontWeight:"bold" }}>{bp.interpretation}</div>
             </div>
 
             <div className="property-editor-inner1">
@@ -110,6 +135,14 @@ const Vitals = ({patientToDisplayId}) => {
             <div className="blood-pressure-parent">
               <div className="blood-pressure">Temperature</div>
             </div>
+            <Popup trigger={
+              <button className="blood-pressure" style={{cursor:"pointer",padding:"1%"}} >NEW TEMP</button>
+            } 
+                              modal
+                              nested
+                            >
+              < Temperature memberId = {[patientToDisplayId.id,triggerParentEffect]} />
+         </Popup>
           </div>
 
           <div className="property-editor-inner2">
@@ -125,14 +158,14 @@ const Vitals = ({patientToDisplayId}) => {
             <div className="line-div" />
           </div>
 
-          {patientToDisplayId.temperature && patientToDisplayId.temperature.map((temp) => (
+          {temperature && temperature.map((temp) => (
           <div className="property-editor-inner2">
             <div className="parent">
               <div className="div2">{temp.readingDate}</div>
               <div className="wrapper">
                 <div className="div3">{temp.temperature}</div>
               </div>
-              <div className="prehypertension">code</div>
+              <div style = {{ fontSize:"13px", fontWeight:"bold" }}>{temp.interpretation}</div>
             </div>
           </div>
           ))}  
@@ -145,6 +178,14 @@ const Vitals = ({patientToDisplayId}) => {
             <div className="blood-pressure-parent">
               <div className="blood-pressure">Oxygen Saturation</div>
             </div>
+            <Popup trigger={
+              <button className="blood-pressure" style={{cursor:"pointer",padding:"1%"}} >NEW OXYGEN</button>
+            } 
+                              modal
+                              nested
+                            >
+              < Oxygen memberId = {[patientToDisplayId.id,triggerParentEffect]} />
+         </Popup>
           </div>
 
           <div className="property-editor-inner2">
@@ -159,14 +200,14 @@ const Vitals = ({patientToDisplayId}) => {
             <div className="line-div" />
           </div>
 
-          {patientToDisplayId.oxygen && patientToDisplayId.oxygen.map((oxygen) => (
+          {oxygen && oxygen.map((oxygen) => (
           <div className="property-editor-inner2">
             <div className="parent">
               <div className="div2">{oxygen.readingDate}</div>
               <div className="wrapper">
                 <div className="div3">{oxygen.oxygen}</div>
               </div>
-              <div className="prehypertension">code</div>
+              <div style={{ fontSize:"13px",fontWeight:"bold" }}>{oxygen.interpretation}</div>
             </div>
           </div>
           ))}
@@ -256,13 +297,13 @@ const Vitals = ({patientToDisplayId}) => {
       {table === "graphical" && (
         <div>
           <div style={{ marginBottom: "7%" }}>
-            <VITALSGRAPHICALREPRESENTAT Bp= {patientToDisplayId.bloodpressure} />
+            <VITALSGRAPHICALREPRESENTAT Bp= {bloodPressure} />
           </div>
           <div style={{ marginBottom: "7%" }}>
-            <TemperatureGraph temp = {patientToDisplayId.temperature} />
+            <TemperatureGraph temp = {temperature} />
           </div>
           <div style={{ marginBottom: "7%" }}>
-            <OxygenGraph oxygen = {patientToDisplayId.oxygen} />
+            <OxygenGraph oxygen = {oxygen} />
           </div>
           <div style={{ marginBottom: "7%" }}>
             <PulseRateGraph pulse = {patientToDisplayId.pulse} />

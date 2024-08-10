@@ -69,7 +69,6 @@ const LeftSideBarClinicalInfor = () => {
 
   return (
     <div className="left-side-bar-clinical-infor">
-      {/* <FrameComponent3 /> */}
 
       <header className="conditional-branch">
         <div className="frame-container">

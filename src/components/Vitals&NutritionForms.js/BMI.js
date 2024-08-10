@@ -22,20 +22,18 @@ const InteractionForm = ({memberId}) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(conditionName,conditionStatus,memberId.id,userEmail,startDate.toDateString());
 
     const data = {
-      readingDate: 2024-7-8,
+      readingDate: startDate.toDateString(),
       updatedBy: 'mm@g.com',
-      memberId: parseInt(memberId.id),
+      memberId: parseInt(memberId[0]),
       height: conditionName,
       weight: conditionStatus,
   };
 
-
-    postBmi(data)
+  postBmi(data)
     .then((response) => {
-      console.log(response);
+      memberId[1]();
       toast.success("Data submitted successfully");
     })
     .catch((error) => {

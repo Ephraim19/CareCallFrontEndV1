@@ -319,6 +319,8 @@ export const postBmi = async (data) => {
   }
 };
 
+
+
 //GET MEMBER JOURNEY
 export const getJourney= async (memberId) => {
 
@@ -349,6 +351,56 @@ export const patchJourney = async (id, data) => {
 export const getSpecificJourney = async (Id) => {
   try {
     const response = await axios.get(`http://127.0.0.1:8000/journey/${Id}/`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//Temperature
+
+export const getTemperature = async (memberId) => {
+
+  try {
+    const response = await axios.get(`http://127.0.0.1:8000/temperature/`, {
+      params: {
+        memberId: memberId
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const postTemperature= async (data) => {
+  try {
+    const response = await axios.post("http://127.0.0.1:8000/temperature/post/", data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//Oxygen
+
+export const getOxygen = async (memberId) => {
+
+  try {
+    const response = await axios.get(`http://127.0.0.1:8000/oxygen/`, {
+      params: {
+        memberId: memberId
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const postOxygen= async (data) => {
+  try {
+    const response = await axios.post("http://127.0.0.1:8000/oxygen/post/", data);
     return response.data;
   } catch (error) {
     console.error(error);

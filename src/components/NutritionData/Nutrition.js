@@ -6,10 +6,17 @@ import BMIGraph from "./BMIGraph";
 import Weight from "./Weight";
 import Popup from "reactjs-popup";
 import BMI from "../Vitals&NutritionForms.js/BMI";
+import { getAllBMI } from "../../Services";
 
 const Nutrition = ({patientToDisplayId}) => {
 
   const [table, setTable] = React.useState("table");
+  const [reload, setReload] = React.useState(false);
+
+
+  const triggerParentEffect = () => {
+    setReload(!reload);
+  };
 
   return (
     <div>
@@ -156,9 +163,8 @@ const Nutrition = ({patientToDisplayId}) => {
             modal
             nested
           >
-            <BMI memberId = {patientToDisplayId} />
+            <BMI memberId = {[patientToDisplayId.id,triggerParentEffect]} />
           </Popup>
-
           </div>
 
           <div className="property-editor-inner2">
