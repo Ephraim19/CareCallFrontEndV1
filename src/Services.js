@@ -406,3 +406,53 @@ export const postOxygen= async (data) => {
     console.error(error);
   }
 };
+
+//Pulse rate
+
+export const getPulse = async (memberId) => {
+
+  try {
+    const response = await axios.get(`http://127.0.0.1:8000/pulse/`, {
+      params: {
+        memberId: memberId
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const postPulse= async (data) => {
+  try {
+    const response = await axios.post("http://127.0.0.1:8000/pulse/post/", data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//Respiratory rate
+
+export const getRespiratory = async (memberId) => {
+
+  try {
+    const response = await axios.get(`http://127.0.0.1:8000/respiratory/`, {
+      params: {
+        memberId: memberId
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const postRespiratory= async (data) => {
+  try {
+    const response = await axios.post("http://127.0.0.1:8000/respiratory/post/", data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};

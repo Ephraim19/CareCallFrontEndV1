@@ -5,11 +5,14 @@ import TemperatureGraph from "./TemperatureGraph";
 import OxygenGraph from "./OxygenGraph";
 import PulseRateGraph from "./PulseRateGraph";
 import RespiratoryRate from "./RespiratoryRate";
-import { getAllBloodPressure,getTemperature,getOxygen } from "../../Services";
+import { getAllBloodPressure,getTemperature,getOxygen, getPulse, getRespiratory } from "../../Services";
 import Popup from "reactjs-popup";
 import BloodPressure from "../Vitals&NutritionForms.js/BloodPressure";
 import Temperature from "../Vitals&NutritionForms.js/Temperature";
 import Oxygen from "../Vitals&NutritionForms.js/Oxygen";
+import PulseRate from "../Vitals&NutritionForms.js/PulseRate";
+import RespiratoryRatee from "../Vitals&NutritionForms.js/RespiratoryRatee";
+
 
 const Vitals = ({patientToDisplayId}) => {
 
@@ -18,6 +21,8 @@ const Vitals = ({patientToDisplayId}) => {
   const [temperature, setTemperature] = React.useState([]);
   const [oxygen, setOxygen] = React.useState([]);
   const [reload, setReload] = React.useState(false);
+  const [pulse, setPulse] = React.useState([]);
+  const [respiratory, setRespiratory] = React.useState([]);
 
   React.useEffect(() => {
     getOxygen(patientToDisplayId.id)
@@ -44,7 +49,21 @@ const Vitals = ({patientToDisplayId}) => {
       console.error(error);
     });
 
+    getPulse(patientToDisplayId.id)
+    .then((response) => {
+      setPulse(response);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 
+    getRespiratory(patientToDisplayId.id)
+    .then((response) => {
+      setRespiratory(response);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 
   }
   , [patientToDisplayId, reload]);
@@ -220,6 +239,14 @@ const Vitals = ({patientToDisplayId}) => {
             <div className="blood-pressure-parent">
               <div className="blood-pressure">Pulse Rate </div>
             </div>
+            <Popup trigger={
+              <button className="blood-pressure" style={{cursor:"pointer",padding:"1%"}} >NEW PULSE</button>
+            } 
+                              modal
+                              nested
+                            >
+              < PulseRate memberId = {[patientToDisplayId.id,triggerParentEffect]} />
+         </Popup>
           </div>
 
           <div className="property-editor-inner2">
@@ -234,7 +261,7 @@ const Vitals = ({patientToDisplayId}) => {
             <div className="line-div" />
           </div>
           
-          {patientToDisplayId.pulse && patientToDisplayId.pulse.map((
+          {pulse && pulse.map((
             pulse) => (
 
             
@@ -244,7 +271,7 @@ const Vitals = ({patientToDisplayId}) => {
               <div className="wrapper">
                 <div className="div3">{pulse.pulse}</div>
               </div>
-              <div className="prehypertension">code</div>
+              <div className="prehypertension">{pulse.interpretation}</div>
             </div>
           </div>
           ))}
@@ -257,6 +284,14 @@ const Vitals = ({patientToDisplayId}) => {
             <div className="blood-pressure-parent">
               <div className="blood-pressure">Respiratory Rate </div>
             </div>
+            <Popup trigger={
+              <button className="blood-pressure" style={{cursor:"pointer",padding:"1%"}} >NEW RESPIRATORY</button>
+            } 
+                              modal
+                              nested
+                            >
+              < RespiratoryRatee memberId = {[patientToDisplayId.id,triggerParentEffect]} />
+         </Popup>
           </div>
 
           <div className="property-editor-inner2">
@@ -271,7 +306,7 @@ const Vitals = ({patientToDisplayId}) => {
             <div className="line-div" />
           </div>
 
-          {patientToDisplayId.respiratory && patientToDisplayId.respiratory 
+          {respiratory && respiratory 
           .map((respiratory) => (
             <div className="property-editor-inner2">
             <div className="parent">
@@ -282,7 +317,7 @@ const Vitals = ({patientToDisplayId}) => {
               {/* <div className="container">
                 <div className="div4">prehypertension</div>
               </div> */}
-              <div className="prehypertension">Prehypertension</div>
+              <div className="prehypertension">{respiratory.interpretation}</div>
         </div>
         </div>
           ))}
@@ -306,10 +341,10 @@ const Vitals = ({patientToDisplayId}) => {
             <OxygenGraph oxygen = {oxygen} />
           </div>
           <div style={{ marginBottom: "7%" }}>
-            <PulseRateGraph pulse = {patientToDisplayId.pulse} />
+            <PulseRateGraph pulse = {pulse} />
           </div>
           <div style={{ marginBottom: "7%" }}>
-            <RespiratoryRate respiratory = {patientToDisplayId.respiratory} />
+            <RespiratoryRate respiratory = {respiratory} />
           </div>
         </div>
       )}
