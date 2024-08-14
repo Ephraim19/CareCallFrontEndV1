@@ -15,7 +15,8 @@
 .prehypertension {
   position: relative;
   font-weight: 500;
-  color: var(--color-red);
+  color: #000;
+  font-size: 13px;
 }
 .line-div,
 .property-editor-inner1 {

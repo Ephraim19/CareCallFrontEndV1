@@ -14,8 +14,8 @@ const BloodSugarGraph = ({patientToDisplayId}) => {
         type="line"
         data={{
           labels: [
-           patientToDisplayId&&patientToDisplayId.rbs.map((item) => item.readingDate),
-           patientToDisplayId&&patientToDisplayId.fbs.map((item) => item.readingDate),
+           patientToDisplayId [0] &&patientToDisplayId[0].map((item) => item.readingDate),
+           patientToDisplayId[1]&&patientToDisplayId[1].map((item) => item.readingDate),
           ],
           datasets: [
             {
@@ -24,7 +24,7 @@ const BloodSugarGraph = ({patientToDisplayId}) => {
               borderColor: "red",
               pointBackgroundColor: "red",
               pointBorderColor: "red",
-              data: patientToDisplayId && patientToDisplayId.rbs.map((item) => item.rbs),
+              data: patientToDisplayId[0] && patientToDisplayId[1].map((item) => item.rbs),
             },
             {
               label: "Fbs (mmol/L) ",
@@ -32,7 +32,7 @@ const BloodSugarGraph = ({patientToDisplayId}) => {
               borderColor: "#0090af",
               pointBackgroundColor: "#0090af",
               pointBorderColor: "#0090af",
-              data: patientToDisplayId && patientToDisplayId.fbs.map((item) => item.fbs),
+              data: patientToDisplayId[0] && patientToDisplayId[1].map((item) => item.fbs),
             },
  
           ],

@@ -1029,7 +1029,7 @@
   display: flex;
   min-width: 56;
 }
-.due-to:hover {
+/* .due-to:hover {
   font-weight: 500;
   font-family: var(--font-roboto-slab);
   font-size: var(--font-size-mini);
@@ -1037,7 +1037,7 @@
   color: var(--color-gray-100);
   display: flex;
   min-width: 56;
-}
+} */
 .family-history {
   position: relative;
   font-size: 15px;
@@ -1066,7 +1066,7 @@
   font-size: var(--font-size-mini);
   color: var(--color-gray-100);
 }
-.due-to-parent:hover {
+/* .due-to-parent:hover {
   display: flex;
   width: auto;
   align-self: unset;
@@ -1076,27 +1076,27 @@
   align-items: flex-start;
   justify-content: flex-start;
   transform: rotate(0deg);
-}
+} */
 .heavy-smoking {
   position: relative;
   font-weight: 500;
   display: flex;
 }
-.heavy-smoking:hover {
+/* .heavy-smoking:hover {
   font-weight: 500;
   font-family: var(--font-roboto-slab);
   font-size: var(--font-size-lgi);
   text-align: left;
   color: var(--color-darkslategray-200);
   display: flex;
-}
+} */
 .severe-htn {
   position: relative;
   font-weight: 500;
   display: flex;
   min-width: 108;
 }
-.severe-htn:hover {
+/* .severe-htn:hover {
   font-weight: 500;
   font-family: var(--font-roboto-slab);
   font-size: var(--font-size-lgi);
@@ -1104,7 +1104,7 @@
   color: var(--color-darkslategray-200);
   display: flex;
   min-width: 108;
-}
+} */
 .while-loop {
   display: flex;
   flex-direction: column;
@@ -1116,7 +1116,7 @@
   height: auto;
   transform: rotate(0deg);
 }
-.while-loop:hover {
+/* .while-loop:hover {
   display: flex;
   width: auto;
   align-self: unset;
@@ -1126,7 +1126,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   transform: rotate(0deg);
-}
+} */
 .for-loop {
   display: flex;
   flex-direction: row;
@@ -1142,7 +1142,7 @@
   font-size: var(--font-size-lgi);
   color: var(--color-darkslategray-200);
 }
-.for-loop:hover {
+/* .for-loop:hover {
   display: flex;
   width: auto;
   align-self: unset;
@@ -1154,7 +1154,7 @@
   transform: rotate(0deg);
   padding: 0px var(--padding-mid) 0px 0px;
   box-sizing: border-box;
-}
+} */
 .frame-parent12 {
   display: flex;
   flex-direction: column;
@@ -1169,7 +1169,7 @@
   font-size: var(--font-size-4xs);
   color: var(--color-steelblue);
 }
-.frame-parent12:hover {
+/* .frame-parent12:hover {
   display: flex;
   width: auto;
   align-self: unset;
@@ -1180,7 +1180,7 @@
   justify-content: flex-start;
   transform: rotate(0deg);
   min-width: 159;
-}
+} */
 .loop-processor {
   align-self: stretch;
   border-radius: var(--br-3xs);
@@ -1198,7 +1198,7 @@
   width: auto;
   height: auto;
 }
-.loop-processor:hover {
+/* .loop-processor:hover {
   background-color: var(--color-dodgerblue-200);
   display: flex;
   align-self: stretch;
@@ -1212,20 +1212,20 @@
   padding: var(--padding-12xs) var(--padding-3xs) var(--padding-mini);
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-}
+} */
 .allergies {
   position: relative;
   display: flex;
   min-width: 93;
 }
-.allergies:hover {
+/* .allergies:hover {
   font-family: var(--font-roboto-slab);
   font-size: var(--font-size-3xl);
   text-align: left;
   color: var(--color-steelblue);
   display: flex;
   min-width: 93;
-}
+} */
 .allergies-wrapper {
   display: flex;
   flex-direction: row;
@@ -1241,7 +1241,7 @@
   font-size: 18px;
   color: var(--color-steelblue);
 }
-.allergies-wrapper:hover {
+/* .allergies-wrapper:hover {
   display: flex;
   width: auto;
   align-self: unset;
@@ -1253,7 +1253,7 @@
   transform: rotate(0deg);
   padding: 0px 0px var(--padding-6xs);
   box-sizing: border-box;
-}
+} */
 .allergen {
   position: relative;
   font-weight: 500;

@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 import Journey from "../components/Journey/Journey";
 import Popup from "reactjs-popup";
 import NewMember from "../components/Members/NewMember";
+import Menu from "../components/BarsPopup/Menu";
 
  
 const LeftSideBarClinicalInfor = () => {
@@ -73,7 +74,15 @@ const LeftSideBarClinicalInfor = () => {
       <header className="conditional-branch">
         <div className="frame-container">
           <div className="navigation-svgrepocom-wrapper">
+        <Popup
+        modal
+        nested
+         trigger={
             <FaBars className="navigation-svgrepocom-icon" />
+        }
+      >
+        <Menu />
+      </Popup>
           </div>
           {/* <div className="carecall-logo-parent"> */}
           <div className="logic-gate">

@@ -82,7 +82,7 @@ const FrameComponent1 = ({patientToDisplayId}) => {
             </div>
           </div>
           <div className="facility-eqa-nairobi-container">
-            <span>Facility:</span>
+            <span>Source:</span>
             <span className="span">{` `}</span>
             <span className="y">
               {patientToDisplayId

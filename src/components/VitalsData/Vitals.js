@@ -35,7 +35,7 @@ const Vitals = ({patientToDisplayId}) => {
 
     getAllBloodPressure(patientToDisplayId.id)
     .then((response) => {
-      setBloodPressure(response);
+      setBloodPressure(response.reverse() );
     })
     .catch((error) => {
       console.error(error);

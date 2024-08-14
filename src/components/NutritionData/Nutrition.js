@@ -6,12 +6,56 @@ import BMIGraph from "./BMIGraph";
 import Weight from "./Weight";
 import Popup from "reactjs-popup";
 import BMI from "../Vitals&NutritionForms.js/BMI";
-import { getAllBMI } from "../../Services";
+import { getRBS, getFBS,getHba1c,getBMI } from "../../Services";
+import RBS from "../Vitals&NutritionForms.js/RBS";
+import FBS from "../Vitals&NutritionForms.js/FBS";
+import HBA1C from "../Vitals&NutritionForms.js/Hba1c";
+
 
 const Nutrition = ({patientToDisplayId}) => {
 
   const [table, setTable] = React.useState("table");
   const [reload, setReload] = React.useState(false);
+  const [rbs, setRbs] = React.useState([]);
+  const [fbs, setFbs] = React.useState([]);
+  const [hba1c, setHba1c] = React.useState([]);
+  const [bmi, setBmi] = React.useState([]);
+
+  React.useEffect(() => {
+
+    getRBS(patientToDisplayId.id)
+      .then((response) => {
+        setRbs(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+      getFBS(patientToDisplayId.id)
+      .then((response) => {
+        setFbs(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+      getHba1c(patientToDisplayId.id)
+      .then((response) => {
+        setHba1c(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+      getBMI(patientToDisplayId.id)
+      .then((response) => {
+        setBmi(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+  }, [patientToDisplayId,reload]);
 
 
   const triggerParentEffect = () => {
@@ -45,17 +89,21 @@ const Nutrition = ({patientToDisplayId}) => {
           <div className="frame-parent4">
             <div className="blood-pressure-parent">
               <div className="blood-pressure">Random Blood Sugar</div>
+              
             </div>
 
-            <div className="">
-              <button className="blood-pressure"  style={{padding:"1%"}} >Add RBS</button>
-            </div>
+            <Popup trigger={<button className="blood-pressure" style={{padding:"1%",cursor:"pointer"}} >NEW RBS </button>} 
+            modal
+            nested
+          >
+            <RBS memberId = {[patientToDisplayId.id,triggerParentEffect]} />
+          </Popup>
           </div>
 
           <div className="property-editor-inner2">
             <div className="date-parent">
               <div className="date">Date</div>
-              <div className="diastolic-mmhg">RBS (mmol/L)</div>
+              <div className="diastolic-mmhg">RBS (mg/dl)</div>
               <div className="diastolic-mmhg">Interpretation</div>
             </div>
           </div>
@@ -64,7 +112,7 @@ const Nutrition = ({patientToDisplayId}) => {
             <div className="line-div" />
           </div>
 
-            {patientToDisplayId.rbs && patientToDisplayId.rbs.map((item) => (
+            {rbs && rbs.map((item) => (
 
           <div className="property-editor-inner2">
               
@@ -73,7 +121,7 @@ const Nutrition = ({patientToDisplayId}) => {
               <div className="wrapper">
                 <div className="div3">{item.rbs}</div>
               </div>
-              <div className="prehypertension">code</div>
+              <div className="prehypertension">{item.interpretation}</div>
             </div>
           </div>
 
@@ -88,12 +136,18 @@ const Nutrition = ({patientToDisplayId}) => {
             <div className="blood-pressure-parent">
               <div className="blood-pressure">Fasting Blood Sugar</div>
             </div>
+            <Popup trigger={<button className="blood-pressure" style={{padding:"1%"}} >NEW FBS </button>} 
+            modal
+            nested
+          >
+            <FBS memberId = {[patientToDisplayId.id,triggerParentEffect]} />
+          </Popup>
           </div>
 
           <div className="property-editor-inner2">
             <div className="date-parent">
               <div className="date">Date</div>
-              <div className="diastolic-mmhg">FBS (mmol/L)</div>
+              <div className="diastolic-mmhg">FBS (mg/dl)</div>
               <div className="diastolic-mmhg">Interpretation</div>
             </div>
           </div>
@@ -102,7 +156,7 @@ const Nutrition = ({patientToDisplayId}) => {
             <div className="line-div" />
           </div>
 
-            {patientToDisplayId.fbs && patientToDisplayId.fbs.map((item) => (
+            {fbs && fbs.map((item) => (
           <div className="property-editor-inner2">
 
             <div className="parent">
@@ -110,7 +164,7 @@ const Nutrition = ({patientToDisplayId}) => {
               <div className="wrapper">
                 <div className="div3">{item.fbs}</div>
               </div>
-              <div className="prehypertension">code</div>
+              <div className="prehypertension">{item.interpretation}</div>
             </div>
           </div>
 
@@ -123,6 +177,13 @@ const Nutrition = ({patientToDisplayId}) => {
             <div className="blood-pressure-parent">
               <div className="blood-pressure">Glycated Haemoglobin</div>
             </div>
+            <Popup trigger={<button className="blood-pressure" style={{padding:"1%"}} >NEW HBA1C </button>} 
+            modal
+            nested
+          >
+            <HBA1C memberId = {[patientToDisplayId.id,triggerParentEffect]} />
+          </Popup>
+
           </div>
 
           <div className="property-editor-inner2">
@@ -137,7 +198,7 @@ const Nutrition = ({patientToDisplayId}) => {
             <div className="line-div" />
           </div>
 
-            {patientToDisplayId.hba1c && patientToDisplayId.hba1c.map((item) => (
+            {hba1c && hba1c.map((item) => (
           <div className="property-editor-inner2">
 
             <div className="parent">
@@ -145,7 +206,7 @@ const Nutrition = ({patientToDisplayId}) => {
               <div className="wrapper">
                 <div className="div3">{item.hba1c}</div>
               </div>
-              <div className="prehypertension">code</div>
+              <div className="prehypertension">{item.interpretation}</div>
             </div>
           </div>
 
@@ -179,7 +240,7 @@ const Nutrition = ({patientToDisplayId}) => {
             <div className="line-div" />
           </div>
 
-            {patientToDisplayId.bmi && patientToDisplayId.bmi.map((item) => (
+            {bmi && bmi.map((item) => (
           <div className="property-editor-inner2">
               
             <div className="parent">
@@ -187,7 +248,7 @@ const Nutrition = ({patientToDisplayId}) => {
               <div className="wrapper">
                 <div className="div3">{(item.weight/((item.height/100) ^ 2)).toFixed(2)} </div>
               </div>
-              <div className="prehypertension">code</div>
+              <div className="prehypertension">{item.interpretation}</div>
             </div>
           </div>
 
@@ -243,16 +304,16 @@ const Nutrition = ({patientToDisplayId}) => {
       {table === "graphical" && (
         <div>
           <div style={{ marginBottom: "7%" }}>
-            <BloodSugarGraph patientToDisplayId = {patientToDisplayId}  />
+            <BloodSugarGraph patientToDisplayId = {[rbs,fbs]}  />
           </div>
           <div style={{ marginBottom: "7%" }}>
-            <Hba1c hba1c = {patientToDisplayId.hba1c} />
+            <Hba1c hba1c = {hba1c} />
           </div>
           <div style={{ marginBottom: "7%" }}>
-            <BMIGraph bmi = {patientToDisplayId.bmi} />
+            <BMIGraph bmi = {bmi} />
           </div>
           <div style={{ marginBottom: "7%" }}>
-            <Weight weight = {patientToDisplayId.bmi}  />
+            <Weight weight = {bmi}  />
           </div>
   
          </div>

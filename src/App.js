@@ -10,6 +10,7 @@ import Homepage from "./components/MemberReg/Homepage";
 import EmailLogin from "./components/Logins/EmailLogin";
 import EmailSignup from "./components/Logins/EmailSignup";
 import Login from "./components/Logins/Login";
+import AllTasks from "./components/BarsPopup/AllTasks"
 
 function App() {
   const action = useNavigationType();
@@ -54,6 +55,9 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<EmailSignup />} />
       <Route path="/email/login" element={<EmailLogin />} />
+      <Route path="/all/tasks" element={<AllTasks />} />
+
+      <Route path="*" element={<div>Not Found</div>} />
 
 
     </Routes>

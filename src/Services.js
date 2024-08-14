@@ -309,17 +309,6 @@ export const patchInteraction = async (id, data) => {
   }
 };
 
-//BMI
-export const postBmi = async (data) => {
-  try {
-    const response = await axios.post("http://127.0.0.1:8000/bodymassindex/post/", data);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-
 
 //GET MEMBER JOURNEY
 export const getJourney= async (memberId) => {
@@ -451,6 +440,108 @@ export const getRespiratory = async (memberId) => {
 export const postRespiratory= async (data) => {
   try {
     const response = await axios.post("http://127.0.0.1:8000/respiratory/post/", data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
+//RBS
+
+export const getRBS = async (memberId) => {
+
+  try {
+    const response = await axios.get(`http://127.0.0.1:8000/randombloodsugar/`, {
+      params: {
+        memberId: memberId
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const postRBS= async (data) => {
+  try {
+    const response = await axios.post("http://127.0.0.1:8000/randombloodsugar/post/", data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//FBS
+
+export const getFBS = async (memberId) => {
+
+  try {
+    const response = await axios.get(`http://127.0.0.1:8000/fastingbloodsugar/`, {
+      params: {
+        memberId: memberId
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const postFBS= async (data) => {
+  try {
+    const response = await axios.post("http://127.0.0.1:8000/fastingbloodsugar/post/", data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//HBA1C
+
+export const getHba1c = async (memberId) => {
+
+  try {
+    const response = await axios.get(`http://127.0.0.1:8000/glycatedhaemoglobin/`, {
+      params: {
+        memberId: memberId
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const postHba1c= async (data) => {
+  try {
+    const response = await axios.post("http://127.0.0.1:8000/glycatedhaemoglobin/post/", data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
+//BMI
+
+export const getBMI = async (memberId) => {
+
+  try {
+    const response = await axios.get(`http://127.0.0.1:8000/bodymassindex/`, {
+      params: {
+        memberId: memberId
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const postBMI= async (data) => {
+  try {
+    const response = await axios.post("http://127.0.0.1:8000/bodymassindex/post/", data);
     return response.data;
   } catch (error) {
     console.error(error);
