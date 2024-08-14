@@ -1,13 +1,12 @@
 import React from 'react';
-import { getAllTasks } from '../../Services';
+import { getAllMembers } from '../../Services';
 
-const AllTasks = () => {
+const AllMembers = () => {
     const [memberInteractions, setMemberInteractions ] = React.useState();
 
     React.useEffect(() => {
-        getAllTasks()
+        getAllMembers()
             .then((response) => {
-              console.log(response);
                 setMemberInteractions(response );
             })
             .catch((error) => {
@@ -20,26 +19,26 @@ const AllTasks = () => {
         <>
         <table className="customers">
               <tr>
-                <th>Task</th>
+                <th>Member</th>
 
-                <th>Due</th>
+                <th>Gender</th>
 
-                <th>Status</th>
+                <th>Phone</th>
 
-                <th>Assignee</th>
+                <th>DOB</th>
               </tr>
                       {memberInteractions && memberInteractions.map((patient) => (
                 <>
                   {patient ? (
                     <tr>
 
-                      <td>{patient. taskName } <br /> {patient.task}</td>
+                      <td>{patient. memberName }</td>
 
-                      <td>{patient.taskDueDate}</td>
+                      <td>{patient.memberGender}</td>
                        
-                      <td>{patient.taskStatus}</td>
+                      <td>{patient.memberPhon}</td>
 
-                      <td>{patient.assignedTo}</td>
+                      <td>{patient.memberDOB}</td>
 
                     </tr>
                   ) : (
@@ -53,4 +52,4 @@ const AllTasks = () => {
     );
 };
 
-export default AllTasks;
+export default AllMembers;

@@ -12,6 +12,7 @@
     height: 28px;
     border-bottom: 1px solid rgb(187, 187, 187);
     color: #fff;
+    text-decoration: none;
   }
   .menu-item:hover {
     color: #0090af;

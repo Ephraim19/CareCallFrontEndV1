@@ -14,7 +14,7 @@ import Interaction from "../components/Interaction/Interaction";
 import Tasks from "../components/Tasks/Tasks";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../components/Firebase";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Journey from "../components/Journey/Journey";
 import Popup from "reactjs-popup";
 import NewMember from "../components/Members/NewMember";
@@ -130,11 +130,11 @@ const LeftSideBarClinicalInfor = () => {
             )}
           </div>
         </div>
-        <div className="conditional-branch-child">
+        <Link to ='/all/members'  target='_blank' style={{textDecoration:"none"}} className="conditional-branch-child">
           <button className="view-all-members-wrapper">
             <div className="view-all-members">Members</div>
           </button>
-        </div>
+        </Link>
         <Popup trigger={
         <div className="conditional-branch-child">
           <button className="view-all-members-wrapper">

@@ -44,7 +44,7 @@ const Interaction = ({memberId}) => {
               </tr>
               {memberInteractions && memberInteractions.map((int) => (
                 <tr>
-                  <td>{int.created.slice(0,10) }</td>
+                  <td>{int.created.slice(0,10) } <br /> {int.created.slice(12,19) }</td>
                   <td>
                   {int.interactionDetails},  <br />
                   {int.updatedBy}

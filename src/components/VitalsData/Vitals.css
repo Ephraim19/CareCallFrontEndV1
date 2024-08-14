@@ -18,6 +18,12 @@
   color: #000;
   font-size: 13px;
 }
+.prehypertension1 {
+  position: relative;
+  font-weight: 500;
+  color: #eb0808;
+  font-size: 13px;
+}
 .line-div,
 .property-editor-inner1 {
   align-self: stretch;

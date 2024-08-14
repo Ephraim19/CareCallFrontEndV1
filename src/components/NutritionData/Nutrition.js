@@ -164,7 +164,11 @@ const Nutrition = ({patientToDisplayId}) => {
               <div className="wrapper">
                 <div className="div3">{item.fbs}</div>
               </div>
+              {item.interpretation === "Normal" ? (
               <div className="prehypertension">{item.interpretation}</div>
+            ) : (
+              <div className="prehypertension1">{item.interpretation}</div>
+            )}
             </div>
           </div>
 
@@ -206,7 +210,11 @@ const Nutrition = ({patientToDisplayId}) => {
               <div className="wrapper">
                 <div className="div3">{item.hba1c}</div>
               </div>
+              {item.interpretation === "Normal" ? (
               <div className="prehypertension">{item.interpretation}</div>
+            ) : (
+              <div className="prehypertension1">{item.interpretation}</div>
+            )}
             </div>
           </div>
 
@@ -248,7 +256,11 @@ const Nutrition = ({patientToDisplayId}) => {
               <div className="wrapper">
                 <div className="div3">{(item.weight/((item.height/100) ^ 2)).toFixed(2)} </div>
               </div>
+              {item.interpretation === "Normal" ? (
               <div className="prehypertension">{item.interpretation}</div>
+            ) : (
+              <div className="prehypertension1">{item.interpretation}</div>
+            )}
             </div>
           </div>
 

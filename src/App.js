@@ -11,6 +11,7 @@ import EmailLogin from "./components/Logins/EmailLogin";
 import EmailSignup from "./components/Logins/EmailSignup";
 import Login from "./components/Logins/Login";
 import AllTasks from "./components/BarsPopup/AllTasks"
+import AllMembers from "./components/BarsPopup/AllMembers"
 
 function App() {
   const action = useNavigationType();
@@ -50,12 +51,14 @@ function App() {
 
   return (
     <Routes>
+      
       <Route path="/" element={<LeftSideBarClinicalInfor />} />
       <Route path="/new" element={<Homepage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<EmailSignup />} />
       <Route path="/email/login" element={<EmailLogin />} />
       <Route path="/all/tasks" element={<AllTasks />} />
+      <Route path="/all/members" element={<AllMembers />} />
 
       <Route path="*" element={<div>Not Found</div>} />
 

@@ -286,6 +286,16 @@ export const postTask = async (data) => {
   }
 };
 
+export const getAllTasks= async () => {
+
+  try {
+    const response = await axios.get(`http://127.0.0.1:8000/task/`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 //Post interaction
 export const postInteraction = async (data) => {
   try {

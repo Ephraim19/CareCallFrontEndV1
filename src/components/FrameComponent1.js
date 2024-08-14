@@ -1,12 +1,30 @@
 import FrameComponent2 from "./FrameComponent2";
 import "./FrameComponent1.css";
 import React, { useState, useEffect } from "react";
-
+import { getMember } from "../Services";
 import Clinical from "../components/BioData/Clinical";
 import Personal from "../components/BioData/Personal";
 
 const FrameComponent1 = ({patientToDisplayId}) => {
   const [personalClinical, setPersonalClinical] = useState("personal");
+  const [patientToDisplay, setPatientToDisplay] = useState([]);
+  const [reload, setReload] = React.useState(false);
+
+  React.useEffect(() => {
+    console.log(patientToDisplayId.id);
+    getMember(patientToDisplayId.id)
+      .then((response) => {
+        setPatientToDisplay(response);
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [reload]);
+
+  const triggerParentEffect = () => {
+    setReload(!reload);
+  };
 
   const pers = (e) => {
     setPersonalClinical("personal");

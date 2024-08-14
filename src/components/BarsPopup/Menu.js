@@ -1,12 +1,14 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
 import './Menu.css';
+import { useNavigate,Link } from "react-router-dom";
 
 const Menu = () =>{
 
+
 return (
     <div className="menu">
-      <div className="menu-item"> All Tasks</div>
+      <Link to="/all/tasks" target='_blank' className="menu-item"> New Task</Link>
       <Popup
         trigger={<div className="menu-item"> Analytics </div>}
         position="right top"
@@ -28,7 +30,7 @@ return (
           <div className="menu-item"> Staff</div>
         </div>
       </Popup>
-      <div className="menu-item"> Menu item 4</div>
+      <div className="menu-item"> Logout</div>
     </div>
   );
 };

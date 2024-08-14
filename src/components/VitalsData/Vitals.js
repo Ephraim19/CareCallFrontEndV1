@@ -138,7 +138,11 @@ const Vitals = ({patientToDisplayId}) => {
               <div className="container">
                 <div className="div4">{bp.diastolic}</div>
               </div>
-              <div style={{ fontSize:"13px",fontWeight:"bold" }}>{bp.interpretation}</div>
+              {bp.interpretation === "Normal" ? (
+              <div className="prehypertension">{bp.interpretation}</div>
+            ) : (
+              <div className="prehypertension1">{bp.interpretation}</div>
+            )}
             </div>
 
             <div className="property-editor-inner1">
@@ -184,7 +188,11 @@ const Vitals = ({patientToDisplayId}) => {
               <div className="wrapper">
                 <div className="div3">{temp.temperature}</div>
               </div>
-              <div style = {{ fontSize:"13px", fontWeight:"bold" }}>{temp.interpretation}</div>
+              {temp.interpretation === "Normal" ? (
+              <div className="prehypertension">{temp.interpretation}</div>
+            ) : (
+              <div className="prehypertension1">{temp.interpretation}</div>
+            )}
             </div>
           </div>
           ))}  
@@ -226,7 +234,11 @@ const Vitals = ({patientToDisplayId}) => {
               <div className="wrapper">
                 <div className="div3">{oxygen.oxygen}</div>
               </div>
-              <div style={{ fontSize:"13px",fontWeight:"bold" }}>{oxygen.interpretation}</div>
+              {oxygen.interpretation === "Normal" ? (
+              <div className="prehypertension">{oxygen.interpretation}</div>
+            ) : (
+              <div className="prehypertension1">{oxygen.interpretation}</div>
+            )}
             </div>
           </div>
           ))}
@@ -271,7 +283,11 @@ const Vitals = ({patientToDisplayId}) => {
               <div className="wrapper">
                 <div className="div3">{pulse.pulse}</div>
               </div>
+              {pulse.interpretation === "Normal" ? (
               <div className="prehypertension">{pulse.interpretation}</div>
+            ) : (
+              <div className="prehypertension1">{pulse.interpretation}</div>
+            )}
             </div>
           </div>
           ))}
@@ -317,7 +333,11 @@ const Vitals = ({patientToDisplayId}) => {
               {/* <div className="container">
                 <div className="div4">prehypertension</div>
               </div> */}
+                            {respiratory.interpretation === "Normal" ? (
               <div className="prehypertension">{respiratory.interpretation}</div>
+            ) : (
+              <div className="prehypertension1">{respiratory.interpretation}</div>
+            )}
         </div>
         </div>
           ))}
