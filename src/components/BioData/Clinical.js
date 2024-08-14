@@ -30,6 +30,8 @@ const FrameComponent1 = ({patientToDisplayId}) => {
     setPastAdmissions(patientToDisplayId.admission);
     setSocialHistory(patientToDisplayId.social);
     setCondition(patientToDisplayId.condition);
+
+    
     
   }, [patientToDisplayId]);
 

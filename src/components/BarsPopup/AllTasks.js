@@ -18,6 +18,7 @@ const AllTasks = () => {
 
     return (
         <>
+        <h1>All Tasks</h1>
         <table className="customers">
               <tr>
                 <th>Task</th>

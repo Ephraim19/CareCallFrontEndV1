@@ -1,8 +1,9 @@
 import axios from "axios";
 
+const url = "https://ephraim.pythonanywhere.com/"
 export const getAllMembers = async () => {
   try {
-    const response = await axios.get("http://127.0.0.1:8000/members/");
+    const response = await axios.get(url + "members/");
     return response.data;
   } catch (error) {
     console.error(error);
@@ -11,7 +12,7 @@ export const getAllMembers = async () => {
 
 export const getMember = async (id) => {
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/members/${id}`);
+    const response = await axios.get(url + `members/${id}`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -20,7 +21,7 @@ export const getMember = async (id) => {
 
 export const postMember = async (data) => {
   try {
-    const response = await axios.post("http://127.0.0.1:8000/members/", data);
+    const response = await axios.post(url +"members/", data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -30,7 +31,7 @@ export const postMember = async (data) => {
 export const patchMember = async (id, data) => {
   try {
     const response = await axios.patch(
-      `http://127.0.0.1:8000/members/${id}/`,
+      url + `members/${id}/`,
       data
     );
     return response.data;
@@ -42,7 +43,7 @@ export const patchMember = async (id, data) => {
 export const putMember = async (id, data) => {
   try {
     const response = await axios.put(
-      `http://127.0.0.1:8000/members/${id}`,
+      url + `members/${id}`,
       data
     );
     return response.data;
@@ -53,7 +54,7 @@ export const putMember = async (id, data) => {
 
 export const newMember = async (data) => {
   try {
-    const response = await axios.post("http://127.0.0.1:8000/new/", data);
+    const response = await axios.post(url + "new/", data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -62,7 +63,7 @@ export const newMember = async (data) => {
 
 export const getDependants = async (id) => {
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/dependants/${id}`);
+    const response = await axios.get(url + `dependants/${id}`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -72,7 +73,7 @@ export const getDependants = async (id) => {
 export const postDependant = async (data) => {
   try {
     const response = await axios.post(
-      "http://127.0.0.1:8000/dependants/",
+      url + "dependants/",
       data
     );
     return response.data;
@@ -83,7 +84,7 @@ export const postDependant = async (data) => {
 
 export const getOverview = async (id) => {
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/overview/${id}/`);
+    const response = await axios.get(url + `overview/${id}/`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -93,7 +94,7 @@ export const getOverview = async (id) => {
 export const putOverview = async (id, data) => {
   try {
     const response = await axios.put(
-      `http://127.0.0.1:8000/overview/${id}/`,
+      url + `overview/${id}/`,
       data
     );
     return response.data;
@@ -105,7 +106,7 @@ export const putOverview = async (id, data) => {
 export const postOverview = async (data) => {
   try {
     const response = await axios.post(
-      `http://127.0.0.1:8000/overview/`, 
+      url + `overview/`, 
       data
     );
     return response.data;
@@ -116,7 +117,7 @@ export const postOverview = async (data) => {
 
 export const getSocialHistory = async (id) => {
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/social/${id}/`);
+    const response = await axios.get(url + `social/${id}/`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -126,7 +127,7 @@ export const getSocialHistory = async (id) => {
 export const postSocialHistory = async (data) => {
   try {
     const response = await axios.post(
-      `http://127.0.0.1:8000/social/`, 
+      url + `social/`, 
       data
     );
     return response.data;
@@ -137,7 +138,7 @@ export const postSocialHistory = async (data) => {
 
 export const getCondition = async (id) => {
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/condition/${id}/`);
+    const response = await axios.get(url + `condition/${id}/`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -146,7 +147,7 @@ export const getCondition = async (id) => {
 
 export const postCondition = async (data) => {
   try {
-    const response = await axios.post("http://127.0.0.1:8000/condition/", data);
+    const response = await axios.post(url + "condition/", data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -156,7 +157,7 @@ export const postCondition = async (data) => {
 export const putCondition = async (id, data) => {
   try {
     const response = await axios.put(
-      `http://127.0.0.1:8000/condition/${id}/`,
+      url + `condition/${id}/`,
       data
     );
     return response.data;
@@ -167,7 +168,7 @@ export const putCondition = async (id, data) => {
 
 export const getAllergy = async (id) => {
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/allergy/${id}`);
+    const response = await axios.get(url + `allergy/${id}`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -178,7 +179,7 @@ export const getAllergy = async (id) => {
 export const putOtherNote = async (id, data) => {
   try {
     const response = await axios.put(
-      `http://127.0.0.1:8000/notes/${id}/`,
+      url + `notes/${id}/`,
       data
     );
     return response.data;
@@ -189,7 +190,7 @@ export const putOtherNote = async (id, data) => {
 
 export const postOtherNote = async (data) => {
   try {
-    const response = await axios.post("http://127.0.0.1:8000/notes/", data);
+    const response = await axios.post(url + "notes/", data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -198,7 +199,7 @@ export const postOtherNote = async (data) => {
 
 export const postFamilyHistory = async (data) => {
   try {
-    const response = await axios.post("http://127.0.0.1:8000/family/", data);
+    const response = await axios.post(url + "family/", data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -208,7 +209,7 @@ export const postFamilyHistory = async (data) => {
 //Interactions
 export const getInteraction = async (memberId) => {
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/interaction/${memberId}/`);
+    const response = await axios.get(url +`interaction/${memberId}/`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -218,7 +219,7 @@ export const getInteraction = async (memberId) => {
 export const getAllInteraction = async (memberId) => {
 
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/interaction/`, {
+    const response = await axios.get(url + `interaction/`, {
       params: {
         memberId: memberId
       }
@@ -232,7 +233,7 @@ export const getAllInteraction = async (memberId) => {
 //blood pressure
 export const getBloodpressure = async (memberId) => {
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/bloodpressure/${memberId}/`);
+    const response = await axios.get(url + `bloodpressure/${memberId}/`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -242,7 +243,7 @@ export const getBloodpressure = async (memberId) => {
 export const getAllBloodPressure = async (memberId) => {
 
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/bloodpressure/`, {
+    const response = await axios.get(url + `bloodpressure/`, {
       params: {
         memberId: memberId
       }
@@ -255,7 +256,7 @@ export const getAllBloodPressure = async (memberId) => {
 
 export const postBloodPressure= async (data) => {
   try {
-    const response = await axios.post("http://127.0.0.1:8000/bloodpressure/post/", data);
+    const response = await axios.post(url + "bloodpressure/post/", data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -266,7 +267,7 @@ export const postBloodPressure= async (data) => {
 export const getTasks= async (memberId) => {
 
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/task/`, {
+    const response = await axios.get(url + `task/`, {
       params: {
         memberId: memberId
       }
@@ -279,7 +280,7 @@ export const getTasks= async (memberId) => {
 
 export const postTask = async (data) => {
   try {
-    const response = await axios.post("http://127.0.0.1:8000/task/post/", data);
+    const response = await axios.post(url + "task/post/", data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -289,7 +290,7 @@ export const postTask = async (data) => {
 export const getAllTasks= async () => {
 
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/task/`);
+    const response = await axios.get(url + `task/`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -299,7 +300,7 @@ export const getAllTasks= async () => {
 //Post interaction
 export const postInteraction = async (data) => {
   try {
-    const response = await axios.post("http://127.0.0.1:8000/interaction/post/", data);
+    const response = await axios.post(url + "post/", data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -310,7 +311,7 @@ export const postInteraction = async (data) => {
 export const patchInteraction = async (id, data) => {
   try {
     const response = await axios.patch(
-      `http://127.0.0.1:8000/task/${id}/`,
+      url + `task/${id}/`,
       data
     );
     return response.data;
@@ -324,7 +325,7 @@ export const patchInteraction = async (id, data) => {
 export const getJourney= async (memberId) => {
 
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/journey/`, {
+    const response = await axios.get(url + `journey/`, {
       params: {
         memberId: memberId
       }
@@ -338,7 +339,7 @@ export const getJourney= async (memberId) => {
 export const patchJourney = async (id, data) => {
   try {
     const response = await axios.patch(
-      `http://127.0.0.1:8000/journey/${id}/`,
+      url + `journey/${id}/`,
       data
     );
     return response.data;
@@ -349,7 +350,7 @@ export const patchJourney = async (id, data) => {
 
 export const getSpecificJourney = async (Id) => {
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/journey/${Id}/`);
+    const response = await axios.get(url + `journey/${Id}/`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -361,7 +362,7 @@ export const getSpecificJourney = async (Id) => {
 export const getTemperature = async (memberId) => {
 
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/temperature/`, {
+    const response = await axios.get(url + `temperature/`, {
       params: {
         memberId: memberId
       }
@@ -374,7 +375,7 @@ export const getTemperature = async (memberId) => {
 
 export const postTemperature= async (data) => {
   try {
-    const response = await axios.post("http://127.0.0.1:8000/temperature/post/", data);
+    const response = await axios.post(url + "temperature/post/", data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -386,7 +387,7 @@ export const postTemperature= async (data) => {
 export const getOxygen = async (memberId) => {
 
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/oxygen/`, {
+    const response = await axios.get(url + `oxygen/`, {
       params: {
         memberId: memberId
       }
@@ -399,7 +400,7 @@ export const getOxygen = async (memberId) => {
 
 export const postOxygen= async (data) => {
   try {
-    const response = await axios.post("http://127.0.0.1:8000/oxygen/post/", data);
+    const response = await axios.post(url + "oxygen/post/", data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -411,7 +412,7 @@ export const postOxygen= async (data) => {
 export const getPulse = async (memberId) => {
 
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/pulse/`, {
+    const response = await axios.get(url + `pulse/`, {
       params: {
         memberId: memberId
       }
@@ -424,7 +425,7 @@ export const getPulse = async (memberId) => {
 
 export const postPulse= async (data) => {
   try {
-    const response = await axios.post("http://127.0.0.1:8000/pulse/post/", data);
+    const response = await axios.post(url + "pulse/post/", data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -436,7 +437,7 @@ export const postPulse= async (data) => {
 export const getRespiratory = async (memberId) => {
 
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/respiratory/`, {
+    const response = await axios.get(url +`respiratory/`, {
       params: {
         memberId: memberId
       }
@@ -449,7 +450,7 @@ export const getRespiratory = async (memberId) => {
 
 export const postRespiratory= async (data) => {
   try {
-    const response = await axios.post("http://127.0.0.1:8000/respiratory/post/", data);
+    const response = await axios.post(url + "respiratory/post/", data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -462,7 +463,7 @@ export const postRespiratory= async (data) => {
 export const getRBS = async (memberId) => {
 
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/randombloodsugar/`, {
+    const response = await axios.get(url + `randombloodsugar/`, {
       params: {
         memberId: memberId
       }
@@ -475,7 +476,7 @@ export const getRBS = async (memberId) => {
 
 export const postRBS= async (data) => {
   try {
-    const response = await axios.post("http://127.0.0.1:8000/randombloodsugar/post/", data);
+    const response = await axios.post(url + "randombloodsugar/post/", data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -487,7 +488,7 @@ export const postRBS= async (data) => {
 export const getFBS = async (memberId) => {
 
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/fastingbloodsugar/`, {
+    const response = await axios.get(url + `fastingbloodsugar/`, {
       params: {
         memberId: memberId
       }
@@ -500,7 +501,7 @@ export const getFBS = async (memberId) => {
 
 export const postFBS= async (data) => {
   try {
-    const response = await axios.post("http://127.0.0.1:8000/fastingbloodsugar/post/", data);
+    const response = await axios.post(url + "fastingbloodsugar/post/", data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -512,7 +513,7 @@ export const postFBS= async (data) => {
 export const getHba1c = async (memberId) => {
 
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/glycatedhaemoglobin/`, {
+    const response = await axios.get(url + `glycatedhaemoglobin/`, {
       params: {
         memberId: memberId
       }
@@ -525,7 +526,7 @@ export const getHba1c = async (memberId) => {
 
 export const postHba1c= async (data) => {
   try {
-    const response = await axios.post("http://127.0.0.1:8000/glycatedhaemoglobin/post/", data);
+    const response = await axios.post(url + "glycatedhaemoglobin/post/", data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -538,7 +539,7 @@ export const postHba1c= async (data) => {
 export const getBMI = async (memberId) => {
 
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/bodymassindex/`, {
+    const response = await axios.get(url + `bodymassindex/`, {
       params: {
         memberId: memberId
       }
@@ -551,7 +552,7 @@ export const getBMI = async (memberId) => {
 
 export const postBMI= async (data) => {
   try {
-    const response = await axios.post("http://127.0.0.1:8000/bodymassindex/post/", data);
+    const response = await axios.post(url + "bodymassindex/post/", data);
     return response.data;
   } catch (error) {
     console.error(error);

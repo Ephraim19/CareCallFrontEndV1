@@ -73,9 +73,8 @@ const LeftSideBarClinicalInfor = () => {
 
       <header className="conditional-branch">
         <div className="frame-container">
-          <div className="navigation-svgrepocom-wrapper">
+        <div className="navigation-svgrepocom-wrapper">
         <Popup
-        modal
         nested
          trigger={
             <FaBars className="navigation-svgrepocom-icon" />

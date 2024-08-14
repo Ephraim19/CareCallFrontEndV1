@@ -1,9 +1,22 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
 import './Menu.css';
-import { useNavigate,Link } from "react-router-dom";
+import {useNavigate, Link } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../Firebase";
 
 const Menu = () =>{
+  const navigate = useNavigate();
+
+  const logOut = () => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        auth.signOut();
+        navigate("/email/login");
+      }
+    }
+    )
+  }
 
 
 return (
@@ -30,7 +43,7 @@ return (
           <div className="menu-item"> Staff</div>
         </div>
       </Popup>
-      <div className="menu-item"> Logout</div>
+      <div className="menu-item" onClick={logOut} > Logout</div>
     </div>
   );
 };

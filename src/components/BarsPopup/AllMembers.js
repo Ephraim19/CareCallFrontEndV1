@@ -17,6 +17,8 @@ const AllMembers = () => {
 
     return (
         <>
+        <h1>All Members</h1>
+
         <table className="customers">
               <tr>
                 <th>Member</th>
