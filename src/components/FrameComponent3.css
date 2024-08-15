@@ -465,13 +465,14 @@
   box-sizing: border-box;
 } */
 .profile-circle-svgrepocom-icon {
-  height: 55px;
-  width: 55px;
+  height: 50px;
+  width: 50px;
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
   display: flex;
   gap: var(--gap-0);
+  border-radius: 50%;
 }
 /* .profile-circle-svgrepocom-icon:hover {
   display: flex;

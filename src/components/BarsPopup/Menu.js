@@ -4,9 +4,53 @@ import './Menu.css';
 import {useNavigate, Link } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../Firebase";
+import Overview from './Overview';
+import { getAllTasks,getAllMembers,getAllInteraction,getJourney } from '../../Services';
 
-const Menu = () =>{
+const Menu = (memberId) =>{
   const navigate = useNavigate();
+  const [tasks, setTasks] = React.useState([]);
+  const [interactions, setInteractions] = React.useState([]);
+  const [members, setMembers] = React.useState([]);
+  const [journey, setJourney] = React.useState([]);
+
+  React.useEffect(() => {
+
+    getAllTasks()
+        .then((response) => {
+          setTasks(response );
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+
+        getAllInteraction()
+        .then((response) => {
+          setInteractions(response );
+          console.log(response)
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+
+        getAllMembers()
+        .then((response) => {
+          setMembers(response );
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+
+        getJourney()
+        .then((response) => {
+          setJourney(response );
+        })
+        .catch((error) => {
+            console.error(error)
+        }
+        );
+
+},[])
 
   const logOut = () => {
     onAuthStateChanged(auth, (user) => {
@@ -21,7 +65,7 @@ const Menu = () =>{
 
 return (
     <div className="menu">
-      <Link to="/all/tasks" target='_blank' className="menu-item"> New Task</Link>
+      <Link to="/all/tasks" target='_blank' className="menu-item"> All Tasks</Link>
       <Popup
         trigger={<div className="menu-item"> Analytics </div>}
         position="right top"
@@ -33,7 +77,17 @@ return (
         arrow={false}
       >
         <div className="menu">
-          <div className="menu-item"> Overall</div>
+        <Popup
+                    trigger={
+                      <div className="menu-item"> Overview</div>
+                    }
+                    modal
+                    nested
+                  >
+                    <Overview datas = {[members,tasks,interactions,journey]} />
+                  </Popup>
+              
+          
           <div className="menu-item"> Members</div>
           <div className="menu-item"> Interactions</div>
           <div className="menu-item"> Tasks</div>

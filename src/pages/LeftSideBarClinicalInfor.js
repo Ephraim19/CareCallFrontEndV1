@@ -30,12 +30,15 @@ const LeftSideBarClinicalInfor = () => {
   const [userEmail, setUserEmail] = useState("")
   const navigate = useNavigate();
   const [reload, setReload] = React.useState(false);
+  const [image , setImage] = React.useState(null);
 
   useEffect(() => {
 
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setUserEmail(user.email);
+        setImage(user.photoURL);
+        
       } else {
         navigate("/email/login");
       }
@@ -80,7 +83,7 @@ const LeftSideBarClinicalInfor = () => {
             <FaBars className="navigation-svgrepocom-icon" />
         }
       >
-        <Menu />
+        <Menu memberId = {patientToDisplayId.id} />
       </Popup>
           </div>
           {/* <div className="carecall-logo-parent"> */}
@@ -152,7 +155,7 @@ const LeftSideBarClinicalInfor = () => {
               className="profile-circle-svgrepocom-icon"
               loading="lazy"
               alt=""
-              src="/profilecircle-svgrepocom.svg"
+              src = {image ? image: "/profilecircle-svgrepocom.svg"}
             />
           </div>
         </div>
@@ -238,7 +241,7 @@ const LeftSideBarClinicalInfor = () => {
               {topNav === 'tasks' && <Tasks memberId = {patientToDisplayId.id} />}
               {topNav === 'journey' && <Journey memberId = {patientToDisplayId.id} />}
           </div>
-          <FrameComponent />
+          <FrameComponent memberId = {patientToDisplayId.id} />
         </section>
       </main>
     </div>

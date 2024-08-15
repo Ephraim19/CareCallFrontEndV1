@@ -1,5 +1,9 @@
 import "./FrameComponent.css";
-const FrameComponent = () => {
+import React from "react";
+import Popup from "reactjs-popup";
+import AppointmentForm from "./Appointments/AppointmentForm";
+
+const FrameComponent = ({memberId}) => {
   return (
     <div className="frame-parent21">
       <div className="engagement-parent">
@@ -39,13 +43,43 @@ const FrameComponent = () => {
                   <div className="pm">2.30 pm</div>
                   <div className="pm">2.30 pm</div>
                 </div>
+
+                <div className="date-group">
+                <Popup trigger={
+                  <button className="time">NEW</button> }
+        modal
+        nested
+      >
+        <AppointmentForm memberId = {memberId} />
+        </Popup>
+
+                  <div className="pm">
+                  <img
+              className="expand-svgrepocom-icon"
+              loading="lazy"
+              alt=""
+              src="/expand-svgrepocom.svg"
+            />
+                  </div>
+                  <div className="pm">
+                  <div className="pm">
+                  <img
+              className="expand-svgrepocom-icon"
+              loading="lazy"
+              alt=""
+              src="/expand-svgrepocom.svg"
+            />
+                  </div>
+                  </div>
+                </div>
               </div>
+              
               <div className="appointment-parent">
-                <div className="appointment">APPOINTMENT</div>
-                <div className="nutrition-review">Nutrition Review</div>
+                <button className="appointment">NEW APPOINTMENT</button>
+                {/* <div className="nutrition-review">Nutrition Review</div>
                 <div className="doctors-consultation-for">
                   Doctor’s consultation for medication refill
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

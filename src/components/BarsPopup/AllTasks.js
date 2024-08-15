@@ -27,7 +27,7 @@ const AllTasks = () => {
 
                 <th>Status</th>
 
-                <th>Assignee</th>
+                <th>Member</th>
               </tr>
                       {memberInteractions && memberInteractions.map((patient) => (
                 <>
@@ -40,7 +40,7 @@ const AllTasks = () => {
                        
                       <td>{patient.taskStatus}</td>
 
-                      <td>{patient.assignedTo}</td>
+                      <td>{patient.memberId}</td>
 
                     </tr>
                   ) : (

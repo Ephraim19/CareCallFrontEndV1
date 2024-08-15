@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const url = "https://ephraim.pythonanywhere.com/"
+// const url = "https://ephraim.pythonanywhere.com/"
+const url = "http://127.0.0.1:8000/"
+
 export const getAllMembers = async () => {
   try {
     const response = await axios.get(url + "members/");
@@ -207,6 +209,7 @@ export const postFamilyHistory = async (data) => {
 };
 
 //Interactions
+
 export const getInteraction = async (memberId) => {
   try {
     const response = await axios.get(url +`interaction/${memberId}/`);
@@ -300,7 +303,7 @@ export const getAllTasks= async () => {
 //Post interaction
 export const postInteraction = async (data) => {
   try {
-    const response = await axios.post(url + "post/", data);
+    const response = await axios.post(url + "interaction/post/", data);
     return response.data;
   } catch (error) {
     console.error(error);

@@ -60,15 +60,49 @@ const Overview = ({overview}) => {
   return (
     <div>
       <form className={styles.firstNameField} >
-        <b className={styles.createNewCarecall}>OVERVIEW</b>
+        <b className={styles.createNewCarecall}>OVERVIEW FORM</b>
 
-        <input
-          className={styles.firstNameField1}
-          placeholder="HEALTH STATUS"
-          type="text"
-          value={healthStatus}
-          onChange={(e) => setHealthStatus(e.target.value)}
-        />
+
+        <label htmlFor="Program">
+          <select
+            className={styles.firstNameField1}
+            onChange={(e) => setHealthStatus(e.target.value)}
+          >
+            {/* <option value={program} key={"HS"}>
+              {program.length > 0 ? program : "SELECT THE PROGRAM"}
+            </option> */}
+
+            <option className="App-info" value="Healthy" key={"Healthy"}>
+              Healthy
+            </option>
+
+            <option
+              className="App-info"
+              value="Chronic"
+              key={"Chronic"}
+            >
+              Chronic
+            </option>
+
+            <option
+              className="App-info"
+              value="ChronicCare"
+              key={"ChronicCare"}
+            >
+              ChronicCare
+            </option>
+
+
+            <option
+              className="App-info"
+              value="Sick"
+              key={"Sick"}
+            >
+              Sick
+            </option>
+          </select>
+        </label>
+
         <input
           className={styles.lastNameField}
           placeholder="RISK SCORE"
