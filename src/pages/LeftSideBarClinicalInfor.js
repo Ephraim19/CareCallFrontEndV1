@@ -34,22 +34,16 @@ const LeftSideBarClinicalInfor = () => {
 
   useEffect(() => {
 
-    
 
-    // onAuthStateChanged(auth, (user) => {
-      auth.authStateReady(() => {
-
-        if (auth.currentUser) {
-
-          setUserEmail(auth.currentUser.email);
-          setImage(auth.currentUser.photoURL);
-          
-        } else {
-          navigate("/email/login");
-        }
-      });
-
-    // });
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUserEmail(user.email);
+        setImage(user.photoURL);
+        
+      } else {
+        navigate("/email/login");
+      }
+    });
 
     getAllMembers().then((data) => {
     setAllMembers(data);
