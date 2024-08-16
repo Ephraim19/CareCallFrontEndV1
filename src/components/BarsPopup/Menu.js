@@ -5,7 +5,9 @@ import {useNavigate, Link } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../Firebase";
 import Overview from './Overview';
-import { getAllTasks,getAllMembers,getAllInteraction,getJourney } from '../../Services';
+import VitalsAnalytics from './VitalsAnalytics';
+import { getAllTasks,getAllMembers,getAllInteraction,getJourney,getAllBloodPressure } from '../../Services';
+import TasksAnalytics from './TasksAnalytics';
 
 const Menu = (memberId) =>{
   const navigate = useNavigate();
@@ -13,6 +15,7 @@ const Menu = (memberId) =>{
   const [interactions, setInteractions] = React.useState([]);
   const [members, setMembers] = React.useState([]);
   const [journey, setJourney] = React.useState([]);
+  const [bloodPressure, setBloodPressure] = React.useState([]);
 
   React.useEffect(() => {
 
@@ -27,7 +30,6 @@ const Menu = (memberId) =>{
         getAllInteraction()
         .then((response) => {
           setInteractions(response );
-          console.log(response)
         })
         .catch((error) => {
             console.error(error);
@@ -50,6 +52,14 @@ const Menu = (memberId) =>{
         }
         );
 
+        getAllBloodPressure()
+        .then((response) => {
+          setBloodPressure(response );
+        })
+        .catch((error) => {
+            console.error(error)
+        }
+        );
 },[])
 
   const logOut = () => {
@@ -85,14 +95,34 @@ return (
                     nested
                   >
                     <Overview datas = {[members,tasks,interactions,journey]} />
-                  </Popup>
+          </Popup>
               
           
           <div className="menu-item"> Members</div>
           <div className="menu-item"> Interactions</div>
-          <div className="menu-item"> Tasks</div>
+
+          <Popup
+                    trigger={
+                      <div  className="menu-item"> Tasks</div>
+                    }
+                    modal
+                    nested
+                  >
+                    <TasksAnalytics />
+          </Popup>
+
           <div className="menu-item"> Member journey</div>
-          <div className="menu-item"> Vitals</div>
+          
+          <Popup
+                    trigger={
+                      <div className="menu-item"> Vitals</div>
+                    }
+                    modal
+                    nested
+                  >
+                    <VitalsAnalytics datas = {[bloodPressure]} />
+          </Popup>
+          
           <div className="menu-item"> Nutrition</div>
           <div className="menu-item"> Staff</div>
         </div>

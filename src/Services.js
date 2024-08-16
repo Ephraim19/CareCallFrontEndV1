@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const url = "https://ephraim.pythonanywhere.com/"
-const url = "http://127.0.0.1:8000/"
+const url = "https://ephraim.pythonanywhere.com/"
+// const url = "http://127.0.0.1:8000/"
 
 export const getAllMembers = async () => {
   try {
@@ -556,6 +556,18 @@ export const getBMI = async (memberId) => {
 export const postBMI= async (data) => {
   try {
     const response = await axios.post(url + "bodymassindex/post/", data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//ANALYTICS
+
+export const getTasksAnalytics= async () => {
+
+  try {
+    const response = await axios.get(url + "tasks/analytics/");
     return response.data;
   } catch (error) {
     console.error(error);
