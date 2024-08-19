@@ -78,7 +78,7 @@ const TasksAnalytics = ({datas}) => {
 <CChart
   type="bar"
   data={{
-    labels: ['Total', 'Hypoglycemia', 'Diabetes', 'Prediabetes'],
+    labels: ['Total', 'Hypoglycemia', 'Diabetes', 'Prediabetes','Not stsrted', 'In progress', 'Complete', 'Cancelled'],
     datasets: [
       {
         label: 'Blood Suagar tasks',
@@ -87,7 +87,15 @@ const TasksAnalytics = ({datas}) => {
             t => t.all_bs), 
             tasks.map(t => t.Hypoglycemia), 
             tasks.map(t => t.Diabetes), 
-            tasks.map(t => t.Prediabetes)],
+            tasks.map(t => t.Prediabetes),
+            tasks.map(t => t.not_started_bs),
+            tasks.map(t => t.in_progress),
+            tasks.map(t => t.complete_bs),            
+            tasks.map(t => t.cancelled_bs),
+
+          ],
+
+
       },
     ],
   }}
