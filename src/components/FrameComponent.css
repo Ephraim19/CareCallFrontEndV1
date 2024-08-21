@@ -236,20 +236,15 @@
   justify-content: flex-start;
   transform: rotate(0deg);
 }
+
 .time {
-  position: relative;
-  font-size: var(--font-size-mid);
-  color: var(--color-gray-100);
-  display: flex;
-  min-width: 45;
-}
-.time:hover {
   font-family: var(--font-roboto-slab);
   font-size: var(--font-size-mid);
   text-align: left;
   color: var(--color-gray-100);
   display: flex;
   min-width: 45;
+  cursor: pointer;
 }
 .pm {
   position: relative;
@@ -265,7 +260,7 @@
   min-width: 60;
 }
 .frame-parent23 {
-  width: 183px;
+  width: auto;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -274,16 +269,7 @@
   height: auto;
   transform: rotate(0deg);
 }
-.frame-parent23:hover {
-  display: flex;
-  width: 183px;
-  height: auto;
-  flex-direction: row;
-  gap: var(--gap-xl);
-  align-items: flex-start;
-  justify-content: space-between;
-  transform: rotate(0deg);
-}
+
 .appointment {
   position: relative;
   font-size: var(--font-size-mid);
@@ -425,7 +411,7 @@
 }
 .search-tree {
   align-self: stretch;
-  height: 214px;
+  height: 100%;
   position: relative;
   border-radius: var(--br-mini);
   background-color: var(--color-dodgerblue-300);
@@ -439,18 +425,7 @@
   font-size: var(--font-size-15xl);
   color: var(--color-white);
 }
-.search-tree:hover {
-  background-color: var(--color-dodgerblue-300);
-  display: flex;
-  align-self: stretch;
-  width: auto;
-  height: 214px;
-  gap: var(--gap-0);
-  border-radius: var(--br-mini);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-  max-width: 100%;
-  flex-shrink: 0;
-}
+
 .engagement-panel {
   height: 43.7px;
   position: relative;
@@ -1283,7 +1258,7 @@
   max-width: 100%;
 }
 .frame-parent21 {
-  height: 931px;
+  height: 900px;
   width:17.5%;
   border-radius: var(--br-6xl);
   background-color: var(--color-white);

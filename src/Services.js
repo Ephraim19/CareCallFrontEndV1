@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const url = "https://ephraim.pythonanywhere.com/"
-// const url = "http://127.0.0.1:8000/"
+// const url = "http://127.0.0.1:8000/";
 
 export const getAllMembers = async () => {
   try {
@@ -23,7 +23,7 @@ export const getMember = async (id) => {
 
 export const postMember = async (data) => {
   try {
-    const response = await axios.post(url +"members/", data);
+    const response = await axios.post(url + "members/", data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -32,10 +32,7 @@ export const postMember = async (data) => {
 
 export const patchMember = async (id, data) => {
   try {
-    const response = await axios.patch(
-      url + `members/${id}/`,
-      data
-    );
+    const response = await axios.patch(url + `members/${id}/`, data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -44,10 +41,7 @@ export const patchMember = async (id, data) => {
 
 export const putMember = async (id, data) => {
   try {
-    const response = await axios.put(
-      url + `members/${id}`,
-      data
-    );
+    const response = await axios.put(url + `members/${id}`, data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -55,12 +49,8 @@ export const putMember = async (id, data) => {
 };
 
 export const newMember = async (data) => {
-  try {
-    const response = await axios.post(url + "new/", data);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+  const response = await axios.post(url + "new/", data);
+  return response.data;
 };
 
 export const getDependants = async (id) => {
@@ -73,15 +63,8 @@ export const getDependants = async (id) => {
 };
 
 export const postDependant = async (data) => {
-  try {
-    const response = await axios.post(
-      url + "dependants/",
-      data
-    );
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+  const response = await axios.post(url + "dependants/", data);
+  return response.data;
 };
 
 export const getOverview = async (id) => {
@@ -95,10 +78,7 @@ export const getOverview = async (id) => {
 
 export const putOverview = async (id, data) => {
   try {
-    const response = await axios.put(
-      url + `overview/${id}/`,
-      data
-    );
+    const response = await axios.put(url + `overview/${id}/`, data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -106,15 +86,8 @@ export const putOverview = async (id, data) => {
 };
 
 export const postOverview = async (data) => {
-  try {
-    const response = await axios.post(
-      url + `overview/`, 
-      data
-    );
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+  const response = await axios.post(url + `overview/`, data);
+  return response.data;
 };
 
 export const getSocialHistory = async (id) => {
@@ -127,15 +100,8 @@ export const getSocialHistory = async (id) => {
 };
 
 export const postSocialHistory = async (data) => {
-  try {
-    const response = await axios.post(
-      url + `social/`, 
-      data
-    );
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+  const response = await axios.post(url + `social/`, data);
+  return response.data;
 };
 
 export const getCondition = async (id) => {
@@ -148,20 +114,13 @@ export const getCondition = async (id) => {
 };
 
 export const postCondition = async (data) => {
-  try {
-    const response = await axios.post(url + "condition/", data);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+  const response = await axios.post(url + "condition/", data);
+  return response.data;
 };
 
 export const putCondition = async (id, data) => {
   try {
-    const response = await axios.put(
-      url + `condition/${id}/`,
-      data
-    );
+    const response = await axios.put(url + `condition/${id}/`, data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -177,13 +136,9 @@ export const getAllergy = async (id) => {
   }
 };
 
-
 export const putOtherNote = async (id, data) => {
   try {
-    const response = await axios.put(
-      url + `notes/${id}/`,
-      data
-    );
+    const response = await axios.put(url + `notes/${id}/`, data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -191,28 +146,20 @@ export const putOtherNote = async (id, data) => {
 };
 
 export const postOtherNote = async (data) => {
-  try {
-    const response = await axios.post(url + "notes/", data);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+  const response = await axios.post(url + "notes/", data);
+  return response.data;
 };
 
 export const postFamilyHistory = async (data) => {
-  try {
-    const response = await axios.post(url + "family/", data);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+  const response = await axios.post(url + "family/", data);
+  return response.data;
 };
 
 //Interactions
 
 export const getInteraction = async (memberId) => {
   try {
-    const response = await axios.get(url +`interaction/${memberId}/`);
+    const response = await axios.get(url + `interaction/${memberId}/`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -220,12 +167,11 @@ export const getInteraction = async (memberId) => {
 };
 
 export const getAllInteraction = async (memberId) => {
-
   try {
     const response = await axios.get(url + `interaction/`, {
       params: {
-        memberId: memberId
-      }
+        memberId: memberId,
+      },
     });
     return response.data;
   } catch (error) {
@@ -244,12 +190,11 @@ export const getBloodpressure = async (memberId) => {
 };
 
 export const getAllBloodPressure = async (memberId) => {
-
   try {
     const response = await axios.get(url + `bloodpressure/`, {
       params: {
-        memberId: memberId
-      }
+        memberId: memberId,
+      },
     });
     return response.data;
   } catch (error) {
@@ -257,23 +202,17 @@ export const getAllBloodPressure = async (memberId) => {
   }
 };
 
-export const postBloodPressure= async (data) => {
-  try {
-    const response = await axios.post(url + "bloodpressure/post/", data);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+export const postBloodPressure = async (data) => {
+  const response = await axios.post(url + "bloodpressure/post/", data);
+  return response.data;
 };
 
-
-export const getTasks= async (memberId) => {
-
+export const getTasks = async (memberId) => {
   try {
     const response = await axios.get(url + `task/`, {
       params: {
-        memberId: memberId
-      }
+        memberId: memberId,
+      },
     });
     return response.data;
   } catch (error) {
@@ -282,16 +221,11 @@ export const getTasks= async (memberId) => {
 };
 
 export const postTask = async (data) => {
-  try {
-    const response = await axios.post(url + "task/post/", data);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+  const response = await axios.post(url + "task/post/", data);
+  return response.data;
 };
 
-export const getAllTasks= async () => {
-
+export const getAllTasks = async () => {
   try {
     const response = await axios.get(url + `task/`);
     return response.data;
@@ -302,36 +236,27 @@ export const getAllTasks= async () => {
 
 //Post interaction
 export const postInteraction = async (data) => {
-  try {
-    const response = await axios.post(url + "interaction/post/", data);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+  const response = await axios.post(url + "interaction/post/", data);
+  return response.data;
 };
 
 //Patch task
 export const patchInteraction = async (id, data) => {
   try {
-    const response = await axios.patch(
-      url + `task/${id}/`,
-      data
-    );
+    const response = await axios.patch(url + `task/${id}/`, data);
     return response.data;
   } catch (error) {
     console.error(error);
   }
 };
 
-
 //GET MEMBER JOURNEY
-export const getJourney= async (memberId) => {
-
+export const getJourney = async (memberId) => {
   try {
     const response = await axios.get(url + `journey/`, {
       params: {
-        memberId: memberId
-      }
+        memberId: memberId,
+      },
     });
     return response.data;
   } catch (error) {
@@ -341,10 +266,7 @@ export const getJourney= async (memberId) => {
 
 export const patchJourney = async (id, data) => {
   try {
-    const response = await axios.patch(
-      url + `journey/${id}/`,
-      data
-    );
+    const response = await axios.patch(url + `journey/${id}/`, data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -363,12 +285,11 @@ export const getSpecificJourney = async (Id) => {
 //Temperature
 
 export const getTemperature = async (memberId) => {
-
   try {
     const response = await axios.get(url + `temperature/`, {
       params: {
-        memberId: memberId
-      }
+        memberId: memberId,
+      },
     });
     return response.data;
   } catch (error) {
@@ -376,24 +297,19 @@ export const getTemperature = async (memberId) => {
   }
 };
 
-export const postTemperature= async (data) => {
-  try {
-    const response = await axios.post(url + "temperature/post/", data);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+export const postTemperature = async (data) => {
+  const response = await axios.post(url + "temperature/post/", data);
+  return response.data;
 };
 
 //Oxygen
 
 export const getOxygen = async (memberId) => {
-
   try {
     const response = await axios.get(url + `oxygen/`, {
       params: {
-        memberId: memberId
-      }
+        memberId: memberId,
+      },
     });
     return response.data;
   } catch (error) {
@@ -401,24 +317,19 @@ export const getOxygen = async (memberId) => {
   }
 };
 
-export const postOxygen= async (data) => {
-  try {
-    const response = await axios.post(url + "oxygen/post/", data);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+export const postOxygen = async (data) => {
+  const response = await axios.post(url + "oxygen/post/", data);
+  return response.data;
 };
 
 //Pulse rate
 
 export const getPulse = async (memberId) => {
-
   try {
     const response = await axios.get(url + `pulse/`, {
       params: {
-        memberId: memberId
-      }
+        memberId: memberId,
+      },
     });
     return response.data;
   } catch (error) {
@@ -426,24 +337,19 @@ export const getPulse = async (memberId) => {
   }
 };
 
-export const postPulse= async (data) => {
-  try {
-    const response = await axios.post(url + "pulse/post/", data);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+export const postPulse = async (data) => {
+  const response = await axios.post(url + "pulse/post/", data);
+  return response.data;
 };
 
 //Respiratory rate
 
 export const getRespiratory = async (memberId) => {
-
   try {
-    const response = await axios.get(url +`respiratory/`, {
+    const response = await axios.get(url + `respiratory/`, {
       params: {
-        memberId: memberId
-      }
+        memberId: memberId,
+      },
     });
     return response.data;
   } catch (error) {
@@ -451,25 +357,19 @@ export const getRespiratory = async (memberId) => {
   }
 };
 
-export const postRespiratory= async (data) => {
-  try {
-    const response = await axios.post(url + "respiratory/post/", data);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+export const postRespiratory = async (data) => {
+  const response = await axios.post(url + "respiratory/post/", data);
+  return response.data;
 };
-
 
 //RBS
 
 export const getRBS = async (memberId) => {
-
   try {
     const response = await axios.get(url + `randombloodsugar/`, {
       params: {
-        memberId: memberId
-      }
+        memberId: memberId,
+      },
     });
     return response.data;
   } catch (error) {
@@ -477,24 +377,19 @@ export const getRBS = async (memberId) => {
   }
 };
 
-export const postRBS= async (data) => {
-  try {
-    const response = await axios.post(url + "randombloodsugar/post/", data);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+export const postRBS = async (data) => {
+  const response = await axios.post(url + "randombloodsugar/post/", data);
+  return response.data;
 };
 
 //FBS
 
 export const getFBS = async (memberId) => {
-
   try {
     const response = await axios.get(url + `fastingbloodsugar/`, {
       params: {
-        memberId: memberId
-      }
+        memberId: memberId,
+      },
     });
     return response.data;
   } catch (error) {
@@ -502,24 +397,19 @@ export const getFBS = async (memberId) => {
   }
 };
 
-export const postFBS= async (data) => {
-  try {
-    const response = await axios.post(url + "fastingbloodsugar/post/", data);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+export const postFBS = async (data) => {
+  const response = await axios.post(url + "fastingbloodsugar/post/", data);
+  return response.data;
 };
 
 //HBA1C
 
 export const getHba1c = async (memberId) => {
-
   try {
     const response = await axios.get(url + `glycatedhaemoglobin/`, {
       params: {
-        memberId: memberId
-      }
+        memberId: memberId,
+      },
     });
     return response.data;
   } catch (error) {
@@ -527,25 +417,19 @@ export const getHba1c = async (memberId) => {
   }
 };
 
-export const postHba1c= async (data) => {
-  try {
-    const response = await axios.post(url + "glycatedhaemoglobin/post/", data);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+export const postHba1c = async (data) => {
+  const response = await axios.post(url + "glycatedhaemoglobin/post/", data);
+  return response.data;
 };
-
 
 //BMI
 
 export const getBMI = async (memberId) => {
-
   try {
     const response = await axios.get(url + `bodymassindex/`, {
       params: {
-        memberId: memberId
-      }
+        memberId: memberId,
+      },
     });
     return response.data;
   } catch (error) {
@@ -553,19 +437,14 @@ export const getBMI = async (memberId) => {
   }
 };
 
-export const postBMI= async (data) => {
-  try {
-    const response = await axios.post(url + "bodymassindex/post/", data);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+export const postBMI = async (data) => {
+  const response = await axios.post(url + "bodymassindex/post/", data);
+  return response.data;
 };
 
 //ANALYTICS
 
-export const getTasksAnalytics= async () => {
-
+export const getTasksAnalytics = async () => {
   try {
     const response = await axios.get(url + "tasks/analytics/");
     return response.data;
@@ -574,60 +453,63 @@ export const getTasksAnalytics= async () => {
   }
 };
 
-export const getMemberAnalytics= async (memberId) => {
-
+export const getMemberAnalytics = async (memberId) => {
   try {
     const response = await axios.get(url + "member/analytics/", {
       params: {
-        memberId: memberId
-      }
+        memberId: memberId,
+      },
     });
     return response.data;
   } catch (error) {
     console.error(error);
   }
-
 };
 
-export const getMemberAnalyticsFbs= async (memberId) => {
-
+export const getMemberAnalyticsFbs = async (memberId) => {
   try {
     const response = await axios.get(url + "member/analytics/fbs/", {
       params: {
-        memberId: memberId
-      }
+        memberId: memberId,
+      },
     });
     return response.data;
   } catch (error) {
     console.error(error);
   }
-  
 };
-export const getMemberAnalyticsRbs= async (memberId) => {
-
+export const getMemberAnalyticsRbs = async (memberId) => {
   try {
     const response = await axios.get(url + "member/analytics/rbs/", {
       params: {
-        memberId: memberId
-      }
+        memberId: memberId,
+      },
     });
     return response.data;
   } catch (error) {
     console.error(error);
   }
-  
 };
-export const getMemberAnalyticsHba1c= async (memberId) => {
+export const getMemberAnalyticsHba1c = async (memberId) => {
+  const response = await axios.get(url + "member/analytics/hba1c/", {
+    params: {
+      memberId: memberId,
+    },
+  });
+  return response.data;
+};
 
-  try {
-    const response = await axios.get(url + "member/analytics/hba1c/", {
-      params: {
-        memberId: memberId
-      }
-    });
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
-  
+//APPOIMTMENTS
+export const postAppointment = async (data) => {
+  const response = await axios.post(url + "appointment/post/", data);
+  return response.data;
+};
+
+export const getAppointments = async (memberId) => {
+  const response = await axios.get(url + "appointment/", {
+    params: {
+      memberId: memberId,
+    },
+  });
+  return response.data;
 };

@@ -1,90 +1,75 @@
 import "./FrameComponent.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Popup from "reactjs-popup";
 import AppointmentForm from "./Appointments/AppointmentForm";
+import { getAppointments } from "../Services";
 
-const FrameComponent = ({memberId}) => {
+const FrameComponent = ({ memberId }) => {
+  // const [appointment, setAppointment] = useState([]);
+
+  const triggerParentEffect = () => {
+    getAppointments(parseInt(memberId[0])).then((result) => {
+      memberId[1] = result;
+      // setAppointment(result)
+    });
+  };
+
   return (
     <div className="frame-parent21">
       <div className="engagement-parent">
         <div className="engagement">Engagement</div>
         <div className="forms">Forms</div>
       </div>
+      
       <div className="search-tree">
-        <div className="vector-parent">
-          <img
-            className="frame-item"
-            loading="lazy"
-            alt=""
-            src="/ellipse-2.svg"
-          />
-          <h2 className="matrix-solver">+</h2>
-        </div>
         <div className="rule-engine">
-          <div className="expand-svgrepocom-wrapper">
-            <img
-              className="expand-svgrepocom-icon"
-              loading="lazy"
-              alt=""
-              src="/expand-svgrepocom.svg"
-            />
-          </div>
           <div className="priority-queue">
-            <b className="pending-appointments">Pending Appointments</b>
+            <div className="pending-appointments">
+              {" "}
+              Pending Appointments
+              <div className="frame-wrapper13">
+                <div className="expand-svgrepocom-container">
+                  <Popup
+                    trigger={
+                      <button style={{ border: "none" }} className="time">
+                        ADD
+                      </button>
+                    }
+                    modal
+                    nested
+                  >
+                    <AppointmentForm
+                      memberId={[memberId[0], triggerParentEffect]}
+                    />
+                  </Popup>
+                </div>
+              </div>
+            </div>
+
             <div className="frame-parent22">
               <div className="frame-parent23">
                 <div className="date-group">
                   <div className="date1">DATE</div>
-                  <div className="div2">10/5/2024</div>
-                  <div className="div3">22/5/2024</div>
-                </div>
-                <div className="date-group">
-                  <div className="time">TIME</div>
-                  <div className="pm">2.30 pm</div>
-                  <div className="pm">2.30 pm</div>
+                  {memberId[1].map((appointment) => (
+                    <div className="div2">
+                      {appointment.appointmentDate}-
+                      {appointment.appointmentTime}
+                    </div>
+                  ))}
                 </div>
 
                 <div className="date-group">
-                <Popup trigger={
-                  <button className="time">NEW</button> }
-        modal
-        nested
-      >
-        <AppointmentForm memberId = {memberId} />
-        </Popup>
-
-                  <div className="pm">
-                  <img
-              className="expand-svgrepocom-icon"
-              loading="lazy"
-              alt=""
-              src="/expand-svgrepocom.svg"
-            />
-                  </div>
-                  <div className="pm">
-                  <div className="pm">
-                  <img
-              className="expand-svgrepocom-icon"
-              loading="lazy"
-              alt=""
-              src="/expand-svgrepocom.svg"
-            />
-                  </div>
-                  </div>
+                  <div className="time">REASON</div>
+                  {memberId[1].map((appointment) => (
+                    <div className="div2">{appointment.appointmentReason}</div>
+                  ))}
                 </div>
-              </div>
-              
-              <div className="appointment-parent">
-                <button className="appointment">NEW APPOINTMENT</button>
-                {/* <div className="nutrition-review">Nutrition Review</div>
-                <div className="doctors-consultation-for">
-                  Doctor’s consultation for medication refill
-                </div> */}
               </div>
             </div>
           </div>
         </div>
       </div>
+
       <div className="frame-parent24">
         <div className="frame-wrapper12">
           <div className="engagement-panel-parent">

@@ -1,45 +1,47 @@
 import React, { useEffect } from "react";
 import styles from "../HomepageForms/Program.module.css";
-import { database } from "../Firebase";
-import { ref, push, update, get, off } from "firebase/database";
+import { auth, database } from "../Firebase";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { newMember } from "../../Services";
+import { postAppointment } from "../../Services";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const AppointmentForm = ({memberId}) => {
-
-  const [home, setHome] = React.useState("");
+const AppointmentForm = ({ memberId }) => {
   const [county, setCounty] = React.useState("");
-  const [town, setTown] = React.useState("");
   const [deliveryInstructions, setDeliveryInstructions] = React.useState("");
   const [startDate, setStartDate] = React.useState(new Date());
-  const [memberEmail, setMemberEmail] = React.useState("");
+  const [selectedTime, setSelectedTime] = React.useState(null);
 
+  const handleTimeChange = (time) => {
+    setSelectedTime(time);
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
     const data = {
-    memberName: home,
-    memberDOB: startDate.toDateString(),
-    memerEmail: memberEmail,
-    memberGender: county,
-    memberFacility: town,
-    memberPhone: deliveryInstructions,
+      memberId: memberId[0],
+      appointmentDate: startDate.toDateString(),
+      appointmentTime: selectedTime.toString().slice(15, 21),
+      appointmentDepartment: county,
+      appointmentReason: deliveryInstructions,
+      appointmentCreatedBy: auth.currentUser.email,
     };
 
-    newMember(data).then((response) => {
-        toast.success("Data submitted successfully");
-        }
-        )
+    if (memberId) {
+      postAppointment(data)
+        .then((response) => {
+          memberId[1]();
+          toast.success("Data submitted successfully");
+        })
         .catch((error) => {
-        console.error(error);
-        toast.error("An error occurred. Please try again");
-        }
-        );
-
+          console.error(error);
+          toast.error("An error occurred. Please try again");
+        });
+    } else {
+      toast.error("Please select a member");
+    }
   };
 
   return (
@@ -47,22 +49,16 @@ const AppointmentForm = ({memberId}) => {
       <form className={styles.firstNameField}>
         <b className={styles.createNewCarecall}>New Appointment Form</b>
 
-
         <label htmlFor="Program">
           <select
             className={styles.firstNameField1}
             onChange={(e) => setCounty(e.target.value)}
           >
-
             <option className="App-info" value="Gender" key={"Gender"}>
               Department
             </option>
 
-            <option
-              className="App-info"
-              value="Doctor"
-              key={"Doctor"}
-            >
+            <option className="App-info" value="Doctor" key={"Doctor"}>
               Doctor’s Appointment
             </option>
 
@@ -81,43 +77,27 @@ const AppointmentForm = ({memberId}) => {
             >
               Psychologist Appointment
             </option>
-
           </select>
         </label>
 
-        <div  className={styles.lastNameField} >
-        <DatePicker  selected={startDate} onChange={(date) => setStartDate(date)}  />
+        <div className={styles.lastNameField}>
+          <DatePicker
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+          />
         </div>
 
-        
-        <label htmlFor="Program">
-          <select
-            className={styles.phoneNumber}
-            onChange={(e) => setCounty(e.target.value)}
-          >
-
-            <option className="App-info" value="Gender" key={"Gender"}>
-              Time
-            </option>
-
-            <option
-              className="App-info"
-              value="Male"
-              key={"Male"}
-            >
-              Male
-            </option>
-
-            <option
-              className="App-info"
-              value="Female"
-              key={"Female"}
-            >
-              Female
-            </option>
-
-          </select>
-        </label>
+        <div className={styles.phoneNumber}>
+          <DatePicker
+            selected={selectedTime}
+            onChange={handleTimeChange}
+            showTimeSelect
+            showTimeSelectOnly
+            timeIntervals={30}
+            timeCaption="Time"
+            dateFormat="h:mm aa"
+          />
+        </div>
 
         {/* <input
           className={styles.emailAddress}
@@ -129,13 +109,12 @@ const AppointmentForm = ({memberId}) => {
 
         <textarea
           className={styles.firstNameField11}
-          style={{height: "55px", width: "90%"}}
-          placeholder="NOTES"
+          style={{ height: "55px", width: "90%" }}
+          placeholder="Reason"
           type="text"
           value={deliveryInstructions}
           onChange={(e) => setDeliveryInstructions(e.target.value)}
         />
-
 
         <button className={styles.signUpButton} onClick={onSubmit}>
           <div className={styles.signUpButton1}>

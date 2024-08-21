@@ -9,7 +9,7 @@ import Nutrition from "../components/NutritionData/Nutrition";
 import LabFindings from "../components/LAB FINDINGS/LabFindings";
 import "../components/FrameComponent3.css";
 import { FaBars, FaSearch } from "react-icons/fa";
-import { getAllMembers, getMember } from "../Services";
+import { getAllMembers, getMember, getAppointments } from "../Services";
 import Interaction from "../components/Interaction/Interaction";
 import Tasks from "../components/Tasks/Tasks";
 import { onAuthStateChanged } from "firebase/auth";
@@ -20,34 +20,30 @@ import Popup from "reactjs-popup";
 import NewMember from "../components/Members/NewMember";
 import Menu from "../components/BarsPopup/Menu";
 
- 
 const LeftSideBarClinicalInfor = () => {
+  const [appointment, setAppointment] = useState([]);
   const [allMembers, setAllMembers] = useState([]);
   const [patientToDisplayId, setPatientToDisplayId] = useState(0);
   const [searched, setSearched] = useState([]);
   const [found, setFound] = useState("");
   const [topNav, setTopNav] = useState("records");
-  const [userEmail, setUserEmail] = useState("")
+  const [userEmail, setUserEmail] = useState("");
   const navigate = useNavigate();
   const [reload, setReload] = React.useState(false);
-  const [image , setImage] = React.useState(null);
+  const [image, setImage] = React.useState(null);
 
   useEffect(() => {
-
-
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setUserEmail(user.email);
         setImage(user.photoURL);
-        
       } else {
         navigate("/email/login");
       }
     });
 
     getAllMembers().then((data) => {
-    setAllMembers(data);
-    
+      setAllMembers(data);
     });
   }, [userEmail, reload]);
 
@@ -67,25 +63,26 @@ const LeftSideBarClinicalInfor = () => {
   const handleResultClick = (patient) => {
     // getMember(parseInt(patient.id)).then((data) => console.log(data));
     setPatientToDisplayId(patient);
-
     setFound(patient.memberName);
+
+    getAppointments(parseInt(patient.id)).then((result) => {
+      setAppointment(result);
+    });
+
     setSearched([]);
   };
 
   return (
     <div className="left-side-bar-clinical-infor">
-
       <header className="conditional-branch">
         <div className="frame-container">
-        <div className="navigation-svgrepocom-wrapper">
-        <Popup
-        nested
-         trigger={
-            <FaBars className="navigation-svgrepocom-icon" />
-        }
-      >
-        <Menu memberId = {patientToDisplayId.id} />
-      </Popup>
+          <div className="navigation-svgrepocom-wrapper">
+            <Popup
+              nested
+              trigger={<FaBars className="navigation-svgrepocom-icon" />}
+            >
+              <Menu memberId={patientToDisplayId.id} />
+            </Popup>
           </div>
           {/* <div className="carecall-logo-parent"> */}
           <div className="logic-gate">
@@ -133,22 +130,28 @@ const LeftSideBarClinicalInfor = () => {
             )}
           </div>
         </div>
-        <Link to ='/all/members'  target='_blank' style={{textDecoration:"none"}} className="conditional-branch-child">
+        <Link
+          to="/all/members"
+          target="_blank"
+          style={{ textDecoration: "none" }}
+          className="conditional-branch-child"
+        >
           <button className="view-all-members-wrapper">
             <div className="view-all-members">Members</div>
           </button>
         </Link>
-        <Popup trigger={
-        <div className="conditional-branch-child">
-          <button className="view-all-members-wrapper">
-            <div className="view-all-members">New Member</div>
-          </button>
-        </div>
-        }
-        modal
-        nested
-      >
-        <NewMember reloading = {triggerParentEffect} />
+        <Popup
+          trigger={
+            <div className="conditional-branch-child">
+              <button className="view-all-members-wrapper">
+                <div className="view-all-members">New Member</div>
+              </button>
+            </div>
+          }
+          modal
+          nested
+        >
+          <NewMember reloading={triggerParentEffect} />
         </Popup>
         <div className="conditional-branch-inner1">
           <div className="frame-parent1">
@@ -156,7 +159,7 @@ const LeftSideBarClinicalInfor = () => {
               className="profile-circle-svgrepocom-icon"
               loading="lazy"
               alt=""
-              src = {image ? image: "/profilecircle-svgrepocom.svg"}
+              src={image ? image : "/profilecircle-svgrepocom.svg"}
             />
           </div>
         </div>
@@ -168,48 +171,107 @@ const LeftSideBarClinicalInfor = () => {
           <div className="frame-group">
             <div className="matrix-multiplier-wrapper">
               <div className="matrix-multiplier">
-
-                <div style={ topNav === "records" ? { textDecoration: "underline", color: "#060074", fontWeight:'500' } : { } }  className="medical-records"  onClick={() => setTopNav('records')} >Medical Records</div>
-
-                <div className="graph-processor" onClick={() => setTopNav('interactions') }>
-                  <div style={ topNav === "interactions" ? { textDecoration: "underline", color: "#060074", fontWeight:'500' } : { } } className="interactions" >Interactions</div>
+                <div
+                  style={
+                    topNav === "records"
+                      ? {
+                          textDecoration: "underline",
+                          color: "#060074",
+                          fontWeight: "500",
+                        }
+                      : {}
+                  }
+                  className="medical-records"
+                  onClick={() => setTopNav("records")}
+                >
+                  Medical Records
                 </div>
 
-                <div className="graph-processor1" onClick={() => setTopNav('tasks') }>
-                  <div style={ topNav === "tasks" ? { textDecoration: "underline", color: "#060074", fontWeight:'500' } : { } } className="tasks">Tasks</div>
+                <div
+                  className="graph-processor"
+                  onClick={() => setTopNav("interactions")}
+                >
+                  <div
+                    style={
+                      topNav === "interactions"
+                        ? {
+                            textDecoration: "underline",
+                            color: "#060074",
+                            fontWeight: "500",
+                          }
+                        : {}
+                    }
+                    className="interactions"
+                  >
+                    Interactions
+                  </div>
                 </div>
 
-                <div style={ topNav === "journey" ? { textDecoration: "underline", color: "#060074", fontWeight:'500' } : { } } className="member-journey" onClick={() => setTopNav('journey') }>Member Journey</div>
+                <div
+                  className="graph-processor1"
+                  onClick={() => setTopNav("tasks")}
+                >
+                  <div
+                    style={
+                      topNav === "tasks"
+                        ? {
+                            textDecoration: "underline",
+                            color: "#060074",
+                            fontWeight: "500",
+                          }
+                        : {}
+                    }
+                    className="tasks"
+                  >
+                    Tasks
+                  </div>
+                </div>
+
+                <div
+                  style={
+                    topNav === "journey"
+                      ? {
+                          textDecoration: "underline",
+                          color: "#060074",
+                          fontWeight: "500",
+                        }
+                      : {}
+                  }
+                  className="member-journey"
+                  onClick={() => setTopNav("journey")}
+                >
+                  Member Journey
+                </div>
               </div>
             </div>
-            {topNav ==='records' &&
-            <div className="data-visualizer">
-              <Collapsible
-                trigger={
-                  <div className="algorithm-component">
-                    <h3 className="vitals">VITALS</h3>
-                    <h3 className="data-normalizer">+</h3>
-                  </div>
-                }
-              >
-                <Vitals patientToDisplayId={patientToDisplayId} />
-              </Collapsible>
+            {topNav === "records" && (
+              <div className="data-visualizer">
+                <Collapsible
+                  trigger={
+                    <div className="algorithm-component">
+                      <h3 className="vitals">VITALS</h3>
+                      <h3 className="data-normalizer">+</h3>
+                    </div>
+                  }
+                >
+                  <Vitals patientToDisplayId={patientToDisplayId} />
+                </Collapsible>
 
-              <Collapsible
-                trigger={
-                  <div
-                    className="algorithm-component1"
-                    style={{ cursor: "pointer" }}
-                  >
-                    <h3 className="nutrition-blood">{`NUTRITION & BLOOD SUGAR`}</h3>
-                    <h3 className="data-normalizer">+</h3>
-                  </div>
-                }
-              >
-                <Nutrition patientToDisplayId={patientToDisplayId} />
-              </Collapsible>
+                <Collapsible
+                  trigger={
+                    <div
+                      className="algorithm-component1"
+                      style={{ cursor: "pointer" }}
+                    >
+                      <h3 className="nutrition-blood">{`NUTRITION & BLOOD SUGAR`}</h3>
+                      {/* <h3 className="data-normalizer">+</h3> */}
+                    </div>
+                  }
+                >
+                  <Nutrition patientToDisplayId={patientToDisplayId} />
+                </Collapsible>
 
-              <Collapsible
+                {/* <Collapsible
                 trigger={
                   <div className="algorithm-component2">
                     <h3 className="nutrition-blood">LAB FINDINGS</h3>
@@ -218,31 +280,35 @@ const LeftSideBarClinicalInfor = () => {
                 }
               >
                 <LabFindings />
-              </Collapsible>
+              </Collapsible> */}
 
-              <div className="algorithm-component3">
-                <h3 className="nutrition-blood">{`IMAGING `}</h3>
-                <h3 className="data-normalizer">+</h3>
+                <div className="algorithm-component3">
+                  <h3 className="nutrition-blood">{`IMAGING `}</h3>
+                  <h3 className="data-normalizer">+</h3>
+                </div>
+                <div className="algorithm-component4">
+                  <h3 className="nutrition-blood">ATTACHMENTS</h3>
+                  <h3 className="data-normalizer">+</h3>
+                </div>
+                <div className="algorithm-component5">
+                  <h3 className="nutrition-blood">CLINICAL NOTES</h3>
+                  <h3 className="data-normalizer">+</h3>
+                </div>
+                <div className="alg=orithm-component6">
+                  <h3 className="nutrition-blood">INTERVENTIONS</h3>
+                  <h3 className="data-normalizer">+</h3>
+                </div>
               </div>
-              <div className="algorithm-component4">
-                <h3 className="nutrition-blood">ATTACHMENTS</h3>
-                <h3 className="data-normalizer">+</h3>
-              </div>
-              <div className="algorithm-component5">
-                <h3 className="nutrition-blood">CLINICAL NOTES</h3>
-                <h3 className="data-normalizer">+</h3>
-              </div>
-              <div className="alg=orithm-component6">
-                <h3 className="nutrition-blood">INTERVENTIONS</h3>
-                <h3 className="data-normalizer">+</h3>
-              </div>
-            </div>
-             }
-             {topNav === 'interactions' && <Interaction memberId = {patientToDisplayId.id} />}
-              {topNav === 'tasks' && <Tasks memberId = {patientToDisplayId.id} />}
-              {topNav === 'journey' && <Journey memberId = {patientToDisplayId.id} />}
+            )}
+            {topNav === "interactions" && (
+              <Interaction memberId={patientToDisplayId.id} />
+            )}
+            {topNav === "tasks" && <Tasks memberId={patientToDisplayId.id} />}
+            {topNav === "journey" && (
+              <Journey memberId={patientToDisplayId.id} />
+            )}
           </div>
-          <FrameComponent memberId = {patientToDisplayId.id} />
+          <FrameComponent memberId={[patientToDisplayId.id, appointment]} />
         </section>
       </main>
     </div>
