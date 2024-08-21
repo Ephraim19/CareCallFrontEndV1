@@ -63,6 +63,16 @@
   align-items: center;
 }
 
+.firstNameFieldA {
+  width: 220px;
+  background-color: var(--color-gainsboro);
+  height: 41px;
+  top: calc(50% - 200.5px);
+  left: calc(50% - 134.5px);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  padding: var(--padding-xs) var(--padding-2xs);
+}
+
 .firstNameField1 {
   width: 220px;
   background-color: var(--color-gainsboro);
@@ -94,6 +104,7 @@
 
 .Nutrition .newPassword,
 .emailAddress,
+.firstNameFieldA,
 .firstNameField1,
 .firstNameField11,
 .firstNameField111,
@@ -370,6 +381,7 @@
   position: relative;
   gap: 41px 27px;
 }
+
 
 @media screen and (max-width: 950px) {
   .carecall {

@@ -8,8 +8,9 @@ import Overview from './Overview';
 import VitalsAnalytics from './VitalsAnalytics';
 import { getAllTasks,getAllMembers,getAllInteraction,getJourney,getAllBloodPressure } from '../../Services';
 import TasksAnalytics from './TasksAnalytics';
+import NutritionAnalytics from './NutritionAnalytics';
 
-const Menu = (memberId) =>{
+const Menu = ({memberId}) =>{
   const navigate = useNavigate();
   const [tasks, setTasks] = React.useState([]);
   const [interactions, setInteractions] = React.useState([]);
@@ -18,6 +19,8 @@ const Menu = (memberId) =>{
   const [bloodPressure, setBloodPressure] = React.useState([]);
 
   React.useEffect(() => {
+
+    console.log(memberId)
 
     getAllTasks()
         .then((response) => {
@@ -120,10 +123,19 @@ return (
                     modal
                     nested
                   >
-                    <VitalsAnalytics datas = {[bloodPressure]} />
+                    <VitalsAnalytics memberId = {memberId} />
           </Popup>
           
-          <div className="menu-item"> Nutrition</div>
+          <Popup
+                    trigger={
+                      <div className="menu-item"> Nutrition</div>
+                    }
+                    modal
+                    nested
+                  >
+                    <NutritionAnalytics memberId = {memberId} />
+          </Popup>
+
           <div className="menu-item"> Staff</div>
         </div>
       </Popup>

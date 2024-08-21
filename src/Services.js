@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const url = "https://ephraim.pythonanywhere.com/"
-// const url = "http://127.0.0.1:8000/"
+// const url = "https://ephraim.pythonanywhere.com/"
+const url = "http://127.0.0.1:8000/"
 
 export const getAllMembers = async () => {
   try {
@@ -572,4 +572,62 @@ export const getTasksAnalytics= async () => {
   } catch (error) {
     console.error(error);
   }
+};
+
+export const getMemberAnalytics= async (memberId) => {
+
+  try {
+    const response = await axios.get(url + "member/analytics/", {
+      params: {
+        memberId: memberId
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+
+};
+
+export const getMemberAnalyticsFbs= async (memberId) => {
+
+  try {
+    const response = await axios.get(url + "member/analytics/fbs/", {
+      params: {
+        memberId: memberId
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+  
+};
+export const getMemberAnalyticsRbs= async (memberId) => {
+
+  try {
+    const response = await axios.get(url + "member/analytics/rbs/", {
+      params: {
+        memberId: memberId
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+  
+};
+export const getMemberAnalyticsHba1c= async (memberId) => {
+
+  try {
+    const response = await axios.get(url + "member/analytics/hba1c/", {
+      params: {
+        memberId: memberId
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+  
 };

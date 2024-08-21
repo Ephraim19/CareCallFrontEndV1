@@ -2,52 +2,96 @@ import React, { useEffect, useState } from "react";
 import styles from "../HomepageForms/Program.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { postTask} from "../../Services";
+import { getMemberAnalytics} from "../../Services";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import '../Tasks/Tasks.css';
+import { CChart } from "@coreui/react-chartjs";
 
-const VitalsAnalytics = ({datas}) => {
+const VitalsAnalytics = ({memberId}) => {
+    const [tasks, setTasks] = useState([])
+
+    React.useEffect(() => {
+      console.log(memberId)
+
+        getMemberAnalytics (parseInt(memberId))
+
+            .then((response) => {
+                console.log(response)
+            setTasks(response );
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+
+    },[])
 
   return (
-    <div>
+    <div style={{ background:"#060074" }} >
       <div className={styles.firstNameField}>
         <b className={styles.createNewCarecall}>VITALS ANALYTICS</b>
-        <table className="customers">
-              <tr>
-                <th>Total</th>
 
-                <th>Normal</th>
+        {memberId ? (
 
-               <th>High blood pressure</th>
+    <CChart
+    style={{width:"100%",height:"75%"}}
+  type="line" 
+  data={{
+    labels: tasks.map((item) => item[0]),
+    datasets: [
+      {
+        label: "Systolic",
+        backgroundColor: "#060074",
+        borderColor: " #060074",
+        pointBackgroundColor: "#060074",
+        pointBorderColor: "#060074",
+        data:tasks.map((item) => item[1]),
+      },
+      {
+        label: "Diastolic",
+        backgroundColor: "#0090af",
+        borderColor: "#0090af",
+        pointBackgroundColor: "#0090af",
+        pointBorderColor: "#0090af",
+        data: tasks.map((item) => item[2]),
+      },
+    ],
+  }}
 
-                  {/*<th>Member journey</th> */}
-              </tr>
-                <tr>
-                    <td>Total: {datas[0].length}</td>
-                    {/* 
-                    <td>Total: {datas[2].length}</td>
-                    <td>Total: {datas[3].length}</td> */}
-                </tr>
-                </table>
+  labels="Status"
+  options={{
+    plugins: {
+      legend: {
+        labels: {
+          color:' #060074',
+        }
+      }
+    },
+    scales: {
+      x: {
+        grid: {
+          color: 'transparent',
+        },
+        ticks: {
+          color: '333#',
+        },
+      },
+      y: {
+        grid: {
+          color: 'transparent',
+        },
+        ticks: {
+          color: '#333',
+        },
+      },
+    },
+  }}
+/>
+
+):("SEARCH FOR A MEMBER TO SEE DATA")}
         </div>
 
-        {/* <input
-          className={styles.firstNameField1}
-          placeholder="TASK NAME"
-          type="text"
-          value={conditionName}
-          onChange={(e) => setConditionName(e.target.value)}
-        />
-        <input
-          className={styles.lastNameField}
-          placeholder="ASSIGNEE"
-          type="text"
-          value={conditionStatus}
-          onChange={(e) => setConditionStatus(e.target.value)}
-        /> */}
-
-    
+        
       <ToastContainer />
     </div>
   );
