@@ -53,8 +53,10 @@ const NutritionAnalytics = ({memberId}) => {
         {memberId ? (
 
 <>
-<CChart
 
+{rbs.length > 0 ? (
+
+<CChart
   type="line" 
   data={{
     labels: rbs.map((item) => item[0]),
@@ -102,8 +104,9 @@ const NutritionAnalytics = ({memberId}) => {
     },
   }}
 />
+):("") }
 
-
+{fbs.length > 0 ? (
 <CChart
   type="line" 
   data={{
@@ -152,7 +155,10 @@ const NutritionAnalytics = ({memberId}) => {
     },
   }}
 />
+):("") }
 
+{hba1c.length >0 ? (
+    
 <CChart
   type="line" 
   data={{
@@ -200,6 +206,7 @@ const NutritionAnalytics = ({memberId}) => {
     },
   }}
 />
+) :("") }
 </>
 ):("SEARCH FOR A MEMBER TO SEE DATA") }
 

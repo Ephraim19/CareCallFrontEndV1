@@ -31,7 +31,7 @@ const VitalsAnalytics = ({memberId}) => {
       <div className={styles.firstNameField}>
         <b className={styles.createNewCarecall}>VITALS ANALYTICS</b>
 
-        {memberId ? (
+        {memberId && tasks.length > 0 ? (
 
     <CChart
     style={{width:"100%",height:"75%"}}
@@ -88,7 +88,7 @@ const VitalsAnalytics = ({memberId}) => {
   }}
 />
 
-):("SEARCH FOR A MEMBER TO SEE DATA")}
+):("SEARCH FOR A MEMBER TO SEE DATA/NO DATA")}
         </div>
 
         
