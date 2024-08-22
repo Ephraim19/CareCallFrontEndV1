@@ -70,7 +70,7 @@ const TasksAnalytics = ({ datas }) => {
               },
               y: {
                 grid: {
-                  color: "transparent",
+                  color: "#0090af",
                 },
                 ticks: {
                   color: "#333",
@@ -130,7 +130,7 @@ const TasksAnalytics = ({ datas }) => {
               },
               y: {
                 grid: {
-                  color: "transparent",
+                  color: "#0090af",
                 },
                 ticks: {
                   color: "#333",

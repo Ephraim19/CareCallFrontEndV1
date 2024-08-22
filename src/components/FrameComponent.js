@@ -2,7 +2,7 @@ import "./FrameComponent.css";
 import React, { useEffect, useState } from "react";
 import Popup from "reactjs-popup";
 import AppointmentForm from "./Appointments/AppointmentForm";
-import { getAppointments } from "../Services";
+import { getAppointments,sendWhatsAppMessage } from "../Services";
 
 const FrameComponent = ({ memberId }) => {
   // const [appointment, setAppointment] = useState([]);
@@ -13,6 +13,10 @@ const FrameComponent = ({ memberId }) => {
     //   // setAppointment(result)
     // });
   };
+
+  const sendMessage = () => {
+    sendWhatsAppMessage();
+  }
 
   return (
     <div className="frame-parent21">
@@ -86,26 +90,26 @@ const FrameComponent = ({ memberId }) => {
         <div className="number-cruncher">
           <div className="string-modifier">
             <div className="list-handler">
+
               <div className="tree-builder">
                 <div className="engagement-panel-parent">
                   <div className="queue-processor">
                     <div className="phone">Phone</div>
                   </div>
                   <div className="queue-processor1">
-                    <b className="sms">SMS</b>
+                    <b className="sms">WhatsApp</b>
                   </div>
-                  <div className="whatsapp">WhatsApp</div>
-                  <div className="email">Email</div>
+                  <div className="whatsapp">SMS</div>
+                  {/* <div className="email">Email</div> */}
                 </div>
               </div>
+
               <div className="set-organizer">
                 <div className="filter-function">
                   <div className="sort-solver">
                     <div className="search-seeker">
                       <div className="hi-mary-its">
-                        Hi Mary! It's Nurse Ebenezer from the CareCall. Just
-                        checking in on how you're feeling today. Any concerns or
-                        changes in your symptoms?
+                        Hi Mary! 
                       </div>
                       <div className="function-factory">
                         <div className="sent-by-ebenezer-container">
@@ -118,9 +122,7 @@ const FrameComponent = ({ memberId }) => {
                     <div className="error-ender">
                       <div className="alert-activator">
                         <div className="hi-ebenezer-thanks">
-                          Hi Ebenezer! Thanks for reaching out. Feeling a bit
-                          better today, thanks. Still dealing with some
-                          coughing, but it's not as bad as before.
+                          Hi Ebenezer! 
                         </div>
                         <div className="data-display">
                           <div className="from-mary-patient-container">
@@ -142,6 +144,7 @@ const FrameComponent = ({ memberId }) => {
                   src="/frame-63.svg"
                 />
               </div>
+
             </div>
             <div className="connection-controller">
               <div className="start-typing-parent">
@@ -150,7 +153,7 @@ const FrameComponent = ({ memberId }) => {
                   placeholder="Start Typing"
                   type="text"
                 />
-                <div className="graph-generator">
+                <div className="graph-generator" onClick={sendMessage}>
                   <img
                     className="visualizer-vision-icon"
                     alt=""

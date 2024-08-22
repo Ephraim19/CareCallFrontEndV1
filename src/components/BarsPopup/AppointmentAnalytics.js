@@ -76,7 +76,7 @@ const AppointmentAnalytics = ({ datas }) => {
               },
               y: {
                 grid: {
-                  color: "transparent",
+                  color: "#0090af",
                 },
                 ticks: {
                   color: "#333",
