@@ -15,6 +15,7 @@ import {
 } from "../../Services";
 import TasksAnalytics from "./TasksAnalytics";
 import NutritionAnalytics from "./NutritionAnalytics";
+import AppointmentAnalytics from "./AppointmentAnalytics";
 
 const Menu = ({ memberId }) => {
   const navigate = useNavigate();
@@ -25,8 +26,6 @@ const Menu = ({ memberId }) => {
   const [bloodPressure, setBloodPressure] = React.useState([]);
 
   React.useEffect(() => {
-    console.log(memberId);
-
     getAllTasks()
       .then((response) => {
         setTasks(response);
@@ -82,10 +81,11 @@ const Menu = ({ memberId }) => {
       <Link to="/all/tasks" target="_blank" className="menu-item">
         All Tasks
       </Link>
-      <div className="menu-item" >
-        {" "}
-        Appointments{" "}
-      </div>
+
+      <Link to="/all/appointments" target="_blank" className="menu-item">
+        All Appointments
+      </Link>
+
       <Popup
         trigger={<div className="menu-item"> Analytics </div>}
         position="right top"
@@ -135,13 +135,18 @@ const Menu = ({ memberId }) => {
             modal
             nested
           >
-            <NutritionAnalytics memberId={memberId} />
+            <AppointmentAnalytics memberId={memberId} />
           </Popup>
+          
         </div>
       </Popup>
       <div className="menu-item" onClick={logOut}>
         {" "}
         Logout
+      </div>
+      <div className="menu-item" onClick={logOut}>
+        {" "}
+        {auth.currentUser.email}{" "}
       </div>
     </div>
   );

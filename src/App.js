@@ -12,6 +12,7 @@ import EmailSignup from "./components/Logins/EmailSignup";
 import Login from "./components/Logins/Login";
 import AllTasks from "./components/BarsPopup/AllTasks"
 import AllMembers from "./components/BarsPopup/AllMembers"
+import AllAppointments from "./components/BarsPopup/AllAppointments";
 
 function App() {
   // const action = useNavigationType();
@@ -59,7 +60,7 @@ function App() {
       <Route path="/email/login" element={<EmailLogin />} />
       <Route path="/all/tasks" element={<AllTasks />} />
       <Route path="/all/members" element={<AllMembers />} />
-
+      <Route path="/all/appointments" element={<AllAppointments />} />
       <Route path="*" element={<div>Not Found</div>} />
 
 

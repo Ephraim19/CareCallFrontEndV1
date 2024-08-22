@@ -96,6 +96,7 @@ const AppointmentForm = ({ memberId }) => {
             timeIntervals={30}
             timeCaption="Time"
             dateFormat="h:mm aa"
+            
           />
         </div>
 

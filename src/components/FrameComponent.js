@@ -8,10 +8,10 @@ const FrameComponent = ({ memberId }) => {
   // const [appointment, setAppointment] = useState([]);
 
   const triggerParentEffect = () => {
-    getAppointments(parseInt(memberId[0])).then((result) => {
-      memberId[1] = result;
-      // setAppointment(result)
-    });
+    // getAppointments(parseInt(memberId[0])).then((result) => {
+    //   memberId[1] = result;
+    //   // setAppointment(result)
+    // });
   };
 
   return (
@@ -20,7 +20,6 @@ const FrameComponent = ({ memberId }) => {
         <div className="engagement">Engagement</div>
         <div className="forms">Forms</div>
       </div>
-      
       <div className="search-tree">
         <div className="rule-engine">
           <div className="priority-queue">
@@ -45,7 +44,6 @@ const FrameComponent = ({ memberId }) => {
                 </div>
               </div>
             </div>
-
             <div className="frame-parent22">
               <div className="frame-parent23">
                 <div className="date-group">

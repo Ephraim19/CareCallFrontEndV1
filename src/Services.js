@@ -499,7 +499,7 @@ export const getMemberAnalyticsHba1c = async (memberId) => {
   return response.data;
 };
 
-//APPOIMTMENTS
+//APPOINTMENTS
 export const postAppointment = async (data) => {
   const response = await axios.post(url + "appointment/post/", data);
   return response.data;
@@ -511,5 +511,10 @@ export const getAppointments = async (memberId) => {
       memberId: memberId,
     },
   });
+  return response.data;
+};
+
+export const getAppointmentsAnalytics = async () => {
+  const response = await axios.get(url + "appointment/analytics/");
   return response.data;
 };
