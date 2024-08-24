@@ -16,6 +16,7 @@ import {
 import TasksAnalytics from "./TasksAnalytics";
 import NutritionAnalytics from "./NutritionAnalytics";
 import AppointmentAnalytics from "./AppointmentAnalytics";
+import StaffOverview from "./StaffOverview";
 
 const Menu = ({ memberId }) => {
   const navigate = useNavigate();
@@ -87,7 +88,7 @@ const Menu = ({ memberId }) => {
       </Link>
 
       <Popup
-        trigger={<div className="menu-item"> Analytics </div>}
+        trigger={<div className="menu-item">Data Analytics </div>}
         position="right top"
         on="hover"
         closeOnDocumentClick
@@ -137,9 +138,34 @@ const Menu = ({ memberId }) => {
           >
             <AppointmentAnalytics memberId={memberId} />
           </Popup>
-          
         </div>
       </Popup>
+      <Popup
+        trigger={<div className="menu-item">Staff Analytics </div>}
+        position="right top"
+        on="hover"
+        closeOnDocumentClick
+        mouseLeaveDelay={300}
+        mouseEnterDelay={0}
+        contentStyle={{ padding: "0px", border: "none" }}
+        arrow={false}
+      >
+        <div className="menu">
+          <Popup
+            trigger={<div className="menu-item"> Overview</div>}
+            modal
+            nested
+          >
+            <StaffOverview datas={[members, tasks, interactions, journey]} />
+          </Popup>
+
+          <div className="menu-item"> Doctor</div>
+          <div className="menu-item"> Nutritionist</div>
+          <div className="menu-item"> Psychologist</div>
+          <div className="menu-item"> Care Manager</div>
+        </div>
+      </Popup>
+
       <div className="menu-item" onClick={logOut}>
         {" "}
         Logout

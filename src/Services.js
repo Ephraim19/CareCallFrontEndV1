@@ -1,7 +1,13 @@
 import axios from "axios";
 
-const url = "https://ephraim.pythonanywhere.com/"
-// const url = "http://127.0.0.1:8000/";
+// const url = "https://ephraim.pythonanywhere.com/"
+const url = "http://127.0.0.1:8000/";
+
+export const searchMember = async (data) => {
+  const response = await axios.post(url + "search/", data);
+  return response.data;
+};
+
 
 export const getAllMembers = async () => {
   try {
@@ -519,36 +525,8 @@ export const getAppointmentsAnalytics = async () => {
   return response.data;
 };
 
-export const sendWhatsAppMessage = async () => {
-  // Replace these with your actual credentials and details
-  const ACCESS_TOKEN = 'EAAEqkG7cBtQBOzPZC0SRPVn3aawFlLgE3GaY49DLP8Ag6aUcS0PZA7SGY7ZBWir18yVBSTTvvfB4c0q1xZBYYGNgZA2057vLtOPgyywDZBZAnUFWtP79W9eYlWsqDS7ZBqocH1SOOj63GYtL38UyDxgzF8VDlZCH3waef0tcS2fCIkZBTNoZCSiiEFZAtTmnwCJcqNMxo2Nu0xDJ7etZAjSNZCFLcZD';
-  const PHONE_NUMBER_ID = '391848354014987';
-  const RECIPIENT_PHONE_NUMBER = '+254 705 018725';
-  const MESSAGE_CONTENT = 'Hello from CareCall!';
-
-  const url = `https://graph.facebook.com/v13.0/${PHONE_NUMBER_ID}/messages`;
-
-  const data = {
-    messaging_product: 'whatsapp',
-    to: RECIPIENT_PHONE_NUMBER,
-    type: 'text',
-    text: { body: MESSAGE_CONTENT }
-  };
-
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${ACCESS_TOKEN}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
-
-    const result = await response.json();
-    console.log(result);
-
-  } catch (error) {
-    console.error('Error:', error);
-  }
+//HR
+export const getHR = async () => {
+  const response = await axios.get(url + "hr/");
+  return response.data;
 };

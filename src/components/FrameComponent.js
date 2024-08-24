@@ -2,20 +2,28 @@ import "./FrameComponent.css";
 import React, { useEffect, useState } from "react";
 import Popup from "reactjs-popup";
 import AppointmentForm from "./Appointments/AppointmentForm";
-import { getAppointments,sendWhatsAppMessage } from "../Services";
+import { getAppointments } from "../Services";
 
 const FrameComponent = ({ memberId }) => {
-  // const [appointment, setAppointment] = useState([]);
+  const [appointments, setAppointments] = useState([]);
+  const [reload, setReload] = useState(false);
+
+  useEffect(() => {
+    setAppointments(memberId[1]);
+  }, [reload
+    ,memberId
+  ]);
 
   const triggerParentEffect = () => {
-    // getAppointments(parseInt(memberId[0])).then((result) => {
-    //   memberId[1] = result;
-    //   // setAppointment(result)
-    // });
+    getAppointments(parseInt(memberId[0])).then((result) => {
+      console.log(result);
+      setAppointments(result)
+      setReload(!reload);
+    });
   };
 
   const sendMessage = () => {
-    sendWhatsAppMessage();
+    // sendWhatsAppMessage();
   }
 
   return (
@@ -52,7 +60,7 @@ const FrameComponent = ({ memberId }) => {
               <div className="frame-parent23">
                 <div className="date-group">
                   <div className="date1">DATE</div>
-                  {memberId[1].map((appointment) => (
+                  {appointments.map((appointment) => (
                     <div className="div2">
                       {appointment.appointmentDate}-
                       {appointment.appointmentTime}
@@ -62,7 +70,7 @@ const FrameComponent = ({ memberId }) => {
 
                 <div className="date-group">
                   <div className="time">REASON</div>
-                  {memberId[1].map((appointment) => (
+                  {appointments.map((appointment) => (
                     <div className="div2">{appointment.appointmentReason}</div>
                   ))}
                 </div>

@@ -59,7 +59,7 @@ const AppointmentForm = ({ memberId }) => {
             </option>
 
             <option className="App-info" value="Doctor" key={"Doctor"}>
-              Doctor’s Appointment
+              Doctor
             </option>
 
             <option
@@ -67,7 +67,7 @@ const AppointmentForm = ({ memberId }) => {
               value="Nutritionist"
               key={"Nutritionist"}
             >
-              Nutritionist Appointment
+              Nutritionist
             </option>
 
             <option
@@ -75,7 +75,7 @@ const AppointmentForm = ({ memberId }) => {
               value="Psychologist"
               key={"psychologist"}
             >
-              Psychologist Appointment
+              Psychologist
             </option>
           </select>
         </label>

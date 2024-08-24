@@ -9,7 +9,12 @@ import Nutrition from "../components/NutritionData/Nutrition";
 import LabFindings from "../components/LAB FINDINGS/LabFindings";
 import "../components/FrameComponent3.css";
 import { FaBars, FaSearch } from "react-icons/fa";
-import { getAllMembers, getMember, getAppointments } from "../Services";
+import {
+  getAllMembers,
+  getMember,
+  getAppointments,
+  searchMember,
+} from "../Services";
 import Interaction from "../components/Interaction/Interaction";
 import Tasks from "../components/Tasks/Tasks";
 import { onAuthStateChanged } from "firebase/auth";
@@ -51,17 +56,32 @@ const LeftSideBarClinicalInfor = () => {
     setReload(!reload);
   };
 
-  const searchByMember = (e) => {
+  const searching = (e) => {
     e.preventDefault();
     setFound(e.target.value);
-    let searches = allMembers.filter((name) =>
-      name.memberName.toLowerCase().includes(e.target.value.toLowerCase())
-    );
-    setSearched(searches);
+
+    let data1 = e.target.value;
+    const data = {
+      name: data1,
+      // phone: data1,
+      // id: data1,
+    };
+
+    if (data1.length > 3) {
+      searchMember(data)
+        .then((response) => {
+          setSearched(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+    else{
+      setSearched([]);
+    }
   };
 
   const handleResultClick = (patient) => {
-    // getMember(parseInt(patient.id)).then((data) => console.log(data));
     setPatientToDisplayId(patient);
     setFound(patient.memberName);
 
@@ -107,9 +127,10 @@ const LeftSideBarClinicalInfor = () => {
             </div>
             <input
               className="search-by-patient"
-              placeholder="Name, Phone or CareCall ID "
+              placeholder="Member name (Enter 3+ letters) "
               type="text"
-              onChange={searchByMember}
+              // onChange={searchByMember}
+              onChange={searching}
               value={found}
             />
           </div>
