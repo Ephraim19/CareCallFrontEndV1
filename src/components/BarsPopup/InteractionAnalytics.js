@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import styles from "../HomepageForms/Program.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { getAppointmentsAnalytics } from "../../Services";
+import { getInteractionAnalytics } from "../../Services";
 import "../Tasks/Tasks.css";
 import { CChart } from "@coreui/react-chartjs";
 
-const AppointmentAnalytics = ({ datas }) => {
+const InteractionAnalytics = ({ datas }) => {
   const [tasks, setTasks] = useState([]);
 
   React.useEffect(() => {
-    getAppointmentsAnalytics()
+    getInteractionAnalytics()
       .then((response) => {
         console.log(response);
         setTasks(response);
@@ -23,7 +23,7 @@ const AppointmentAnalytics = ({ datas }) => {
   return (
     <div style={{ background: "#060074" }}>
       <div className={styles.firstNameField}>
-        <b className={styles.createNewCarecall}>APPOINTMENTS ANALYTICS</b>
+        <b className={styles.createNewCarecall}>INTERACTION ANALYTICS</b>
 
         <CChart
           style={{ width: "100%"}}
@@ -31,27 +31,25 @@ const AppointmentAnalytics = ({ datas }) => {
           data={{
             labels: [
               "Total",
-              "Not started",
-              "In progress",
-              "Complete",
-              "Cancelled",
-              "Doctor",
-              "Nutritionist",
-              "Psychologist",
+              "SMS",
+              "Phone call",
+              "Email",
+              "WhatsApp",
+              "Outbound",
+              "Inbound",
             ],
             datasets: [
               {
-                label: "Appointments",
+                label: "Interactions",
                 backgroundColor: "#060074",
                 data: [
                   tasks.map((t) => t.total),
-                  tasks.map((t) => t.not_started),
-                  tasks.map((t) => t.in_progress),
-                  tasks.map((t) => t.complete),
-                  tasks.map((t) => t.cancelled),
-                  tasks.map((t) => t.doctor),
-                  tasks.map((t) => t.nutritionist),
-                  tasks.map((t) => t.psychologist),
+                  tasks.map((t) => t.SMS),
+                  tasks.map((t) => t.Phone),
+                  tasks.map((t) => t.Email),
+                  tasks.map((t) => t.WhatsApp),
+                  tasks.map((t) => t.Outbound),
+                  tasks.map((t) => t.Inbound),
                 ],
               },
             ],
@@ -92,4 +90,4 @@ const AppointmentAnalytics = ({ datas }) => {
   );
 };
 
-export default AppointmentAnalytics;
+export default InteractionAnalytics;

@@ -27,6 +27,7 @@ const TasksAnalytics = ({ datas }) => {
       <div className={styles.firstNameField}>
         <b className={styles.createNewCarecall}>TASKS ANALYTICS</b>
         <CChart
+        style={{ width: "100%" }}
           type="bar"
           data={{
             labels: [
@@ -35,77 +36,18 @@ const TasksAnalytics = ({ datas }) => {
               "In progress",
               "Complete",
               "Cancelled",
+              // "overdue",
             ],
             datasets: [
               {
-                label: "Blood Pressure tasks",
+                label: "All Tasks",
                 backgroundColor: "#060074",
                 data: [
-                  tasks.map((t) => t.total_hypertension),
-                  tasks.map((t) => t.not_started),
-                  tasks.map((t) => t.in_progress),
-                  tasks.map((t) => t.complete_hypertension),
-                  tasks.map((t) => t.cancelled_hypertension),
-                ],
-              },
-            ],
-          }}
-          labels="Status"
-          options={{
-            plugins: {
-              legend: {
-                labels: {
-                  color: " #060074",
-                },
-              },
-            },
-            scales: {
-              x: {
-                grid: {
-                  color: "transparent",
-                },
-                ticks: {
-                  color: "333#",
-                },
-              },
-              y: {
-                grid: {
-                  color: "#0090af",
-                },
-                ticks: {
-                  color: "#333",
-                },
-              },
-            },
-          }}
-        />
-
-        <CChart
-          type="bar"
-          data={{
-            labels: [
-              "Total",
-              "Hypoglycemia",
-              "Diabetes",
-              "Prediabetes",
-              "Not stsrted",
-              "In progress",
-              "Complete",
-              "Cancelled",
-            ],
-            datasets: [
-              {
-                label: "Blood Suagar tasks",
-                backgroundColor: "#060074",
-                data: [
-                  tasks.map((t) => t.all_bs),
-                  tasks.map((t) => t.Hypoglycemia),
-                  tasks.map((t) => t.Diabetes),
-                  tasks.map((t) => t.Prediabetes),
-                  tasks.map((t) => t.not_started_bs),
-                  tasks.map((t) => t.in_progress),
-                  tasks.map((t) => t.complete_bs),
-                  tasks.map((t) => t.cancelled_bs),
+                  tasks.map((t) => t.total),
+                  tasks.map((t) => t.not_started1),
+                  tasks.map((t) => t.in_progress1),
+                  tasks.map((t) => t.complete),
+                  tasks.map((t) => t.cancelled),
                 ],
               },
             ],

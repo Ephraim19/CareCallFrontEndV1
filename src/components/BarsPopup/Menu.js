@@ -12,11 +12,14 @@ import {
   getAllInteraction,
   getJourney,
   getAllBloodPressure,
+  getHR
 } from "../../Services";
 import TasksAnalytics from "./TasksAnalytics";
 import NutritionAnalytics from "./NutritionAnalytics";
 import AppointmentAnalytics from "./AppointmentAnalytics";
 import StaffOverview from "./StaffOverview";
+import DoctorsAnalytics from "./DoctorsAnalytics";
+import InteractionAnalytics from "./InteractionAnalytics";
 
 const Menu = ({ memberId }) => {
   const navigate = useNavigate();
@@ -25,6 +28,8 @@ const Menu = ({ memberId }) => {
   const [members, setMembers] = React.useState([]);
   const [journey, setJourney] = React.useState([]);
   const [bloodPressure, setBloodPressure] = React.useState([]);
+  const [HR, setHR] = React.useState([]);
+
 
   React.useEffect(() => {
     getAllTasks()
@@ -62,6 +67,14 @@ const Menu = ({ memberId }) => {
     getAllBloodPressure()
       .then((response) => {
         setBloodPressure(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+      getHR()
+      .then((response) => {
+        setHR(response);
       })
       .catch((error) => {
         console.error(error);
@@ -106,14 +119,20 @@ const Menu = ({ memberId }) => {
             <Overview datas={[members, tasks, interactions, journey]} />
           </Popup>
 
-          <div className="menu-item"> Members</div>
-          <div className="menu-item"> Interactions</div>
+          {/* <div className="menu-item"> Members</div> */}
+          <Popup
+            trigger={<div className="menu-item"> Interactions</div>}
+            modal
+            nested
+          >
+            <InteractionAnalytics memberId={memberId} />
+          </Popup>
 
           <Popup trigger={<div className="menu-item"> Tasks</div>} modal nested>
             <TasksAnalytics />
           </Popup>
 
-          <div className="menu-item"> Member journey</div>
+          {/* <div className="menu-item"> Member journey</div> */}
 
           <Popup
             trigger={<div className="menu-item"> Vitals</div>}
@@ -156,10 +175,17 @@ const Menu = ({ memberId }) => {
             modal
             nested
           >
-            <StaffOverview datas={[members, tasks, interactions, journey]} />
+            <StaffOverview datas={HR} />
           </Popup>
 
-          <div className="menu-item"> Doctor</div>
+          <Popup
+            trigger={<div className="menu-item"> Doctors</div>}
+            modal
+            nested
+          >
+            <DoctorsAnalytics datas={HR}  />
+          </Popup>
+
           <div className="menu-item"> Nutritionist</div>
           <div className="menu-item"> Psychologist</div>
           <div className="menu-item"> Care Manager</div>

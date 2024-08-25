@@ -75,8 +75,7 @@ const LeftSideBarClinicalInfor = () => {
         .catch((error) => {
           console.log(error);
         });
-    }
-    else{
+    } else {
       setSearched([]);
     }
   };
@@ -158,14 +157,14 @@ const LeftSideBarClinicalInfor = () => {
           className="conditional-branch-child"
         >
           <button className="view-all-members-wrapper">
-            <div className="view-all-members">Members</div>
+            <div className="view-all-members">All Members</div>
           </button>
         </Link>
         <Popup
           trigger={
             <div className="conditional-branch-child">
               <button className="view-all-members-wrapper">
-                <div className="view-all-members">New Member</div>
+                <div className="view-all-members">Add Member</div>
               </button>
             </div>
           }
@@ -176,12 +175,17 @@ const LeftSideBarClinicalInfor = () => {
         </Popup>
         <div className="conditional-branch-inner1">
           <div className="frame-parent1">
-            <img
-              className="profile-circle-svgrepocom-icon"
-              loading="lazy"
-              alt=""
-              src={image ? image : "/profilecircle-svgrepocom.svg"}
-            />
+            <Link
+              to={{
+                pathname:"/mytasks",
+                state: userEmail,
+              }}
+              target="_blank"
+              style={{ textDecoration: "none" }}
+              className="view-all-members-wrapper"
+            >
+              <div className="view-all-members">My Tasks</div>
+            </Link>
           </div>
         </div>
       </header>

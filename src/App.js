@@ -10,9 +10,11 @@ import Homepage from "./components/MemberReg/Homepage";
 import EmailLogin from "./components/Logins/EmailLogin";
 import EmailSignup from "./components/Logins/EmailSignup";
 import Login from "./components/Logins/Login";
-import AllTasks from "./components/BarsPopup/AllTasks"
-import AllMembers from "./components/BarsPopup/AllMembers"
+import AllTasks from "./components/BarsPopup/AllTasks";
+import AllMembers from "./components/BarsPopup/AllMembers";
 import AllAppointments from "./components/BarsPopup/AllAppointments";
+import MyTasks from "./components/Tasks/MyTasks";
+import { auth } from "./components/Firebase";
 
 function App() {
   // const action = useNavigationType();
@@ -50,9 +52,21 @@ function App() {
   //   }
   // }, [pathname]);
 
+  const addFavicon = () => {
+    const link = document.createElement("link");
+    link.rel = "icon";
+    link.href = "/path/to/favicon.ico";
+    document.head.appendChild(link);
+  };
+
+  useEffect(() => {
+  document.title = "Carecall Harmony";
+    addFavicon();
+
+  }, []);
+
   return (
     <Routes>
-      
       <Route path="/" element={<LeftSideBarClinicalInfor />} />
       <Route path="/new" element={<Homepage />} />
       <Route path="/login" element={<Login />} />
@@ -61,9 +75,8 @@ function App() {
       <Route path="/all/tasks" element={<AllTasks />} />
       <Route path="/all/members" element={<AllMembers />} />
       <Route path="/all/appointments" element={<AllAppointments />} />
+      <Route path="/mytasks" element={<MyTasks  />} />
       <Route path="*" element={<div>Not Found</div>} />
-
-
     </Routes>
   );
 }
