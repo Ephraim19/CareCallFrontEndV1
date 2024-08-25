@@ -2,25 +2,23 @@ import "./FrameComponent.css";
 import React, { useEffect, useState } from "react";
 import Popup from "reactjs-popup";
 import AppointmentForm from "./Appointments/AppointmentForm";
-import { getAppointments } from "../Services";
 
 const FrameComponent = ({ memberId }) => {
   const [appointments, setAppointments] = useState([]);
   const [reload, setReload] = useState(false);
+
+  // const [dataFromChild, setDataFromChild] = useState('');
+
+  const handleChildData = (data) => {
+    console.log(data);
+    setAppointments(data);
+  };
 
   useEffect(() => {
     setAppointments(memberId[1]);
   }, [reload
     ,memberId
   ]);
-
-  const triggerParentEffect = () => {
-    getAppointments(parseInt(memberId[0])).then((result) => {
-      console.log(result);
-      setAppointments(result)
-      setReload(!reload);
-    });
-  };
 
   const sendMessage = () => {
     // sendWhatsAppMessage();
@@ -50,7 +48,7 @@ const FrameComponent = ({ memberId }) => {
                     nested
                   >
                     <AppointmentForm
-                      memberId={[memberId[0], triggerParentEffect]}
+                      memberId={[memberId[0], handleChildData]}
                     />
                   </Popup>
                 </div>
