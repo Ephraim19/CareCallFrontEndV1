@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const url = "https://ephraim.pythonanywhere.com/"
-const url = "http://127.0.0.1:8000/";
+const url = "https://ephraim.pythonanywhere.com/"
+// const url = "http://127.0.0.1:8000/";
 
 export const searchMember = async (data) => {
   const response = await axios.post(url + "search/", data);
@@ -550,3 +550,22 @@ export const getInteractionAnalytics = async () => {
   const response = await axios.get(url + "interaction/analytics/");
   return response.data;
 };
+
+//Whatsapp send txt
+export const sendWhatsapp = async (data) => {
+  const response = await axios.post(url + "send-whatsapp/", data);
+  return response.data;
+};
+
+// export const sendWhatsapp = async (memberId) => {
+//   try {
+//     const response = await axios.get(url + `interaction/`, {
+//       params: {
+//         memberId: memberId,
+//       },
+//     });
+//     return response.data;
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };

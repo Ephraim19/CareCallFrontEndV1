@@ -2,27 +2,56 @@ import "./FrameComponent.css";
 import React, { useEffect, useState } from "react";
 import Popup from "reactjs-popup";
 import AppointmentForm from "./Appointments/AppointmentForm";
+import { sendWhatsapp } from "../Services";
+import { auth } from "./Firebase";
 
 const FrameComponent = ({ memberId }) => {
   const [appointments, setAppointments] = useState([]);
-  const [reload, setReload] = useState(false);
+  const [message, setMessage] = useState('');
+  const [whatsapp, setWhatsapp] = useState('');
 
   // const [dataFromChild, setDataFromChild] = useState('');
 
   const handleChildData = (data) => {
-    console.log(data);
     setAppointments(data);
   };
 
   useEffect(() => {
     setAppointments(memberId[1]);
-  }, [reload
-    ,memberId
-  ]);
+
+    // sendMessage.then((response) => {
+    //   console.log(response);
+    //   setWhatsapp(response);
+    // }
+    // ).catch((error) => {
+    //   console.error(error);
+    // }
+  // );
+  
+  }, [memberId]);
 
   const sendMessage = () => {
-    // sendWhatsAppMessage();
-  }
+
+    const data = {
+      memberId: memberId[0],
+      message: message,
+      messageFrom : auth.currentUser.email,
+      messageDirection:"Outbound",   
+      messageTo: "254"
+    }
+    
+    if(message === ''){
+      return;
+    }
+
+    sendWhatsapp(data).then((response) => {
+      console.log(response);
+      setMessage('');
+    }
+    ).catch((error) => {
+      console.error(error);
+    });
+  };
 
   return (
     <div className="frame-parent21">
@@ -47,10 +76,11 @@ const FrameComponent = ({ memberId }) => {
                     modal
                     nested
                   >
-                    <AppointmentForm
-                      memberId={[memberId[0], handleChildData]}
-                    />
-                  </Popup>
+                      <AppointmentForm
+                        memberId={[memberId[0], handleChildData]}
+                      />
+                      
+                  </Popup >
                 </div>
               </div>
             </div>
@@ -58,6 +88,7 @@ const FrameComponent = ({ memberId }) => {
               <div className="frame-parent23">
                 <div className="date-group">
                   <div className="date1">DATE</div>
+                  {appointments.length === 0 && (<p>No Appointments</p>)}
                   {appointments.map((appointment) => (
                     <div className="div2">
                       {appointment.appointmentDate}-
@@ -96,7 +127,6 @@ const FrameComponent = ({ memberId }) => {
         <div className="number-cruncher">
           <div className="string-modifier">
             <div className="list-handler">
-
               <div className="tree-builder">
                 <div className="engagement-panel-parent">
                   <div className="queue-processor">
@@ -114,9 +144,7 @@ const FrameComponent = ({ memberId }) => {
                 <div className="filter-function">
                   <div className="sort-solver">
                     <div className="search-seeker">
-                      <div className="hi-mary-its">
-                        Hi Mary! 
-                      </div>
+                      <div className="hi-mary-its">Hi Mary!</div>
                       <div className="function-factory">
                         <div className="sent-by-ebenezer-container">
                           <b>Sent by:</b>
@@ -127,9 +155,7 @@ const FrameComponent = ({ memberId }) => {
                     </div>
                     <div className="error-ender">
                       <div className="alert-activator">
-                        <div className="hi-ebenezer-thanks">
-                          Hi Ebenezer! 
-                        </div>
+                        <div className="hi-ebenezer-thanks">Hi Ebenezer!</div>
                         <div className="data-display">
                           <div className="from-mary-patient-container">
                             <b>From:</b>
@@ -150,7 +176,6 @@ const FrameComponent = ({ memberId }) => {
                   src="/frame-63.svg"
                 />
               </div>
-
             </div>
             <div className="connection-controller">
               <div className="start-typing-parent">
@@ -158,8 +183,10 @@ const FrameComponent = ({ memberId }) => {
                   className="start-typing"
                   placeholder="Start Typing"
                   type="text"
+                  value = {message}
+                  onChange={(e) => setMessage(e.target.value)}
                 />
-                <div className="graph-generator" onClick={sendMessage}>
+                <div className="graph-generator" onClick={sendMessage} style={{cursor:"pointer"}}>
                   <img
                     className="visualizer-vision-icon"
                     alt=""
