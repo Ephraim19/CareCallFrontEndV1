@@ -5,10 +5,10 @@ import AppointmentForm from "./Appointments/AppointmentForm";
 import { auth } from "./Firebase";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { sendWhatsapp, getWhatsapp } from "../Services";
 const FrameComponent = ({ memberId }) => {
   const [appointments, setAppointments] = useState([]);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   // const [dataFromChild, setDataFromChild] = useState('');
 
@@ -18,31 +18,35 @@ const FrameComponent = ({ memberId }) => {
 
   useEffect(() => {
     setAppointments(memberId[1]);
-  
   }, [memberId]);
 
   const sendMessage = () => {
-
     const data = {
       memberId: memberId[0],
       message: message,
-      messageFrom : auth.currentUser.email,
-      messageDirection:"Outbound",   
-      messageTo: "254"
-    }
-    
-    if(message === ''){
+      messageFrom: auth.currentUser.email,
+      messageDirection: "Outbound",
+      messageTo: "254",
+    };
+
+    if (message === "") {
       return;
     }
 
-    sendWhatsapp(data).then((response) => {
-      toast.success("Message sent successfully");
-      setMessage('');
-    }
-    ).catch((error) => {
-      toast.error("An error occurred. Please try again");
-      console.error(error);
-    });
+    sendWhatsapp(data)
+      .then((response) => {
+        toast.success("Message sent successfully");
+        setMessage("");
+
+        getWhatsapp(memberId[0]).then((response) => {
+          memberId[3](response);
+        });
+
+      })
+      .catch((error) => {
+        toast.error("An error occurred. Please try again");
+        console.error(error);
+      });
   };
 
   return (
@@ -68,11 +72,10 @@ const FrameComponent = ({ memberId }) => {
                     modal
                     nested
                   >
-                      <AppointmentForm
-                        memberId={[memberId[0], handleChildData]}
-                      />
-                      
-                  </Popup >
+                    <AppointmentForm
+                      memberId={[memberId[0], handleChildData]}
+                    />
+                  </Popup>
                 </div>
               </div>
             </div>
@@ -80,7 +83,7 @@ const FrameComponent = ({ memberId }) => {
               <div className="frame-parent23">
                 <div className="date-group">
                   <div className="date1">DATE</div>
-                  {appointments.length === 0 && (<p>No Appointments</p>)}
+                  {appointments.length === 0 && <p>No Appointments</p>}
                   {appointments.map((appointment) => (
                     <div className="div2">
                       {appointment.appointmentDate}-
@@ -133,22 +136,28 @@ const FrameComponent = ({ memberId }) => {
               </div>
 
               <div className="set-organizer">
-
                 {memberId[2].map((app) => (
-                <div className="filter-function">
-                  <div className="sort-solver">
-                    <div className="search-seeker">
-                      <div className="hi-mary-its">{app.message}!</div>
-                      <div className="function-factory">
-                        <div className="sent-by-ebenezer-container">
-                          <b>Sent by:</b>
-                          <span> {app.messageFrom.slice(0,-10)}</span>
+                  <div className="filter-function">
+                    <div className="sort-solver">
+                      <div className="search-seeker">
+                        <div className="hi-mary-its">{app.message}!</div>
+                        <div className="function-factory">
+                          <div className="sent-by-ebenezer-container">
+                            <b>Sent by:</b>
+                            <span>
+                              {" "}
+                              {app.messageFrom.slice(0, -4) == ".com"
+                                ? app.messageFrom.slice(0, -10)
+                                : app.messageFrom}
+                            </span>
+                          </div>
+                          <div className="may-1-2024">
+                            May 1, 2024 | 9.43 am
+                          </div>
                         </div>
-                        <div className="may-1-2024">May 1, 2024 | 9.43 am</div>
                       </div>
-                    </div>
 
-                    {/* <div className="error-ender">
+                      {/* <div className="error-ender">
                       <div className="alert-activator">
                         <div className="hi-ebenezer-thanks">{app.message}</div>
                         <div className="data-display">
@@ -162,9 +171,8 @@ const FrameComponent = ({ memberId }) => {
                         </div>
                       </div>
                     </div> */}
-
+                    </div>
                   </div>
-                </div>
                 ))}
 
                 <img
@@ -181,10 +189,14 @@ const FrameComponent = ({ memberId }) => {
                   className="start-typing"
                   placeholder="Start Typing"
                   type="text"
-                  value = {message}
+                  value={message}
                   onChange={(e) => setMessage(e.target.value)}
                 />
-                <div className="graph-generator" onClick={sendMessage} style={{cursor:"pointer"}}>
+                <div
+                  className="graph-generator"
+                  onClick={sendMessage}
+                  style={{ cursor: "pointer" }}
+                >
                   <img
                     className="visualizer-vision-icon"
                     alt=""
@@ -203,7 +215,6 @@ const FrameComponent = ({ memberId }) => {
         />
       </div>
       <ToastContainer />
-
     </div>
   );
 };

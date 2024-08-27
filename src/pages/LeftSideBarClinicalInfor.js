@@ -39,6 +39,10 @@ const LeftSideBarClinicalInfor = () => {
   const [image, setImage] = React.useState(null);
   const [whatsapp, setWhatsapp] = useState([]);
 
+  const handleChildData = (data) => {
+    setWhatsapp(data);
+  };
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -340,7 +344,7 @@ const LeftSideBarClinicalInfor = () => {
               <Journey memberId={patientToDisplayId.id} />
             )}
           </div>
-          <FrameComponent memberId={[patientToDisplayId.id, appointment,whatsapp]} />
+          <FrameComponent memberId={[patientToDisplayId.id, appointment,whatsapp,handleChildData]} />
         </section>
       </main>
     </div>
