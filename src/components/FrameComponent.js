@@ -41,7 +41,6 @@ const FrameComponent = ({ memberId }) => {
         getWhatsapp(memberId[0]).then((response) => {
           memberId[3](response);
         });
-
       })
       .catch((error) => {
         toast.error("An error occurred. Please try again");
@@ -139,38 +138,43 @@ const FrameComponent = ({ memberId }) => {
                 {memberId[2].map((app) => (
                   <div className="filter-function">
                     <div className="sort-solver">
-                      <div className="search-seeker">
-                        <div className="hi-mary-its">{app.message}!</div>
-                        <div className="function-factory">
-                          <div className="sent-by-ebenezer-container">
-                            <b>Sent by:</b>
-                            <span>
-                              {" "}
-                              {app.messageFrom.slice(0, -4) == ".com"
-                                ? app.messageFrom.slice(0, -10)
-                                : app.messageFrom}
-                            </span>
-                          </div>
-                          <div className="may-1-2024">
-                            May 1, 2024 | 9.43 am
+                      {app.messageDirection === "Inbound" && (
+                        <div className="search-seeker">
+                          <div className="hi-mary-its">{app.message}</div>
+                          <div className="function-factory">
+                            <div className="sent-by-ebenezer-container">
+                              <b>From:</b>
+                              <span>
+                                {" "}
+                                  {app.messageFrom}
+                              </span>
+                            </div>
+                            <div className="may-1-2024">
+                              {app.created.slice(0, 10)} |{" "}
+                              {app.created.slice(11, 16)}
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      )}
 
-                      {/* <div className="error-ender">
-                      <div className="alert-activator">
-                        <div className="hi-ebenezer-thanks">{app.message}</div>
-                        <div className="data-display">
-                          <div className="from-mary-patient-container">
-                            <b>From:</b>
-                            <span> {app.message} (patient)</span>
-                          </div>
-                          <div className="may-1-20241">
-                            May 1, 2024 | 11.47 am
+                      {app.messageDirection === "Outbound" && (
+                        <div className="error-ender">
+                          <div className="alert-activator">
+                            <div className="hi-ebenezer-thanks">
+                              {app.message}
+                            </div>
+                            <div className="data-display">
+                              <div className="from-mary-patient-container">
+                                <b>Sent By:</b>
+                                <span> {app.messageFrom. slice(0,-10)} </span>
+                              </div>
+                              <div className="may-1-20241">
+                                May 1, 2024 | 11.47 am
+                              </div>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </div> */}
+                      )}
                     </div>
                   </div>
                 ))}
