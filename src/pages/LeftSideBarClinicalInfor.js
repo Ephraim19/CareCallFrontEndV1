@@ -14,6 +14,7 @@ import {
   getMember,
   getAppointments,
   searchMember,
+  getWhatsapp,
 } from "../Services";
 import Interaction from "../components/Interaction/Interaction";
 import Tasks from "../components/Tasks/Tasks";
@@ -36,6 +37,7 @@ const LeftSideBarClinicalInfor = () => {
   const navigate = useNavigate();
   const [reload, setReload] = React.useState(false);
   const [image, setImage] = React.useState(null);
+  const [whatsapp, setWhatsapp] = useState([]);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -86,6 +88,11 @@ const LeftSideBarClinicalInfor = () => {
 
     getAppointments(parseInt(patient.id)).then((result) => {
       setAppointment(result);
+    });
+
+    getWhatsapp(parseInt(patient.id)).then((response) => {
+      console.log(response);
+      setWhatsapp(response);
     });
 
     setSearched([]);
@@ -177,7 +184,7 @@ const LeftSideBarClinicalInfor = () => {
           <div className="frame-parent1">
             <Link
               to={{
-                pathname:"/mytasks",
+                pathname: "/mytasks",
                 state: userEmail,
               }}
               target="_blank"
@@ -333,7 +340,7 @@ const LeftSideBarClinicalInfor = () => {
               <Journey memberId={patientToDisplayId.id} />
             )}
           </div>
-          <FrameComponent memberId={[patientToDisplayId.id, appointment]} />
+          <FrameComponent memberId={[patientToDisplayId.id, appointment,whatsapp]} />
         </section>
       </main>
     </div>

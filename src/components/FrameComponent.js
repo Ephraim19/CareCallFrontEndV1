@@ -2,7 +2,6 @@ import "./FrameComponent.css";
 import React, { useEffect, useState } from "react";
 import Popup from "reactjs-popup";
 import AppointmentForm from "./Appointments/AppointmentForm";
-import { sendWhatsapp } from "../Services";
 import { auth } from "./Firebase";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,7 +9,6 @@ import "react-toastify/dist/ReactToastify.css";
 const FrameComponent = ({ memberId }) => {
   const [appointments, setAppointments] = useState([]);
   const [message, setMessage] = useState('');
-  const [whatsapp, setWhatsapp] = useState('');
 
   // const [dataFromChild, setDataFromChild] = useState('');
 
@@ -20,15 +18,6 @@ const FrameComponent = ({ memberId }) => {
 
   useEffect(() => {
     setAppointments(memberId[1]);
-
-    // sendMessage.then((response) => {
-    //   console.log(response);
-    //   setWhatsapp(response);
-    // }
-    // ).catch((error) => {
-    //   console.error(error);
-    // }
-  // );
   
   }, [memberId]);
 
@@ -144,34 +133,40 @@ const FrameComponent = ({ memberId }) => {
               </div>
 
               <div className="set-organizer">
+
+                {memberId[2].map((app) => (
                 <div className="filter-function">
                   <div className="sort-solver">
                     <div className="search-seeker">
-                      <div className="hi-mary-its">Hi Mary!</div>
+                      <div className="hi-mary-its">{app.message}!</div>
                       <div className="function-factory">
                         <div className="sent-by-ebenezer-container">
                           <b>Sent by:</b>
-                          <span> Ebenezer Mokamba</span>
+                          <span> {app.messageFrom.slice(0,-10)}</span>
                         </div>
                         <div className="may-1-2024">May 1, 2024 | 9.43 am</div>
                       </div>
                     </div>
-                    <div className="error-ender">
+
+                    {/* <div className="error-ender">
                       <div className="alert-activator">
-                        <div className="hi-ebenezer-thanks">Hi Ebenezer!</div>
+                        <div className="hi-ebenezer-thanks">{app.message}</div>
                         <div className="data-display">
                           <div className="from-mary-patient-container">
                             <b>From:</b>
-                            <span> Mary (patient)</span>
+                            <span> {app.message} (patient)</span>
                           </div>
                           <div className="may-1-20241">
                             May 1, 2024 | 11.47 am
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
+
                   </div>
                 </div>
+                ))}
+
                 <img
                   className="input-interpreter-icon"
                   loading="lazy"

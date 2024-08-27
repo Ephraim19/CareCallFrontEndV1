@@ -557,15 +557,15 @@ export const sendWhatsapp = async (data) => {
   return response.data;
 };
 
-// export const sendWhatsapp = async (memberId) => {
-//   try {
-//     const response = await axios.get(url + `interaction/`, {
-//       params: {
-//         memberId: memberId,
-//       },
-//     });
-//     return response.data;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
+export const getWhatsapp = async (memberId) => {
+  try {
+    const response = await axios.get(url + `whatsapp/`, {
+      params: {
+        memberId: memberId,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
