@@ -4,6 +4,8 @@ import Popup from "reactjs-popup";
 import AppointmentForm from "./Appointments/AppointmentForm";
 import { sendWhatsapp } from "../Services";
 import { auth } from "./Firebase";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const FrameComponent = ({ memberId }) => {
   const [appointments, setAppointments] = useState([]);
@@ -45,10 +47,11 @@ const FrameComponent = ({ memberId }) => {
     }
 
     sendWhatsapp(data).then((response) => {
-      console.log(response);
+      toast.success("Message sent successfully");
       setMessage('');
     }
     ).catch((error) => {
+      toast.error("An error occurred. Please try again");
       console.error(error);
     });
   };
@@ -204,6 +207,8 @@ const FrameComponent = ({ memberId }) => {
           src="/frame-58.svg"
         />
       </div>
+      <ToastContainer />
+
     </div>
   );
 };
