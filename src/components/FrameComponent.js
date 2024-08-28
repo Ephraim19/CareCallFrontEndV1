@@ -18,6 +18,31 @@ const FrameComponent = ({ memberId }) => {
 
   useEffect(() => {
     setAppointments(memberId[1]);
+
+    //WebSocket
+    const socket = new WebSocket("ws://127.0.0.1:8000/ws/whatsapp/");
+
+    socket.onopen = () => {
+      console.log("WebSocket connected");
+    };
+
+    socket.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      console.log(data.message);
+      getWhatsapp(memberId[0]).then((response) => {
+        memberId[3](response);
+      });
+    };
+
+    socket.onclose = () => {
+      console.log("WebSocket disconnected");
+    };
+
+    socket.onerror = (error) => {
+      console.error("WebSocket error:", error);
+    };
+
+    // socket.close();
   }, [memberId]);
 
   const sendMessage = () => {
@@ -35,6 +60,7 @@ const FrameComponent = ({ memberId }) => {
 
     sendWhatsapp(data)
       .then((response) => {
+        console.log(response);
         toast.success("Message sent successfully");
         setMessage("");
 
@@ -118,6 +144,7 @@ const FrameComponent = ({ memberId }) => {
             </div>
           </div>
         </div>
+
         <div className="number-cruncher">
           <div className="string-modifier">
             <div className="list-handler">
@@ -144,10 +171,7 @@ const FrameComponent = ({ memberId }) => {
                           <div className="function-factory">
                             <div className="sent-by-ebenezer-container">
                               <b>From:</b>
-                              <span>
-                                {" "}
-                                  {app.messageFrom}
-                              </span>
+                              <span> {app.messageFrom}</span>
                             </div>
                             <div className="may-1-2024">
                               {app.created.slice(0, 10)} |{" "}
@@ -166,7 +190,7 @@ const FrameComponent = ({ memberId }) => {
                             <div className="data-display">
                               <div className="from-mary-patient-container">
                                 <b>Sent By:</b>
-                                <span> {app.messageFrom. slice(0,-10)} </span>
+                                <span> {app.messageFrom.slice(0, -10)} </span>
                               </div>
                               <div className="may-1-20241">
                                 May 1, 2024 | 11.47 am
@@ -178,6 +202,7 @@ const FrameComponent = ({ memberId }) => {
                     </div>
                   </div>
                 ))}
+                {memberId[2].length === 0 && <b>No messages</b>}
 
                 <img
                   className="input-interpreter-icon"

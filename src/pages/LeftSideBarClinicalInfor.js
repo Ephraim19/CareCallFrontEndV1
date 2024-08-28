@@ -38,6 +38,7 @@ const LeftSideBarClinicalInfor = () => {
   const [reload, setReload] = React.useState(false);
   const [image, setImage] = React.useState(null);
   const [whatsapp, setWhatsapp] = useState([]);
+  const [message, setMessage] = useState("");
 
   const handleChildData = (data) => {
     setWhatsapp(data);
@@ -344,7 +345,14 @@ const LeftSideBarClinicalInfor = () => {
               <Journey memberId={patientToDisplayId.id} />
             )}
           </div>
-          <FrameComponent memberId={[patientToDisplayId.id, appointment,whatsapp,handleChildData]} />
+          <FrameComponent
+            memberId={[
+              patientToDisplayId.id,
+              appointment,
+              whatsapp,
+              handleChildData,
+            ]}
+          />
         </section>
       </main>
     </div>

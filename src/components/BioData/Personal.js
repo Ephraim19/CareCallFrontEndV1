@@ -81,7 +81,7 @@ const Personal = ({patientToDisplayId}) => {
                     <div className="active2">
                       {patientToDisplayId
                         ? patientToDisplayId
-                            .memberCareManager
+                            .memberCareManager.slice(0, -10)
                         : "--"}
                     </div>
                   </div>
@@ -95,7 +95,7 @@ const Personal = ({patientToDisplayId}) => {
                 <div className="graph-traversal">
                   <div className="vitalcare3601">
                     {patientToDisplayId
-                      ? patientToDisplayId.memberNutritionist
+                      ? patientToDisplayId.memberNutritionist.slice(0, -10)
                       : "--"}
                   </div>
                 </div>
@@ -104,7 +104,7 @@ const Personal = ({patientToDisplayId}) => {
                     <div className="active2">
                       {patientToDisplayId
                         ? patientToDisplayId
-                            .memberEngagementLead
+                            .memberEngagementLead.slice(0, -10)
                         : "--"}
                     </div>
                   </div>
@@ -144,7 +144,7 @@ const Personal = ({patientToDisplayId}) => {
               </div>
               <div className="felixwandera398gmailcom1">
                 {patientToDisplayId
-                  ? patientToDisplayId.memerEmail
+                  ? patientToDisplayId.memerEmail.slice(0, -10)
                   : "--"}
               </div>
             </div>

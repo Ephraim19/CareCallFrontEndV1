@@ -49,7 +49,7 @@ const FrameComponent1 = ({patientToDisplayId}) => {
   return (
     <div
       className="joiner-parent"
-      style={{ height: "100vh", overflowY: "auto" }}
+      style={{ height: "100vh", overflowY: "auto"   }}
     >
       <div className="joiner">
         <div className="frame-parent3">
