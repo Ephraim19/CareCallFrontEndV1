@@ -569,3 +569,9 @@ export const getWhatsapp = async (memberId) => {
     console.error(error);
   }
 };
+
+//Webhook triggered
+export const triggerWebhook = async (data) => {
+  const response = await axios.post("https://ephraim.pythonanywhere.com/webhook/", data);
+  return response.data;
+};

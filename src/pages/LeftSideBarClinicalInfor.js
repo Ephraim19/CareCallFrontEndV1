@@ -73,7 +73,7 @@ const LeftSideBarClinicalInfor = () => {
       // id: data1,
     };
 
-    if (data1.length > 3) {
+    if (data1.length > 1) {
       searchMember(data)
         .then((response) => {
           setSearched(response);
