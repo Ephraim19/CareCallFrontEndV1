@@ -23,6 +23,7 @@ const Program = ({programStatusDisplay}) => {
         programStatusDisplay
           .memberStatus
       );
+      
       setStage(
         programStatusDisplay
           .memberOnboardingStage
@@ -45,6 +46,8 @@ const Program = ({programStatusDisplay}) => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
+    print(status);
+    print(program);
     patchMember(
       parseInt(programStatusDisplay.id),
       {
@@ -57,7 +60,6 @@ const Program = ({programStatusDisplay}) => {
       }
     )
       .then((response) => {
-        console.log(response);
         toast.success("Data Updated Successfully");
       })
       .catch((error) => {

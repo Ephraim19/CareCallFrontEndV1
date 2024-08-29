@@ -20,6 +20,7 @@ import AppointmentAnalytics from "./AppointmentAnalytics";
 import StaffOverview from "./StaffOverview";
 import DoctorsAnalytics from "./DoctorsAnalytics";
 import InteractionAnalytics from "./InteractionAnalytics";
+import Invoice from "./Invoice";
 
 const Menu = ({ memberId }) => {
   const navigate = useNavigate();
@@ -103,10 +104,10 @@ const Menu = ({ memberId }) => {
       <Popup
         trigger={<div className="menu-item">Data Analytics </div>}
         position="right top"
-        on="hover"
+        on="click"
         closeOnDocumentClick
-        mouseLeaveDelay={300}
-        mouseEnterDelay={0}
+        // mouseLeaveDelay={0}
+        // mouseEnterDelay={0}
         contentStyle={{ padding: "0px", border: "none" }}
         arrow={false}
       >
@@ -162,10 +163,10 @@ const Menu = ({ memberId }) => {
       <Popup
         trigger={<div className="menu-item">Staff Analytics </div>}
         position="right top"
-        on="hover"
+        on="click"
         closeOnDocumentClick
-        mouseLeaveDelay={300}
-        mouseEnterDelay={0}
+        // mouseLeaveDelay={300}
+        // mouseEnterDelay={0}
         contentStyle={{ padding: "0px", border: "none" }}
         arrow={false}
       >
@@ -192,16 +193,43 @@ const Menu = ({ memberId }) => {
         </div>
       </Popup>
 
-      <div className="menu-item" >
-        {" "}
-        Finance
-      </div>
+      <Popup
+        trigger={<div className="menu-item">Finance </div>}
+        position="right top"
+        on="click"
+        closeOnDocumentClick
+        // mouseLeaveDelay={300}
+        // mouseEnterDelay={0}
+        contentStyle={{ padding: "0px", border: "none" }}
+        arrow={true}
+      >
+        <div className="menu">
+          <Popup
+            trigger={<div className="menu-item"> Generate invoice</div>}
+            modal
+            nested
+          >
+            <Invoice datas={HR} />
+          </Popup>
 
-      <div className="menu-item" onClick={logOut}>
+          <Popup
+            trigger={<div className="menu-item"> Confirm payment</div>}
+            modal
+            nested
+          >
+            <DoctorsAnalytics datas={HR}  />
+          </Popup>
+
+          <div className="menu-item"> Payment follow up</div>
+          <div className="menu-item"> Total</div>
+        </div>
+      </Popup>
+
+      {/* <div className="menu-item" onClick={logOut}>
         {" "}
         Logout
-      </div>
-      <div className="menu-item" onClick={logOut}>
+      </div> */}
+      <div className="menu-item" >
         {" "}
         {auth.currentUser.email}{" "}
       </div>
