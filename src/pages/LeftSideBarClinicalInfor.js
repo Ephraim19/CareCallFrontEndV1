@@ -74,7 +74,7 @@ const LeftSideBarClinicalInfor = () => {
       // id: data1,
     };
 
-    if (data1.length > 1) {
+    if (data1.length > 0) {
       searchMember(data)
         .then((response) => {
           setSearched(response);
@@ -96,7 +96,6 @@ const LeftSideBarClinicalInfor = () => {
     });
 
     getWhatsapp(parseInt(patient.id)).then((response) => {
-      console.log(response);
       setWhatsapp(response);
     });
 
@@ -138,7 +137,7 @@ const LeftSideBarClinicalInfor = () => {
             </div>
             <input
               className="search-by-patient"
-              placeholder="Member name (Enter 3+ letters) "
+              placeholder="Member name or ID "
               type="text"
               // onChange={searchByMember}
               onChange={searching}

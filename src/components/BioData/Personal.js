@@ -114,6 +114,7 @@ const Personal = ({patientToDisplayId}) => {
           </div>
         </div>
       </div>
+
       <div className="frame-parent211">
         <div className="frame-parent22">
           <div className="contacts-group">
@@ -186,6 +187,7 @@ const Personal = ({patientToDisplayId}) => {
           </div>
         </div>
       </div>
+      
       <div className="stack-parent">
         <div className="stack1">
           <div className="stack">

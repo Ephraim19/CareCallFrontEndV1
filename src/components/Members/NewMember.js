@@ -8,8 +8,7 @@ import { newMember } from "../../Services";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const NewMember = ({reloading}) => {
-
+const NewMember = ({ reloading }) => {
   const [home, setHome] = React.useState("");
   const [county, setCounty] = React.useState("");
   const [town, setTown] = React.useState("");
@@ -17,30 +16,27 @@ const NewMember = ({reloading}) => {
   const [startDate, setStartDate] = React.useState(new Date());
   const [memberEmail, setMemberEmail] = React.useState("");
 
-
   const onSubmit = async (e) => {
     e.preventDefault();
 
     const data = {
-    memberName: home,
-    memberDOB: startDate.toDateString(),
-    memerEmail: memberEmail,
-    memberGender: county,
-    memberFacility: town,
-    memberPhone: deliveryInstructions,
+      memberName: home,
+      memberDOB: startDate.toDateString(),
+      memerEmail: memberEmail,
+      memberGender: county,
+      memberFacility: town,
+      memberPhone: deliveryInstructions,
     };
 
-    newMember(data).then((response) => {
+    newMember(data)
+      .then((response) => {
         reloading();
         toast.success("Data submitted successfully");
-        }
-        )
-        .catch((error) => {
+      })
+      .catch((error) => {
         console.error(error);
         toast.error("An error occurred. Please try again");
-        }
-        );
-
+      });
   };
 
   return (
@@ -56,37 +52,32 @@ const NewMember = ({reloading}) => {
           onChange={(e) => setHome(e.target.value)}
         />
 
-        <div  className={styles.lastNameField} >
-        <DatePicker  selected={startDate} onChange={(date) => setStartDate(date)}  />
+        <div className={styles.lastNameField}>
+          <DatePicker
+            showYearDropdown // Enable year dropdown
+            scrollableYearDropdown // Make the year dropdown scrollable
+            yearDropdownItemNumber={100} // Number of years to show (e.g., 100 years)
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+          />
         </div>
 
-        
         <label htmlFor="Program">
           <select
             className={styles.phoneNumber}
             onChange={(e) => setCounty(e.target.value)}
           >
-
             <option className="App-info" value="Gender" key={"Gender"}>
               Gender
             </option>
 
-            <option
-              className="App-info"
-              value="Male"
-              key={"Male"}
-            >
+            <option className="App-info" value="Male" key={"Male"}>
               Male
             </option>
 
-            <option
-              className="App-info"
-              value="Female"
-              key={"Female"}
-            >
+            <option className="App-info" value="Female" key={"Female"}>
               Female
             </option>
-
           </select>
         </label>
 

@@ -197,11 +197,11 @@ const Menu = ({ memberId }) => {
         trigger={<div className="menu-item">Finance </div>}
         position="right top"
         on="click"
-        closeOnDocumentClick
+        
         // mouseLeaveDelay={300}
         // mouseEnterDelay={0}
         contentStyle={{ padding: "0px", border: "none" }}
-        arrow={true}
+        arrow={false}
       >
         <div className="menu">
           <Popup
