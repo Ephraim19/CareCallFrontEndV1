@@ -20,7 +20,7 @@ const FrameComponent = ({ memberId }) => {
     setAppointments(memberId[1]);
 
     //WebSocket
-    const socket = new WebSocket("ws://127.0.0.1:8000/ws/whatsapp/");
+    const socket = new WebSocket("ws://ephraim.pythonanywhere.com/ws/whatsapp/");
 
     socket.onopen = () => {
       console.log("WebSocket connected");
