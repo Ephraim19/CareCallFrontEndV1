@@ -20,28 +20,28 @@ const FrameComponent = ({ memberId }) => {
     setAppointments(memberId[1]);
 
     //WebSocket
-    const socket = new WebSocket("wss://ephraim.pythonanywhere.com/ws/whatsapp/");
+    // const socket = new WebSocket("wss://ephraim.pythonanywhere.com/ws/whatsapp/");
 
-    socket.onopen = () => {
-      console.log("WebSocket connected");
-    };
+    // socket.onopen = () => {
+    //   console.log("WebSocket connected");
+    // };
 
-    socket.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      console.log(data.message);
+    // socket.onmessage = (event) => {
+    //   const data = JSON.parse(event.data);
+    //   console.log(data.message);
 
-      getWhatsapp(memberId[0]).then((response) => {
-        memberId[3](response);
-      });
-    };
+    //   getWhatsapp(memberId[0]).then((response) => {
+    //     memberId[3](response);
+    //   });
+    // };
 
-    socket.onclose = () => {
-      console.log("WebSocket disconnected");
-    };
+    // socket.onclose = () => {
+    //   console.log("WebSocket disconnected");
+    // };
 
-    socket.onerror = (error) => {
-      console.error("WebSocket error:", error);
-    };
+    // socket.onerror = (error) => {
+    //   console.error("WebSocket error:", error);
+    // };
 
     // socket.close();
   }, [memberId]);
