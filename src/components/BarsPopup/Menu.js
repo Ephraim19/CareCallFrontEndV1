@@ -192,6 +192,11 @@ const Menu = ({ memberId }) => {
         </div>
       </Popup>
 
+      <div className="menu-item" >
+        {" "}
+        Finance
+      </div>
+
       <div className="menu-item" onClick={logOut}>
         {" "}
         Logout

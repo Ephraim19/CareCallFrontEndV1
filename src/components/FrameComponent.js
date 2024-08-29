@@ -29,6 +29,7 @@ const FrameComponent = ({ memberId }) => {
     socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
       console.log(data.message);
+
       getWhatsapp(memberId[0]).then((response) => {
         memberId[3](response);
       });
