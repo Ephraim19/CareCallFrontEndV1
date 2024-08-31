@@ -46,13 +46,14 @@ const NewMember = ({ reloading }) => {
 
         <input
           className={styles.firstNameField1}
-          placeholder="NAME"
+          placeholder="FULL NAME"
           type="text"
           value={home}
           onChange={(e) => setHome(e.target.value)}
         />
 
         <div className={styles.lastNameField}>
+          <b>DOB: </b>
           <DatePicker
             showYearDropdown // Enable year dropdown
             scrollableYearDropdown // Make the year dropdown scrollable

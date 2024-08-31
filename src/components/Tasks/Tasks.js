@@ -12,7 +12,7 @@ const Interaction = ({memberId}) => {
     React.useEffect(() => {
         getTasks(parseInt(memberId))
             .then((response) => {
-
+              console.log(response)
                 setMemberInteractions(response );
             })
             .catch((error) => {
@@ -61,6 +61,8 @@ const Interaction = ({memberId}) => {
                 <th>Due</th>
 
                 <th>Status</th>
+
+                <th>Assignee</th>
               </tr>
                       {memberInteractions && memberInteractions.map((patient) => (
                 <>
@@ -94,10 +96,12 @@ const Interaction = ({memberId}) => {
                           </label>
                         </form>
                       </td>
+                      <td>{patient.taskAssignedTo.slice(0,-10)}</td>
                     </tr>
                   ) : (
                     " "
                   )}
+                
                 </>
               ))}
          

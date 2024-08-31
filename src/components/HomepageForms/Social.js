@@ -39,9 +39,10 @@ const Social = ({social}) => {
       <form className={styles.firstNameField}>
         <b className={styles.createNewCarecall}>SOCIAL HISTORY</b>
 
-        <input
+        <textarea
+        style={{height: "100px", width: "47%"}}
           className={styles.firstNameField1}
-          placeholder="CONDITION"
+          placeholder="HISTORY DESCRIPTION"
           type="text"
           value={socialNotes}
           onChange={(e) => setSocialNotes(e.target.value)}

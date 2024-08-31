@@ -225,10 +225,10 @@ const Menu = ({ memberId }) => {
         </div>
       </Popup>
 
-      {/* <div className="menu-item" onClick={logOut}>
+      <div className="menu-item" onClick={logOut}>
         {" "}
         Logout
-      </div> */}
+      </div>
       <div className="menu-item" >
         {" "}
         {auth.currentUser.email}{" "}

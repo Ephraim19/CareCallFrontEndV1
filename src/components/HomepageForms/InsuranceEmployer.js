@@ -23,6 +23,7 @@ const InsuranceEmployer = ({insDisplay}) => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
+    console.log(department);
     patchMember(parseInt(insDisplay.id), {
       memberEmployer: employer,
       memberDepartment: department,

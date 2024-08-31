@@ -86,20 +86,12 @@ const Overview = ({overview}) => {
 
             <option
               className="App-info"
-              value="ChronicCare"
-              key={"ChronicCare"}
+              value="At risk"
+              key={"At risk"}
             >
-              ChronicCare
+              At risk
             </option>
 
-
-            <option
-              className="App-info"
-              value="Sick"
-              key={"Sick"}
-            >
-              Sick
-            </option>
           </select>
         </label>
 
@@ -113,7 +105,7 @@ const Overview = ({overview}) => {
         <input
           className={styles.phoneNumber}
           placeholder="HEALTH GOALS"
-          type="text"
+          type="number"
           value={goals}
           onChange={(e) => setGoals(e.target.value)}
         />

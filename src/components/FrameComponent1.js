@@ -67,6 +67,7 @@ const FrameComponent1 = ({patientToDisplayId}) => {
                     <span>ID:</span>
                     <span className="span">{` `}</span>
                     <span className="y">
+                      VC360-
                       {patientToDisplayId.id
                         ? patientToDisplayId.id
                         : "--"}

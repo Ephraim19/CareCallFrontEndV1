@@ -129,7 +129,7 @@ const FrameComponent1 = ({patientToDisplayId}) => {
         <div className="at-risk-of-parent">
           <div className="at-risk-of">Social History</div>
           <div className="condition-parent">
-            <div className="condition">CONDITION</div>
+            <div className="condition"  >CONDITION</div>
             {socialHistory
               ? socialHistory.map((social) => (
                   <div className="diabetes-mellitus-type">

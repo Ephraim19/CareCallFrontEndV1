@@ -103,7 +103,7 @@ const Nutrition = ({patientToDisplayId}) => {
           <div className="property-editor-inner2">
             <div className="date-parent">
               <div className="date">Date</div>
-              <div className="diastolic-mmhg">RBS (mg/dl)</div>
+              <div className="diastolic-mmhg">RBS (mmol/l)</div>
               <div className="diastolic-mmhg">Interpretation</div>
             </div>
           </div>
@@ -121,7 +121,11 @@ const Nutrition = ({patientToDisplayId}) => {
               <div className="wrapper">
                 <div className="div3">{item.rbs}</div>
               </div>
+              {item.interpretation === "Normal" ? (
               <div className="prehypertension">{item.interpretation}</div>
+            ) : (
+              <div className="prehypertension1">{item.interpretation}</div>
+            )}
             </div>
           </div>
 
@@ -147,7 +151,7 @@ const Nutrition = ({patientToDisplayId}) => {
           <div className="property-editor-inner2">
             <div className="date-parent">
               <div className="date">Date</div>
-              <div className="diastolic-mmhg">FBS (mg/dl)</div>
+              <div className="diastolic-mmhg">FBS (mmol/l)</div>
               <div className="diastolic-mmhg">Interpretation</div>
             </div>
           </div>
