@@ -6,7 +6,7 @@ import { postTask } from "../../Services";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const InteractionForm = ({ condition }) => {
+const TaskForm = ({ condition }) => {
   const [conditionName, setConditionName] = useState("");
   const [conditionStatus, setConditionStatus] = useState("");
   const [startDate, setStartDate] = useState(new Date());
@@ -135,4 +135,4 @@ const InteractionForm = ({ condition }) => {
   );
 };
 
-export default InteractionForm;
+export default TaskForm;

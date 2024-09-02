@@ -1,88 +1,96 @@
-import React from 'react';
-import './Tasks.css';
-import Popup from 'reactjs-popup';
-import { getTasks, patchInteraction } from '../../Services';
-import InteractionForm from './TasksForm';
+import React from "react";
+import "./Tasks.css";
+import Popup from "reactjs-popup";
+import { getTasks, patchInteraction } from "../../Services";
+import TaskForm from "./TasksForm";
+import InteractionForm from "../Interaction/InteractionForm";
+import TaskStatusChange from "./TaskStatusChange";
 
-const Interaction = ({memberId}) => {
-    const [memberInteractions, setMemberInteractions ] = React.useState();
-    const progress = ["Not started", "Inprogress", "cancelled", "complete"];
-    const [reload, setReload] = React.useState(false);
+const Interaction = ({ memberId }) => {
+  const [memberInteractions, setMemberInteractions] = React.useState();
+  const progress = ["Not started", "Inprogress", "cancelled", "complete"];
+  const [reload, setReload] = React.useState(false);
+  const [showPopup, setShowPopup] = React.useState(false);
 
-    React.useEffect(() => {
-        getTasks(parseInt(memberId))
-            .then((response) => {
-              console.log(response)
-                setMemberInteractions(response );
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+  React.useEffect(() => {
+    getTasks(parseInt(memberId))
+      .then((response) => {
+        console.log(response);
+        setMemberInteractions(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [memberId, reload]);
 
-    },[memberId, reload])
+  const triggerParentEffect = () => {
+    setReload(!reload);
+  };
 
-    const triggerParentEffect = () => {
-      setReload(!reload);
+  const handleStatus = (e) => {
+    const data = {
+      taskStatus: e.target.value,
     };
 
-    const handleStatus = (e) => {
+    patchInteraction(parseInt(e.target.id), data)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
 
-      const data = {
-        taskStatus: e.target.value
-      }
+  };
 
-      patchInteraction(parseInt(e.target.id) , data)
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.error(error);
-          });
-    }
-
-    return (
-        <>
-
-        <Popup trigger={
-        <button style={{marginBottom:"-10%", marginTop:"-7%" ,padding:"1%"}} >NEW TASK</button>
-        
+  return (
+    <>
+      <Popup
+        trigger={
+          <button
+            style={{ marginBottom: "-10%", marginTop: "-7%", padding: "1%" }}
+          >
+            NEW TASK
+          </button>
         }
         nested
         modal
-        >
-          <InteractionForm condition={[memberId, triggerParentEffect]} />
-        </Popup>
+      >
+        <TaskForm condition={[memberId, triggerParentEffect]} />
+      </Popup>
 
+      <table className="customers">
+        <tr>
+          <th>Task</th>
 
-        <table className="customers">
-              <tr>
-                <th>Task</th>
+          <th>Due</th>
 
-                <th>Due</th>
+          <th>Status</th>
 
-                <th>Status</th>
+          <th>Assignee</th>
+        </tr>
+        {memberInteractions &&
+          memberInteractions.map((patient) => (
+            <>
+              {patient ? (
+                <tr>
+                  <td>
+                    {patient.taskName} <br /> {patient.task}
+                  </td>
 
-                <th>Assignee</th>
-              </tr>
-                      {memberInteractions && memberInteractions.map((patient) => (
-                <>
-                  {patient ? (
-                    <tr>
+                  <td>{patient.taskDueDate}</td>
 
-                      <td>{patient. taskName } <br /> {patient.task}</td>
-
-                        <td>{patient.taskDueDate}</td>
-                       
-
-                      <td>
-                        <form>
-                          <label htmlFor="status">
+                  <td>
+                    <form>
+                      <label htmlFor="status">
+                        <Popup
+                          trigger={
                             <select onChange={handleStatus} id={patient.id}>
                               <option className="App-info" value={progress[0]}>
                                 {patient.taskStatus !== "Not started"
                                   ? patient.taskStatus
                                   : "Not started"}
                               </option>
+
                               <option className="App-info" value={progress[1]}>
                                 Inprogress
                               </option>
@@ -93,21 +101,27 @@ const Interaction = ({memberId}) => {
                                 Complete
                               </option>
                             </select>
-                          </label>
-                        </form>
-                      </td>
-                      <td>{patient.taskAssignedTo.slice(0,-10)}</td>
-                    </tr>
-                  ) : (
-                    " "
-                  )}
-                
-                </>
-              ))}
-         
-            </table>
-          </>
-    );
+                          }
+                          nested
+                          modal
+                        >
+                          <TaskStatusChange
+                            condition={[memberId, triggerParentEffect,patient]}
+                          />
+                        </Popup>
+                      </label>
+                    </form>
+                  </td>
+                  <td>{patient.taskAssignedTo.slice(0, -10)}</td>
+                </tr>
+              ) : (
+                " "
+              )}
+            </>
+          ))}
+      </table>
+    </>
+  );
 };
 
 export default Interaction;
