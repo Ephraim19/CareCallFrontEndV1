@@ -24,6 +24,7 @@ const TaskStatusChange = ({ condition }) => {
       updatedBy: userEmail,
       interactionDetails: details,
       channelDirection: conditionStatus,
+      taskId: parseInt(condition[2].id),
     };
 
     postInteraction(data)

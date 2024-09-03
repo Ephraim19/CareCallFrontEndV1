@@ -25,6 +25,7 @@ import Journey from "../components/Journey/Journey";
 import Popup from "reactjs-popup";
 import NewMember from "../components/Members/NewMember";
 import Menu from "../components/BarsPopup/Menu";
+import Prescription from "../components/Prescriptions/Prescription";
 
 const LeftSideBarClinicalInfor = () => {
   const [appointment, setAppointment] = useState([]);
@@ -318,10 +319,17 @@ const LeftSideBarClinicalInfor = () => {
                 <LabFindings />
               </Collapsible> */}
 
-                <div className="algorithm-component3">
-                  <h3 className="nutrition-blood">{`IMAGING `}</h3>
-                  <h3 className="data-normalizer">+</h3>
-                </div>
+                <Collapsible
+                  trigger={
+                    <div className="algorithm-component3">
+                      <h3 className="nutrition-blood">{`PRESCRIPTIONS `}</h3>
+                      <h3 className="data-normalizer">+</h3>
+                    </div>
+                  }
+                >
+                  <Prescription patientToDisplayId={patientToDisplayId} />
+                </Collapsible>
+
                 <div className="algorithm-component4">
                   <h3 className="nutrition-blood">ATTACHMENTS</h3>
                   <h3 className="data-normalizer">+</h3>

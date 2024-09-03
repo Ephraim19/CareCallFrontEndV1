@@ -60,7 +60,7 @@ function App() {
   };
 
   useEffect(() => {
-  document.title = "Carecall Harmony";
+  document.title = "Nawiri by Carecall";
     addFavicon();
 
   }, []);
