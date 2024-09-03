@@ -15,7 +15,7 @@ const Prescription = ({ patientToDisplayId }) => {
 
       setBloodPressure(response);
     });
-  }, [reload]);
+  }, [patientToDisplayId,reload]);
 
   const triggerParentEffect = () => {
     setReload(!reload);
