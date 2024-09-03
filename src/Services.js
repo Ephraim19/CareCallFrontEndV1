@@ -575,3 +575,22 @@ export const triggerWebhook = async (data) => {
   const response = await axios.post("https://ephraim.pythonanywhere.com/webhook/", data);
   return response.data;
 };
+
+//PRESCRIPTION
+export const postPrescription = async (data) => {
+  const response = await axios.post(url + "prescription/post/", data);
+  return response.data;
+};
+
+export const getPrescription = async (memberId) => {
+  try {
+    const response = await axios.get(url + `prescription/`, {
+      params: {
+        memberId: memberId,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}

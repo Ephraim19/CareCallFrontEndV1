@@ -1,12 +1,12 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../HomepageForms/Program.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { getMember, patchMember, putMember } from "../../Services";
+import { postPrescription } from "../../Services";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const PrescriptionForm = ({ programStatusDisplay }) => {
+const PrescriptionForm = ({ memberId1 }) => {
   const [program, setProgram] = React.useState("");
   const [status, setStatus] = React.useState("");
   const [stage, setStage] = React.useState("");
@@ -14,29 +14,32 @@ const PrescriptionForm = ({ programStatusDisplay }) => {
   const [nutritionist, setNutritionist] = React.useState("");
   const [engagementLead, setEngagementLead] = React.useState("");
   const [startDate, setStartDate] = useState(null);
-  const [submit , setSubmit] = useState('SUBMIT DATA');
+  const [submit, setSubmit] = useState("SUBMIT DATA");
   // const [programStatusData, setProgramStatusData] = React.useState([]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    setSubmit('SUBMITTING DATA...');
-    patchMember(parseInt(programStatusDisplay.id), {
-      memberProgram: program,
-      memberStatus: status,
-      memberOnboardingStage: stage,
-      memberCareManager: careManager,
-      memberNutritionist: nutritionist,
-      memberEngagementLead: engagementLead,
-    })
-      .then((response) => {
-        toast.success("Data Updated Successfully");
-      })
-      .catch((error) => {
-        
-        console.error(error);
-        toast.error("Error Updating Data");
-      });
-      setSubmit('SUBMIT DATA');
+    setSubmit("SUBMITTING DATA...");
+    const data = {
+        memberId: parseInt(memberId1[0]),
+        prescriptionDrug: program,
+        prescriptionDate: startDate ? startDate.toISOString().split('T')[0] : null,
+        prescriptionDosage: stage,
+        prescriptionFrequency: careManager,
+        prescriptionDuration: nutritionist,
+    };
+
+    postPrescription(data).then((response) => {
+        memberId1[1]();
+        toast.success("Data submitted successfully");
+        setSubmit("SUBMIT DATA");
+        }
+    ).catch((error) => {
+        console.log(error);
+        toast.error("Error in submitting data");
+        setSubmit("SUBMIT DATA");
+    }
+    );
   };
 
   return (
@@ -48,11 +51,11 @@ const PrescriptionForm = ({ programStatusDisplay }) => {
           className={styles.firstNameField1}
           placeholder="MEDICATION NAME"
           type="email"
-          value={careManager}
-          onChange={(e) => setCareManager(e.target.value)}
+          value={program}
+          onChange={(e) => setProgram(e.target.value)}
         />
 
-        <div className={styles.lastNameField} >
+        <div className={styles.lastNameField}>
           <DatePicker
             selected={startDate}
             onChange={(date) => setStartDate(date)}
@@ -63,23 +66,23 @@ const PrescriptionForm = ({ programStatusDisplay }) => {
         <input
           className={styles.phoneNumber}
           placeholder="DOSAGE"
-          type="text"
-          value={careManager}
-          onChange={(e) => setCareManager(e.target.value)}
+          type="number"
+          value={stage}
+          onChange={(e) => setStage(e.target.value)}
         />
 
         <input
           className={styles.emailAddress}
           placeholder="FREQUENCY"
-          type="text"
+          type="number"
           value={careManager}
           onChange={(e) => setCareManager(e.target.value)}
         />
 
         <input
           className={styles.firstNameField11}
-          placeholder="DURATION"
-          type="text"
+          placeholder="DURATION IN DAYS"
+          type="number"
           value={nutritionist}
           onChange={(e) => setNutritionist(e.target.value)}
         />

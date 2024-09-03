@@ -46,8 +46,6 @@ const Program = ({programStatusDisplay}) => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    print(status);
-    print(program);
     patchMember(
       parseInt(programStatusDisplay.id),
       {
