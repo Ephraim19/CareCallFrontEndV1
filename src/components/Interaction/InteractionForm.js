@@ -11,6 +11,7 @@ const InteractionForm = ({condition}) => {
   const [conditionStatus, setConditionStatus] = useState("");
   const [details, setDetail] = useState("");
   const [userEmail, setUserEmail] = useState("")
+  const [submit, setSubmit] = React.useState('SUBMIT DATA');
 
   useEffect(()=>{
     setUserEmail( auth.currentUser.email)
@@ -20,6 +21,7 @@ const InteractionForm = ({condition}) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setSubmit('Submitting...');
     const data = {
       memberId: parseInt(condition[0]),
       channel: conditionName,
@@ -33,10 +35,12 @@ const InteractionForm = ({condition}) => {
     .then((response) => {
       condition[1]();
       toast.success("Data submitted successfully");
+      setSubmit('SUBMIT MORE DATA');
     })
     .catch((error) => {
       console.log(error);
       toast.error("Error in submitting data");
+      setSubmit('SUBMIT DATA');
     });
 
   };

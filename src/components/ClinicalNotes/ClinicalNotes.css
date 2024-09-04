@@ -1,0 +1,82 @@
+ .inicio {
+    width: 607px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: var(--color-white);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0 0 40px;
+    gap: 30px;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    font-size: var(--font-size-4xl);
+    color: var(--color-darkslategray);
+    font-family: var(--font-roboto-slab);
+  } 
+  .clinical-notes-container {
+    align-self: stretch;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    background-color: var(--color-steelblue);
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: var(--padding-5xs) 19px var(--padding-5xs) 16px;
+    gap: var(--gap-xl);
+    font-size: large;
+    color: var(--color-white);
+  }
+  
+  .clinical-notes {
+    margin: 0;
+    position: relative;
+    font-size: inherit;
+    font-weight: 500;
+    font-family: inherit;
+  }
+
+  .consultations,
+  .frame-container,
+  .frame-parent,
+  .inicio {
+    max-width: 100%;
+    display: flex;
+    box-sizing: border-box;
+  }
+  .consultations {
+    align-self: stretch;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0 var(--padding-10xl);
+    cursor: pointer;
+  }
+
+  .frame-parent55 {
+    flex: 1; 
+    border: 1px solid var(--color-gray);
+    overflow: hidden;
+    flex-direction: row;
+    align-items: flex-end;
+    padding: var(--padding-4xs) var(--padding-7xl) var(--padding-4xs)
+      var(--padding-lg);
+    gap: var(--gap-xl); 
+    cursor: pointer;
+  }
+
+  .doctors-consultation-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 0 0 var(--padding-12xs);
+  }
+
+  .doctors-consultation {
+    position: relative;
+    font-weight: 500;
+    font-size: medium;
+  } 
+

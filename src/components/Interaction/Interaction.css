@@ -5,26 +5,22 @@
     width: 100%;
     font-size: 15px;
   }
-  
+    
   .customers td,
   .customers th {
     border: 1px solid #ddd;
     padding: 8px;
   }
   
-  .customers tr:nth-child(even) {
-    background-color: #f2f2f2;
+  .customers tr {
+    background-color: hsl(0, 0%, 100%);
   }
-  
-  .customers tr:hover {
-    background-color: #ddd;
-  }
-  
+    
   .customers th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #172369;
+    background-color: var(--color-steelblue);
     color: white;
   }
   

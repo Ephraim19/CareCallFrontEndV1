@@ -22,10 +22,10 @@ const Prescription = ({ patientToDisplayId }) => {
   };
 
   return (
-    <div>
-      <div className="iterative-processor">
+    <div >
+      <div className="iterative-processor" >
         <div className="vitals-wrapper">
-          <h3 className="vitals1">MEDICATION </h3>
+          <h3 className="vitals55">MEDICATION </h3>
         </div>
       </div>
 

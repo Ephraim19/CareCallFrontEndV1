@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const url = "https://ephraim.pythonanywhere.com/"
-// const url = "http://127.0.0.1:8000/";
+// const url = "https://ephraim.pythonanywhere.com/"
+const url = "http://127.0.0.1:8000/";
 
 export const searchMember = async (data) => {
   const response = await axios.post(url + "search/", data);
@@ -593,4 +593,44 @@ export const getPrescription = async (memberId) => {
   } catch (error) {
     console.error(error);
   }
+}
+
+//Nutritionist
+
+export const getNutritionist = async (memberId) => {
+  try {
+    const response = await axios.get(url + `nutritionist/`, {
+      params: {
+        memberId: memberId,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export const postNutritionist = async (data) => {
+  const response = await axios.post(url + "nutritionist/post/", data);
+  return response.data;
+}
+
+//Psychologist
+
+export const getPsychologist = async (memberId) => {
+  try {
+    const response = await axios.get(url + `psychologist/`, {
+      params: {
+        memberId: memberId,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export const postPsychologist = async (data) => {
+  const response = await axios.post(url + "psychologist/post/", data);
+  return response.data;
 }

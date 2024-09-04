@@ -26,6 +26,7 @@ import Popup from "reactjs-popup";
 import NewMember from "../components/Members/NewMember";
 import Menu from "../components/BarsPopup/Menu";
 import Prescription from "../components/Prescriptions/Prescription";
+import ClinicalNotes from "../components/ClinicalNotes/ClinicalNotes";
 
 const LeftSideBarClinicalInfor = () => {
   const [appointment, setAppointment] = useState([]);
@@ -283,16 +284,12 @@ const LeftSideBarClinicalInfor = () => {
             </div>
             {topNav === "records" && (
               <div className="data-visualizer">
-                <Collapsible
-                  trigger={
-                    <div className="algorithm-component">
-                      <h3 className="vitals">VITALS</h3>
-                      <h3 className="data-normalizer">+</h3>
-                    </div>
-                  }
-                >
-                  <Vitals patientToDisplayId={patientToDisplayId} />
-                </Collapsible>
+
+                <div className="algorithm-component3">
+                  <Collapsible trigger={<h3 className="vitals">VITALS</h3>}>
+                    <Vitals patientToDisplayId={patientToDisplayId} />
+                  </Collapsible>
+                </div>
 
                 <Collapsible
                   trigger={
@@ -308,40 +305,56 @@ const LeftSideBarClinicalInfor = () => {
                   <Nutrition patientToDisplayId={patientToDisplayId} />
                 </Collapsible>
 
-                {/* <Collapsible
-                trigger={
-                  <div className="algorithm-component2">
-                    <h3 className="nutrition-blood">LAB FINDINGS</h3>
-                    <h3 className="data-normalizer">+</h3>
-                  </div>
-                }
-              >
-                <LabFindings />
-              </Collapsible> */}
-
-                <Collapsible
-                  trigger={
-                    <div className="algorithm-component3">
-                      <h3 className="nutrition-blood">{`PRESCRIPTIONS `}</h3>
-                      <h3 className="data-normalizer">+</h3>
-                    </div>
-                  }
-                >
-                  <Prescription patientToDisplayId={patientToDisplayId} />
-                </Collapsible>
+                <div className="algorithm-component3">
+                  <Collapsible
+                    trigger={
+                      <h3 style={{ width: "100%" }} className="nutrition-blood">
+                        PRESCRIPTIONS{" "}
+                      </h3>
+                    }
+                  >
+                    <Prescription patientToDisplayId={patientToDisplayId} />
+                  </Collapsible>
+                </div>
 
                 <div className="algorithm-component4">
+                  <Collapsible
+                    trigger={
+                      <>
+                        <h3
+                          style={{ width: "100%" }}
+                          className="nutrition-blood"
+                        >
+                          CLINICAL NOTES
+                        </h3>
+                        {/* <h3 className="data-normalizer">+</h3> */}
+                      </>
+                    }
+                  >
+                    <ClinicalNotes memberId={patientToDisplayId.id} />
+                  </Collapsible>
+                </div>
+
+                <div className="algorithm-component3">
+                  <Collapsible
+                    trigger={
+                      <h3 style={{ width: "100%" }} className="nutrition-blood">
+                        LAB FINDINGS
+                      </h3>
+                    }
+                  >
+                    <LabFindings />
+                  </Collapsible>
+                </div>
+
+                <div className="algorithm-component5">
                   <h3 className="nutrition-blood">ATTACHMENTS</h3>
                   <h3 className="data-normalizer">+</h3>
                 </div>
-                <div className="algorithm-component5">
-                  <h3 className="nutrition-blood">CLINICAL NOTES</h3>
-                  <h3 className="data-normalizer">+</h3>
-                </div>
-                <div className="alg=orithm-component6">
+                {/* <div className="alg=orithm-component6">
                   <h3 className="nutrition-blood">INTERVENTIONS</h3>
                   <h3 className="data-normalizer">+</h3>
-                </div>
+                </div> */}
               </div>
             )}
             {topNav === "interactions" && (

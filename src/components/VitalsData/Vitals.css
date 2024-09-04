@@ -393,6 +393,15 @@
   display: inline-block;
   min-width: 105px;
 }
+.vitals55 {
+  margin: 0;
+  position: relative;
+  font-size: large;
+  font-weight: 500;
+  font-family: inherit;
+  display: inline-block;
+  min-width: 105px;
+}
 .div4 {
   position: relative;
   font-weight: 500;

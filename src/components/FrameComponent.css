@@ -1,25 +1,20 @@
 .engagement {
   position: relative;
-  text-decoration: underline;
-  font-weight: 500;
+  font-weight: 300;
   display: flex;
+  cursor: pointer;
+  color: var(--color-darkslategray-100);
 }
-.engagement:hover {
-  font-weight: 500;
-  font-family: var(--font-roboto-slab);
-  font-size: var(--font-size-3xl);
-  text-align: left;
-  color: var(--color-navy);
-  display: flex;
-}
+
 .forms {
   position: relative;
   font-weight: 300;
   color: var(--color-darkslategray-100);
   display: flex;
   min-width: 67;
+  cursor: pointer;
 }
-.forms:hover {
+/* .forms:hover {
   font-weight: 300;
   font-family: var(--font-roboto-slab);
   font-size: var(--font-size-3xl);
@@ -27,7 +22,7 @@
   color: var(--color-darkslategray-100);
   display: flex;
   min-width: 67;
-}
+} */
 .engagement-parent {
   align-self: stretch;
   border-radius: var(--br-3xs);

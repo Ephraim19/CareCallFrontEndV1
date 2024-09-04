@@ -39,7 +39,6 @@ const Interaction = ({ memberId }) => {
       .catch((error) => {
         console.error(error);
       });
-
   };
 
   return (
@@ -106,7 +105,7 @@ const Interaction = ({ memberId }) => {
                           modal
                         >
                           <TaskStatusChange
-                            condition={[memberId, triggerParentEffect,patient]}
+                            condition={[memberId, triggerParentEffect, patient]}
                           />
                         </Popup>
                       </label>

@@ -3,14 +3,14 @@ import styles from "../HomepageForms/Program.module.css";
 import { auth, database } from "../Firebase";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { getAppointments,postAppointment } from "../../Services";
+import { getAppointments, postAppointment } from "../../Services";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const AppointmentForm = ({ memberId }) => {
   const [county, setCounty] = React.useState("");
   const [deliveryInstructions, setDeliveryInstructions] = React.useState("");
-  const [startDate, setStartDate] = React.useState(new Date());
+  const [startDate, setStartDate] = React.useState(null);
   const [selectedTime, setSelectedTime] = React.useState(null);
 
   const handleTimeChange = (time) => {
@@ -31,14 +31,11 @@ const AppointmentForm = ({ memberId }) => {
 
     if (memberId) {
       postAppointment(data)
-
         .then((response) => {
           toast.success("Data submitted successfully");
           getAppointments(memberId[0]).then((response) => {
             memberId[1](response);
-          }
-          );
-
+          });
         })
         .catch((error) => {
           console.error(error);
@@ -48,7 +45,6 @@ const AppointmentForm = ({ memberId }) => {
       toast.error("Please select a member");
     }
   };
-
 
   return (
     <div>
@@ -90,6 +86,7 @@ const AppointmentForm = ({ memberId }) => {
           <DatePicker
             selected={startDate}
             onChange={(date) => setStartDate(date)}
+            placeholderText="Appointment Date"
           />
         </div>
 
@@ -102,7 +99,7 @@ const AppointmentForm = ({ memberId }) => {
             timeIntervals={30}
             timeCaption="Time"
             dateFormat="h:mm aa"
-            
+            placeholderText="Appointment Time"
           />
         </div>
 

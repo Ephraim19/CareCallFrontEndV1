@@ -13,12 +13,13 @@ const NewMember = ({ reloading }) => {
   const [county, setCounty] = React.useState("");
   const [town, setTown] = React.useState("");
   const [deliveryInstructions, setDeliveryInstructions] = React.useState("");
-  const [startDate, setStartDate] = React.useState(new Date());
+  const [startDate, setStartDate] = React.useState(null);
   const [memberEmail, setMemberEmail] = React.useState("");
+  const [submit, setSubmit] = React.useState('SUBMIT DATA');
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
+    setSubmit('Submitting...');
     const data = {
       memberName: home,
       memberDOB: startDate.toDateString(),
@@ -32,11 +33,14 @@ const NewMember = ({ reloading }) => {
       .then((response) => {
         reloading();
         toast.success("Data submitted successfully");
+        setSubmit('SUBMIT MORE DATA');
       })
       .catch((error) => {
         console.error(error);
         toast.error("An error occurred. Please try again");
+        setSubmit('SUBMIT DATA');
       });
+      
   };
 
   return (
@@ -53,13 +57,14 @@ const NewMember = ({ reloading }) => {
         />
 
         <div className={styles.lastNameField}>
-          <b>DOB: </b>
+
           <DatePicker
             showYearDropdown // Enable year dropdown
             scrollableYearDropdown // Make the year dropdown scrollable
             yearDropdownItemNumber={100} // Number of years to show (e.g., 100 years)
             selected={startDate}
             onChange={(date) => setStartDate(date)}
+            placeholderText="Date of Birth"
           />
         </div>
 
