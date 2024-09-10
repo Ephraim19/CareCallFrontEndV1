@@ -113,7 +113,7 @@ const NewMember = ({ reloading }) => {
         <button className={styles.signUpButton} onClick={onSubmit}>
           <div className={styles.signUpButton1}>
             <div className={styles.signUpButtonChild} />
-            <b className={styles.createAccount}>SUBMIT DATA</b>
+            <b className={styles.createAccount}>{submit}</b>
           </div>
         </button>
       </form>

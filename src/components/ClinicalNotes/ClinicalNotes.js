@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./ClinicalNotes.css";
 import Collapsible from "react-collapsible";
-import { getNutritionist, getPsychologist } from "../../Services";
+import { getNutritionist, getPsychologist, getDoctor } from "../../Services";
 
 const ClinicalNotes = ({ memberId }) => {
   const [nutritionConsultation, setNutritionConsultation] = useState([]);
@@ -10,10 +10,16 @@ const ClinicalNotes = ({ memberId }) => {
   const [doctorConsultation, setDoctorConsultation] = useState([]);
 
   useEffect(() => {
+    getDoctor(parseInt(memberId))
+      .then((response) => {
+        setDoctorConsultation(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
 
     getNutritionist(parseInt(memberId))
       .then((response) => {
-        console.log(response);
         setNutritionConsultation(response);
       })
       .catch((error) => {
@@ -22,7 +28,6 @@ const ClinicalNotes = ({ memberId }) => {
 
     getPsychologist(parseInt(memberId))
       .then((response) => {
-        console.log(response);
         setPsychologistConsultation(response);
       })
       .catch((error) => {
@@ -39,10 +44,31 @@ const ClinicalNotes = ({ memberId }) => {
 
         <div className="consultations">
           <div className="frame-parent55">
-            <div className="doctors-consultation-wrapper">
-              <div className="doctors-consultation">Doctor’s Consultation</div>
-            </div>
-            {/* <div className="div">+</div> */}
+            <Collapsible
+              trigger={
+                <div className="doctors-consultation-wrapper">
+                  <div className="doctors-consultation">
+                    Doctor Consultation
+                  </div>
+                </div>
+              }
+            >
+              <table className="customers">
+                <tr>
+                  <th>Date</th>
+                  <th>Chief Complaint</th>
+                  <th>Diagnosis</th>
+                </tr>
+                {doctorConsultation &&
+                  doctorConsultation.map((consultation) => (
+                    <tr>
+                      <td>{consultation.consultationDate}</td>
+                      <td>{consultation.chiefComplaint}</td>
+                      <td>{consultation.diagnosis}</td>
+                    </tr>
+                  ))}
+              </table>
+            </Collapsible>
           </div>
         </div>
 
@@ -51,7 +77,7 @@ const ClinicalNotes = ({ memberId }) => {
             <Collapsible
               trigger={
                 <div className="doctors-consultation-wrapper">
-                  <div className="doctors-consultation" >
+                  <div className="doctors-consultation">
                     Nutrition Consultation
                   </div>
                 </div>

@@ -9,10 +9,13 @@ import { sendWhatsapp, getWhatsapp } from "../Services";
 import Nutritionist from "./Forms/Nutritionist";
 import Psychologist from "./Forms/Psychologist";
 import Doctor from "./Forms/Doctor";
+import { createPortal } from "react-dom";
+
 const FrameComponent = ({ memberId }) => {
   const [appointments, setAppointments] = useState([]);
   const [message, setMessage] = useState("");
   const [panel, setPanel] = useState("Engagement");
+  const [showModal, setShowModal] = useState(false);
 
   // const [dataFromChild, setDataFromChild] = useState('');
 
@@ -290,25 +293,31 @@ const FrameComponent = ({ memberId }) => {
         <div className="search-tree">
           <div className="rule-engine">
             <div className="priority-queue">
-              <Popup
+            <Popup
                 trigger={
                   <div className="frame-parent55">
                     <div className="doctors-consultation-wrapper">
-                      <div className="doctors-consultation"  >Doctor's Form</div>
+                      <div className="doctors-consultation">
+                        Doctor's Consultation
+                      </div>
                     </div>
                   </div>
                 }
                 modal
                 nested
               >
-                <Doctor memberId={[memberId[0], handleChildData]} />
+                <Doctor condition={[memberId[0], handleChildData]} />
               </Popup>
+              
+
 
               <Popup
                 trigger={
                   <div className="frame-parent55">
                     <div className="doctors-consultation-wrapper">
-                      <div className="doctors-consultation"  >Nutritionist Form</div>
+                      <div className="doctors-consultation">
+                        Nutritionist Consultation
+                      </div>
                     </div>
                   </div>
                 }
@@ -320,11 +329,13 @@ const FrameComponent = ({ memberId }) => {
 
               <Popup
                 trigger={
-                  <div className="frame-parent55" >
-                  <div className="doctors-consultation-wrapper">
-                    <div className="doctors-consultation"  >Psychologist Form</div>
+                  <div className="frame-parent55">
+                    <div className="doctors-consultation-wrapper">
+                      <div className="doctors-consultation">
+                        Psychologist consultation
+                      </div>
+                    </div>
                   </div>
-                </div>
                 }
                 modal
                 nested

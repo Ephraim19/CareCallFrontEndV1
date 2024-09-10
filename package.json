@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "@coreui/react-chartjs": "^3.0.0",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^6.0.2",
     "@react-pdf/renderer": "^3.4.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
