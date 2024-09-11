@@ -120,44 +120,34 @@ const Vitals = ({ patientToDisplayId }) => {
             </Popup>
           </div>
 
-          <div className="property-editor-inner2">
-            <div className="date-parent">
-              <div className="date">Date</div>
-              <div className="diastolic-mmhg">Systolic (mmHg)</div>
-              <div className="diastolic-mmhg">Diastolic (mmHg)</div>
-              <div className="diastolic-mmhg">Interpretation</div>
-            </div>
-          </div>
-
-          <div className="property-editor-inner1">
-            <div className="line-div" />
-          </div>
-
-          {bloodPressure &&
-            bloodPressure.map((bp) => (
-              <div className="property-editor-inner2">
-                <div className="parent">
-                  <div className="div2">{bp.readingDate}</div>
-                  <div className="wrapper">
-                    <div className="div3">{bp.systolic}</div>
-                  </div>
-                  <div className="container">
-                    <div className="div4">{bp.diastolic}</div>
-                  </div>
-                  {bp.interpretation === "Normal" ? (
-                    <div className="prehypertension">{bp.interpretation}</div>
-                  ) : (
-                    <div className="prehypertension1">{bp.interpretation}</div>
-                  )}
-                </div>
-
-                <div className="property-editor-inner1">
-                  <div className="line-div" />
-                </div>
-              </div>
-            ))}
-
-          <div className="timer-manager" />
+          <table className="customers">
+            <tr>
+              <th>Date</th>
+              <th>Systolic (mmhg)</th>
+              <th>Diastolic (mmhg)</th>
+              <th>Interpretation</th>
+            </tr>
+            {bloodPressure &&
+              bloodPressure.map((pulse) => (
+                <tr>
+                  <td>{pulse.readingDate}</td>
+                  <td>{pulse.systolic}</td>
+                  <td>{pulse.diastolic}</td>
+                  <td>
+                    {" "}
+                    {pulse.interpretation === "Normal" ? (
+                      <div className="prehypertension">
+                        {pulse.interpretation}
+                      </div>
+                    ) : (
+                      <div className="prehypertension1">
+                        {pulse.interpretation}
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              ))}
+          </table>
 
           <div className="frame-parent4">
             <div className="blood-pressure-parent">
@@ -181,40 +171,33 @@ const Vitals = ({ patientToDisplayId }) => {
             </Popup>
           </div>
 
-          <div className="property-editor-inner2">
-            <div className="date-parent">
-              <div className="date">Date</div>
-              <div className="diastolic-mmhg">Reading (Degrees Celcius)</div>
-              <div className="diastolic-mmhg">Interpretation</div>
-            </div>
-          </div>
+          <table className="customers">
+            <tr>
+              <th>Date</th>
+              <th>Temperature (Degrees celcius)</th>
+              <th>Interpretation</th>
+            </tr>
+            {temperature &&
+              temperature.map((pulse) => (
+                <tr>
+                  <td>{pulse.readingDate}</td>
+                  <td>{pulse.temperature}</td>
+                  <td>
+                    {" "}
+                    {pulse.interpretation === "Normal" ? (
+                      <div className="prehypertension">
+                        {pulse.interpretation}
+                      </div>
+                    ) : (
+                      <div className="prehypertension1">
+                        {pulse.interpretation}
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              ))}
+          </table>
 
-          <div className="property-editor-inner1">
-            <div className="line-div" />
-          </div>
-
-          {temperature &&
-            temperature.map((temp) => (
-              <div className="property-editor-inner2">
-                <div className="parent">
-                  <div className="div2">{temp.readingDate}</div>
-                  <div className="wrapper">
-                    <div className="div3">{temp.temperature}</div>
-                  </div>
-                  {temp.interpretation === "Normal" ? (
-                    <div className="prehypertension">{temp.interpretation}</div>
-                  ) : (
-                    <div className="prehypertension1">
-                      {temp.interpretation}
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-
-          <div className="property-editor-inner1">
-            <div className="line-div" />
-          </div>
 
           <div className="frame-parent4">
             <div className="blood-pressure-parent">
@@ -236,42 +219,33 @@ const Vitals = ({ patientToDisplayId }) => {
             </Popup>
           </div>
 
-          <div className="property-editor-inner2">
-            <div className="date-parent">
-              <div className="date">Date</div>
-              <div className="diastolic-mmhg">SpO2(%)</div>
-              <div className="diastolic-mmhg">Interpretation</div>
-            </div>
-          </div>
+          <table className="customers">
+            <tr>
+              <th>Date</th>
+              <th>SpO2</th>
+              <th>Interpretation</th>
+            </tr>
+            {oxygen &&
+              oxygen.map((pulse) => (
+                <tr>
+                  <td>{pulse.readingDate}</td>
+                  <td>{pulse.oxygen}</td>
+                  <td>
+                    {" "}
+                    {pulse.interpretation === "Normal" ? (
+                      <div className="prehypertension">
+                        {pulse.interpretation}
+                      </div>
+                    ) : (
+                      <div className="prehypertension1">
+                        {pulse.interpretation}
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              ))}
+          </table>
 
-          <div className="property-editor-inner1">
-            <div className="line-div" />
-          </div>
-
-          {oxygen &&
-            oxygen.map((oxygen) => (
-              <div className="property-editor-inner2">
-                <div className="parent">
-                  <div className="div2">{oxygen.readingDate}</div>
-                  <div className="wrapper">
-                    <div className="div3">{oxygen.oxygen}</div>
-                  </div>
-                  {oxygen.interpretation === "Normal" ? (
-                    <div className="prehypertension">
-                      {oxygen.interpretation}
-                    </div>
-                  ) : (
-                    <div className="prehypertension1">
-                      {oxygen.interpretation}
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-
-          <div className="property-editor-inner1">
-            <div className="line-div" />
-          </div>
 
           <div className="frame-parent4">
             <div className="blood-pressure-parent">
@@ -295,42 +269,32 @@ const Vitals = ({ patientToDisplayId }) => {
             </Popup>
           </div>
 
-          <div className="property-editor-inner2">
-            <div className="date-parent">
-              <div className="date">Date</div>
-              <div className="diastolic-mmhg">Pulse Rate (bpm) </div>
-              <div className="diastolic-mmhg">Interpretation</div>
-            </div>
-          </div>
-
-          <div className="property-editor-inner1">
-            <div className="line-div" />
-          </div>
-
-          {pulse &&
-            pulse.map((pulse) => (
-              <div className="property-editor-inner2">
-                <div className="parent">
-                  <div className="div2">{pulse.readingDate}</div>
-                  <div className="wrapper">
-                    <div className="div3">{pulse.pulse}</div>
-                  </div>
-                  {pulse.interpretation === "Normal" ? (
-                    <div className="prehypertension">
-                      {pulse.interpretation}
-                    </div>
-                  ) : (
-                    <div className="prehypertension1">
-                      {pulse.interpretation}
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-
-          <div className="property-editor-inner1">
-            <div className="line-div" />
-          </div>
+          <table className="customers">
+            <tr>
+              <th>Date</th>
+              <th>Pulse Rate</th>
+              <th>Interpretation</th>
+            </tr>
+            {pulse &&
+              pulse.map((pulse) => (
+                <tr>
+                  <td>{pulse.readingDate}</td>
+                  <td>{pulse.pulse}</td>
+                  <td>
+                    {" "}
+                    {pulse.interpretation === "Normal" ? (
+                      <div className="prehypertension">
+                        {pulse.interpretation}
+                      </div>
+                    ) : (
+                      <div className="prehypertension1">
+                        {pulse.interpretation}
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              ))}
+          </table>
 
           <div className="frame-parent4">
             <div className="blood-pressure-parent">
@@ -354,45 +318,32 @@ const Vitals = ({ patientToDisplayId }) => {
             </Popup>
           </div>
 
-          <div className="property-editor-inner2">
-            <div className="date-parent">
-              <div className="date">Date</div>
-              <div className="diastolic-mmhg">Respiratory Rate (bpm) </div>
-              <div className="diastolic-mmhg">Interpretation</div>
-            </div>
-          </div>
-
-          <div className="property-editor-inner1">
-            <div className="line-div" />
-          </div>
-
-          {respiratory &&
-            respiratory.map((respiratory) => (
-              <div className="property-editor-inner2">
-                <div className="parent">
-                  <div className="div2">{respiratory.readingDate}</div>
-                  <div className="wrapper">
-                    <div className="div3">{respiratory.respiratory}</div>
-                  </div>
-                  {/* <div className="container">
-                <div className="div4">prehypertension</div>
-              </div> */}
-                  {respiratory.interpretation === "Normal" ? (
-                    <div className="prehypertension">
-                      {respiratory.interpretation}
-                    </div>
-                  ) : (
-                    <div className="prehypertension1">
-                      {respiratory.interpretation}
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-
-          <div className="property-editor-inner1">
-            <div className="line-div" />
-          </div>
+          <table className="customers">
+            <tr>
+              <th>Date</th>
+              <th>Respiratory Rate</th>
+              <th>Interpretation</th>
+            </tr>
+            {respiratory &&
+              respiratory.map((respiratory) => (
+                <tr>
+                  <td>{respiratory.readingDate}</td>
+                  <td>{respiratory.respiratory}</td>
+                  <td>
+                    {" "}
+                    {respiratory.interpretation === "Normal" ? (
+                      <div className="prehypertension">
+                        {respiratory.interpretation}
+                      </div>
+                    ) : (
+                      <div className="prehypertension1">
+                        {respiratory.interpretation}
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              ))}
+          </table>
         </div>
       )}
       <div className="timer-manager" />

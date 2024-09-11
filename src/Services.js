@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const url = "https://ephraim.pythonanywhere.com/"
-// const url = "http://127.0.0.1:8000/";
+// const url = "https://ephraim.pythonanywhere.com/"
+const url = "http://127.0.0.1:8000/";
 
 export const searchMember = async (data) => {
   const response = await axios.post(url + "search/", data);
@@ -653,5 +653,26 @@ export const getDoctor = async (memberId) => {
 
 export const postDoctor = async (data) => {
   const response = await axios.post(url + "doctor/post/", data);
+  return response.data;
+}
+
+
+//BODY COMPOSITION
+
+export const getBodyComposition = async (memberId) => {
+  try {
+    const response = await axios.get(url + `bodycomposition/`, {
+      params: {
+        memberId: memberId,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export const postBodyComposition = async (data) => {
+  const response = await axios.post(url + "bodycomposition/post/", data);
   return response.data;
 }
